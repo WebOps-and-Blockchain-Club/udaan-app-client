@@ -70,7 +70,8 @@ class _signinpageState extends State<signinpage> {
       children: [
         ColorFiltered(
             colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.5), BlendMode.darken),
+                const Color.fromARGB(255, 19, 100, 165).withOpacity(0.2),
+                BlendMode.darken),
             child: Image.asset(
               "assets/image/flag2.jpeg",
               width: double.infinity,
@@ -88,6 +89,7 @@ class _signinpageState extends State<signinpage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    //Colors.
                     Padding(
                       padding: const EdgeInsets.only(top: 60),
                       child: Image.asset(
@@ -302,32 +304,32 @@ class _signinpageState extends State<signinpage> {
                     const SizedBox(
                       height: 120,
                     ),
-                    const Divider(
-                      color: Colors.white,
-                      thickness: 3,
-                      indent: 10,
-                      endIndent: 10,
-                    ),
-                    RichText(
-                        text: TextSpan(children: [
-                      const TextSpan(
-                          text: "New here?",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          )),
-                      TextSpan(
-                          text: "Sign Up",
-                          style: const TextStyle(
-                              color: Colors.blue,
-                              fontSize: 20,
-                              decoration: TextDecoration.underline),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.pushNamed(
-                                  context, MyRoutes.signupRoutes);
-                            }),
-                    ]))
+                    // const Divider(
+                    //   color: Colors.white,
+                    //   thickness: 3,
+                    //   indent: 10,
+                    //   endIndent: 10,
+                    // ),
+                    // RichText(
+                    //     text: TextSpan(children: [
+                    //   const TextSpan(
+                    //       text: "New here?",
+                    //       style: TextStyle(
+                    //         color: Colors.white,
+                    //         fontSize: 20,
+                    //       )),
+                    //   TextSpan(
+                    //       text: "Sign Up",
+                    //       style: const TextStyle(
+                    //           color: Colors.blue,
+                    //           fontSize: 20,
+                    //           decoration: TextDecoration.underline),
+                    //       recognizer: TapGestureRecognizer()
+                    //         ..onTap = () {
+                    //           Navigator.pushNamed(
+                    //               context, MyRoutes.signupRoutes);
+                    //         }),
+                    // ]))
                   ],
                 ),
               ),

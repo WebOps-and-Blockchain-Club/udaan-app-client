@@ -1,8 +1,7 @@
 import 'package:http/http.dart' as http;
 
 Future<void> sendDataToApi(String username, String password) async {
-  const apiUrl =
-      'http://localhost:3000/api/register'; // Replace with your API endpoint
+  const apiUrl = 'http://localhost:3000/api/register';
 
   final response = await http.post(Uri.parse(apiUrl), body: {
     'username': username,

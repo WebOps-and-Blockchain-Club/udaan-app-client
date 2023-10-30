@@ -89,7 +89,7 @@ class _SOSpageState extends State<SOSpage> {
       body: Stack(
         children: <Widget>[
           Container(
-            color: Color.fromARGB(121, 2, 17, 51),
+            color: Colors.black,
             width: double.infinity,
             height: double.infinity,
           ),
@@ -102,48 +102,50 @@ class _SOSpageState extends State<SOSpage> {
                   children: <Widget>[
                     AnimatedContainer(
                       duration: const Duration(seconds: 1),
-                      width: 200,
-                      height: 200,
+                      width: 160,
+                      height: 160,
                       decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 66, 186,
-                            180), // Change background color to red
+                        color: Colors.red, // Change background color to red
                         shape: BoxShape.circle,
                       ),
                       child: Center(
                         child: Text(
                           '$_secondsRemaining',
                           style: const TextStyle(
-                              fontSize: 40,
+                              fontSize: 34,
                               color:
-                                  Colors.yellow), // Change text color to yellow
+                                  Colors.white), // Change text color to yellow
                         ),
                       ),
                     ),
-                    Positioned(
-                      top: 0,
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: CircularProgressIndicator(
-                        value: 1 - (_secondsRemaining / 5),
-                        valueColor:
-                            const AlwaysStoppedAnimation<Color>(Colors.yellow),
-                      ),
-                    ),
+                    // Positioned(
+                    //   top: 0,
+                    //   bottom: 0,
+                    //   left: 0,
+                    //   right: 0,
+                    //   child: CircularProgressIndicator(
+                    //     value: 1 - (_secondsRemaining / 5),
+                    //     valueColor: const AlwaysStoppedAnimation<Color>(
+                    //         Colors.amberAccent),
+                    //   ),
+                    // ),
                   ],
                 ),
                 const SizedBox(height: 80),
-                LinearProgressIndicator(
-                  value: 1 - (_secondsRemaining / 5),
-                  valueColor:
-                      const AlwaysStoppedAnimation<Color>(Colors.yellow),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: LinearProgressIndicator(
+                    value: 1 - (_secondsRemaining / 5),
+                    valueColor:
+                        const AlwaysStoppedAnimation<Color>(Colors.amberAccent),
+                  ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 180,
                 ),
                 Container(
                   height: 80,
-                  width: 280,
+                  width: 180,
                   child: ElevatedButton(
                     onPressed: () {
                       // Cancel the request and navigate to the homepage.
@@ -151,13 +153,13 @@ class _SOSpageState extends State<SOSpage> {
                           context, MyRoutes.homeRoutes);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueAccent,
+                      backgroundColor: Colors.red,
                       //foregroundColor: Colors.black,
                     ),
                     child: const Text(
                       'Cancel Request',
                       style: TextStyle(
-                        fontSize: 32,
+                        fontSize: 18,
                       ),
                     ),
                   ),

@@ -34,7 +34,7 @@ Widget reviewRideBottomSheet(
                         image: AssetImage('assets/image/sport-car.png'),
                         height: 50,
                         width: 50),
-                    title: const Text('Hitler',
+                    title: const Text('<Cadet>',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
                     subtitle: Text('$distance km, $dropOffTime drop off'),

@@ -19,7 +19,6 @@ class _TurnByTurnState extends State<TurnByTurn> {
   LatLng destination = getTripLatLngFromSharedPrefs('destination');
   late WayPoint sourceWaypoint, destinationWaypoint;
   var wayPoints = <WayPoint>[];
-
   // Config variables for Mapbox Navigation
   late MapBoxNavigation directions;
   late MapBoxOptions _options;
@@ -30,6 +29,11 @@ class _TurnByTurnState extends State<TurnByTurn> {
   bool arrived = false;
   bool routeBuilt = false;
   bool isNavigating = false;
+  late LatLng latlng;
+  late double a = source.latitude;
+  late double b = source.longitude;
+  late double c = destination.latitude;
+  late double d = destination.longitude;
   // @override
   // Widget build(BuildContext context) {
   //   return const RateRide();
@@ -46,29 +50,31 @@ class _TurnByTurnState extends State<TurnByTurn> {
 
     // Setup directions and options
     directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
+    //directions = MapBoxNavigation();
     _options = MapBoxOptions(
-        zoom: 18.0,
+        zoom: 15.0,
         voiceInstructionsEnabled: true,
         bannerInstructionsEnabled: true,
         mode: MapBoxNavigationMode.drivingWithTraffic,
         isOptimized: true,
         units: VoiceUnits.metric,
         simulateRoute: true,
+        enableRefresh: true,
+        animateBuildRoute: true,
+        alternatives: true,
         language: "en");
 
     // Configure waypoints
-    sourceWaypoint = WayPoint(
-        name: "Source", latitude: source.latitude, longitude: source.longitude);
-    destinationWaypoint = WayPoint(
-        name: "Destination",
-        latitude: destination.latitude,
-        longitude: destination.longitude);
+    sourceWaypoint = WayPoint(name: "Source", latitude: a, longitude: b);
+    destinationWaypoint =
+        WayPoint(name: "Destination", latitude: c, longitude: d);
     wayPoints.add(sourceWaypoint);
     wayPoints.add(destinationWaypoint);
 
     // Start the trip
-    //await directions.startNavigation(wayPoints: wayPoints, options: _options);
+    await directions.startNavigation(wayPoints: wayPoints, options: _options);
     try {
+      //await directions.startNavigation(wayPoints: wayPoints, options: _options);
       await directions.startNavigation(wayPoints: wayPoints, options: _options);
     } catch (e) {
       //print("Error initializing navigation: $e");

@@ -62,7 +62,7 @@ class _signuppageState extends State<signuppage> {
             right: 0,
             bottom: 500,
             child: Image.asset(
-              "assets/image/flag2.jpeg",
+              "assets/image/udaan_try1.jpg",
               width: double.infinity,
               fit: BoxFit.cover,
               height: 50,
@@ -235,7 +235,8 @@ class ParabolaPainter extends CustomPainter {
 
     final path = Path();
     path.moveTo(0, size.height);
-    path.quadraticBezierTo(size.width / 2, 10, size.width, size.height);
+    path.quadraticBezierTo(
+        size.width / 2, size.height / 2, size.width, size.height);
     path.lineTo(size.width, size.height);
     path.lineTo(0, size.height);
 
