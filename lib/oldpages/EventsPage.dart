@@ -7,6 +7,8 @@ import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 //import 'package:flutter_application_udaantfr/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/oldpages/bottombar.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
+import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
+import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
 
 class EventBox extends StatelessWidget {
   final String eventName;
@@ -43,6 +45,36 @@ class EventsPage extends StatefulWidget {
 }
 
 class _EventsPageState extends State<EventsPage> {
+  final homeNavKey = GlobalKey<NavigatorState>();
+  final searchNavKey = GlobalKey<NavigatorState>();
+  final notificationNavKey = GlobalKey<NavigatorState>();
+  final profileNavKey = GlobalKey<NavigatorState>();
+  int selectedTab = 0;
+  List<NavModel> items = [];
+
+  @override
+  void initState() {
+    super.initState();
+    items = [
+      NavModel(
+        page: const TabPage(tab: 1),
+        navKey: homeNavKey,
+      ),
+      NavModel(
+        page: const TabPage(tab: 2),
+        navKey: searchNavKey,
+      ),
+      NavModel(
+        page: const TabPage(tab: 3),
+        navKey: notificationNavKey,
+      ),
+      NavModel(
+        page: const TabPage(tab: 4),
+        navKey: profileNavKey,
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,7 +179,7 @@ class _EventsPageState extends State<EventsPage> {
                   SingleChildScrollView(
                     child: Container(
                       width: 800,
-                      height: 380,
+                      height: 450,
                       child: ListView(
                         padding: const EdgeInsets.only(
                           left: 15,
@@ -178,13 +210,96 @@ class _EventsPageState extends State<EventsPage> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 1,
+                  )
                 ],
               ),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: const MyNavibar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(top: 10),
+        height: 64,
+        width: 64,
+        child: FloatingActionButton(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            //onPressed: () => debugPrint("Add Button pressed"),
+            onPressed: () {
+              Navigator.pushNamed(context, MyRoutes.sosRoute);
+            },
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(width: 3, color: Colors.blue),
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: const Text(
+              "SOS",
+              style: TextStyle(color: Colors.black),
+            )),
+      ),
+      bottomNavigationBar: NavBar(
+        pageIndex: selectedTab,
+        onTap: (index) {
+          if (index == selectedTab) {
+            items[index]
+                .navKey
+                .currentState
+                ?.popUntil((route) => route.isFirst);
+          } else {
+            setState(() {
+              selectedTab = index;
+            });
+          }
+        },
+      ),
+    );
+  }
+}
+
+class TabPage extends StatelessWidget {
+  final int tab;
+
+  const TabPage({Key? key, required this.tab}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Tab $tab')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Tab $tab'),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Page(tab: tab),
+                  ),
+                );
+              },
+              child: const Text('Go to page'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Page extends StatelessWidget {
+  final int tab;
+
+  const Page({super.key, required this.tab});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Page Tab $tab')),
+      body: Center(child: Text('Tab $tab')),
     );
   }
 }

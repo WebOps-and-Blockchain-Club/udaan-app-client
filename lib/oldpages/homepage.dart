@@ -8,13 +8,55 @@ import 'package:flutter/cupertino.dart';
 //import 'package:flutter_application_udaantfr/widgets/MyDrawer.dart';
 import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/bottombar.dart';
+import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
+import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
 import 'package:mapbox_turn_by_turn/oldpages/signuppage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
 
-class homepage extends StatelessWidget {
+class homepage extends StatefulWidget {
+  @override
+  State<homepage> createState() => _homepageState();
+}
+
+class _homepageState extends State<homepage> {
+  final homeNavKey = GlobalKey<NavigatorState>();
+
+  final searchNavKey = GlobalKey<NavigatorState>();
+
+  final notificationNavKey = GlobalKey<NavigatorState>();
+
+  final profileNavKey = GlobalKey<NavigatorState>();
+
+  int selectedTab = 0;
+
+  List<NavModel> items = [];
+
+  @override
+  void initState() {
+    super.initState();
+    items = [
+      NavModel(
+        page: const TabPage(tab: 1),
+        navKey: homeNavKey,
+      ),
+      NavModel(
+        page: const TabPage(tab: 2),
+        navKey: searchNavKey,
+      ),
+      NavModel(
+        page: const TabPage(tab: 3),
+        navKey: notificationNavKey,
+      ),
+      NavModel(
+        page: const TabPage(tab: 4),
+        navKey: profileNavKey,
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +139,42 @@ class homepage extends StatelessWidget {
         ),
         const SizedBox(height: 30.0),
       ]),
-      bottomNavigationBar: const MyNavibar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(top: 10),
+        height: 64,
+        width: 64,
+        child: FloatingActionButton(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            //onPressed: () => debugPrint("Add Button pressed"),
+            onPressed: () {
+              Navigator.pushNamed(context, MyRoutes.sosRoute);
+            },
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(width: 3, color: Colors.blue),
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: const Text(
+              "SOS",
+              style: TextStyle(color: Colors.black),
+            )),
+      ),
+      bottomNavigationBar: NavBar(
+        pageIndex: selectedTab,
+        onTap: (index) {
+          if (index == selectedTab) {
+            items[index]
+                .navKey
+                .currentState
+                ?.popUntil((route) => route.isFirst);
+          } else {
+            setState(() {
+              selectedTab = index;
+            });
+          }
+        },
+      ),
     );
   }
 }

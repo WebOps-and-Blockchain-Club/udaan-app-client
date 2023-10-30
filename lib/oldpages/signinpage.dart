@@ -69,9 +69,8 @@ class _signinpageState extends State<signinpage> {
     return Stack(
       children: [
         ColorFiltered(
-            colorFilter: ColorFilter.mode(
-                const Color.fromARGB(255, 19, 100, 165).withOpacity(0.2),
-                BlendMode.darken),
+            colorFilter: const ColorFilter.mode(
+                Color.fromRGBO(255, 239, 239, 239), BlendMode.darken),
             child: Image.asset(
               "assets/image/flag2.jpeg",
               width: double.infinity,

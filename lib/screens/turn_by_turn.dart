@@ -52,16 +52,16 @@ class _TurnByTurnState extends State<TurnByTurn> {
     directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
     //directions = MapBoxNavigation();
     _options = MapBoxOptions(
-        zoom: 15.0,
-        voiceInstructionsEnabled: true,
-        bannerInstructionsEnabled: true,
-        mode: MapBoxNavigationMode.drivingWithTraffic,
-        isOptimized: true,
-        units: VoiceUnits.metric,
-        simulateRoute: true,
-        enableRefresh: true,
-        animateBuildRoute: true,
-        alternatives: true,
+        // zoom: 5.0,
+        // voiceInstructionsEnabled: true,
+        // bannerInstructionsEnabled: true,
+        // mode: MapBoxNavigationMode.drivingWithTraffic,
+        // isOptimized: true,
+        // units: VoiceUnits.metric,
+        // simulateRoute: true,
+        // enableRefresh: true,
+        // animateBuildRoute: true,
+        // alternatives: true,
         language: "en");
 
     // Configure waypoints
@@ -72,7 +72,7 @@ class _TurnByTurnState extends State<TurnByTurn> {
     wayPoints.add(destinationWaypoint);
 
     // Start the trip
-    await directions.startNavigation(wayPoints: wayPoints, options: _options);
+    // await directions.startNavigation(wayPoints: wayPoints, options: _options);
     try {
       //await directions.startNavigation(wayPoints: wayPoints, options: _options);
       await directions.startNavigation(wayPoints: wayPoints, options: _options);
