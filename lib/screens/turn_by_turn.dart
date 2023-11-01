@@ -4,6 +4,9 @@ import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:mapbox_turn_by_turn/helpers/shared_prefs.dart';
 //import 'package:mapbox_turn_by_turn/screens/loading_screen.dart';
 import 'package:mapbox_turn_by_turn/ui/rate_ride.dart';
+//import 'package:camera_android/camera_android.dart';
+
+//import 'package:flutter_mapbox_navigation/library.dart';
 
 //import 'package:flutter_mapbox_navigation/models/routeLeg.dart';
 class TurnByTurn extends StatefulWidget {
@@ -49,19 +52,19 @@ class _TurnByTurnState extends State<TurnByTurn> {
     if (!mounted) return;
 
     // Setup directions and options
-    directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
+    //directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
     //directions = MapBoxNavigation();
     _options = MapBoxOptions(
-        // zoom: 5.0,
-        // voiceInstructionsEnabled: true,
-        // bannerInstructionsEnabled: true,
-        // mode: MapBoxNavigationMode.drivingWithTraffic,
-        // isOptimized: true,
-        // units: VoiceUnits.metric,
-        // simulateRoute: true,
+        zoom: 5.0,
+        voiceInstructionsEnabled: true,
+        bannerInstructionsEnabled: true,
+        mode: MapBoxNavigationMode.drivingWithTraffic,
+        isOptimized: true,
+        units: VoiceUnits.metric,
+        simulateRoute: true,
         // enableRefresh: true,
         // animateBuildRoute: true,
-        // alternatives: true,
+        alternatives: true,
         language: "en");
 
     // Configure waypoints
@@ -70,9 +73,10 @@ class _TurnByTurnState extends State<TurnByTurn> {
         WayPoint(name: "Destination", latitude: c, longitude: d);
     wayPoints.add(sourceWaypoint);
     wayPoints.add(destinationWaypoint);
+    directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
 
     // Start the trip
-    // await directions.startNavigation(wayPoints: wayPoints, options: _options);
+    await directions.startNavigation(wayPoints: wayPoints, options: _options);
     try {
       //await directions.startNavigation(wayPoints: wayPoints, options: _options);
       await directions.startNavigation(wayPoints: wayPoints, options: _options);
@@ -104,8 +108,8 @@ class _TurnByTurnState extends State<TurnByTurn> {
   }
 
   Future<void> _onRouteEvent(e) async {
-    distanceRemaining = await directions.distanceRemaining;
-    durationRemaining = await directions.durationRemaining;
+    distanceRemaining = (await directions.distanceRemaining)!;
+    durationRemaining = (await directions.durationRemaining)!;
 
     switch (e.eventType) {
       case MapBoxEvent.progress_change:
@@ -133,6 +137,9 @@ class _TurnByTurnState extends State<TurnByTurn> {
         } else {}
         break;
       case MapBoxEvent.navigation_finished:
+        routeBuilt = false;
+        isNavigating = false;
+        break;
       case MapBoxEvent.navigation_cancelled:
         routeBuilt = false;
         isNavigating = false;

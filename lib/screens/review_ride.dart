@@ -117,7 +117,7 @@ class _ReviewRideState extends State<ReviewRide> {
                 onMapCreated: _onMapCreated,
                 onStyleLoadedCallback: _onStyleLoadedCallback,
                 myLocationTrackingMode: MyLocationTrackingMode.TrackingGPS,
-                minMaxZoomPreference: const MinMaxZoomPreference(11, 11),
+                minMaxZoomPreference: const MinMaxZoomPreference(5, 50),
               ),
             ),
             reviewRideBottomSheet(context, distance, dropOffTime),

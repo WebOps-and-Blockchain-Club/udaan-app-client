@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:http/http.dart' as http;
 import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
+import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
 
@@ -60,12 +61,20 @@ class _signuppageState extends State<signuppage> {
             top: 0,
             left: 0,
             right: 0,
-            bottom: 500,
-            child: Image.asset(
-              "assets/image/udaan_try1.jpg",
-              width: double.infinity,
-              fit: BoxFit.cover,
-              height: 50,
+            //bottom: 500,
+            child: Container(
+              // decoration: const BoxDecoration(
+              //   borderRadius: BorderRadius.only(
+              //       bottomLeft: Radius.circular(90),
+              //       bottomRight: Radius.circular(90)),
+              // ),
+              child: Image.asset(
+                "assets/image/udaan_try1.jpg",
+                width: 800,
+                height: 200,
+                //fit: BoxFit.fitHeight,
+                //height: 190,
+              ),
             ),
           ),
           Positioned(
@@ -107,37 +116,38 @@ class _signuppageState extends State<signuppage> {
                         )),
                   ],
                 ),
-                const Text(
-                  "Sign Up",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                const Text("Create a free account",
-                    style: TextStyle(color: Colors.white)),
+                // const Text(
+                //   "Sign Up",
+                //   style: TextStyle(
+                //     fontSize: 24,
+                //     fontWeight: FontWeight.bold,
+                //     color: Colors.white,
+                //   ),
+                // ),
+                // const SizedBox(height: 30),
+                // const Text("Create a free account",
+                //     style: TextStyle(color: Colors.white)),
               ],
             ),
           ),
           // const SizedBox(
           //   height: 20,
           // ),
-          Positioned(
+          const Positioned(
             bottom: 500,
             top: 180,
-            left: 0,
-            right: 0,
+            left: 20,
+            right: 20,
             child: CustomPaint(
-              size: const Size(double.infinity, 100),
-              painter: ParabolaPainter(),
+              size: Size(double.infinity, 100),
+              //painter: ParabolaPainter(),
             ),
           ),
           Positioned(
-            top: 300,
+            top: 200,
             left: 20,
             right: 20,
+            //bottom: 0,
             child: Form(
               key: _formKey,
               child: Column(
@@ -159,20 +169,36 @@ class _signuppageState extends State<signuppage> {
                     ),
                   ),
                   TextFormField(
+                    style: const TextStyle(
+                      color: Colors.black,
+                    ),
                     controller: _addressController,
                     validator: (value) => _validateNotEmpty(value, "Address"),
                     decoration: const InputDecoration(
                       labelText: "Address",
                       prefixIcon: Icon(CupertinoIcons.location_fill),
+                      //fillColor: Color.fromRGBO(0, 0, 0, 0.5),
+                      //filled: true,
+                      border: UnderlineInputBorder(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(12),
+                              bottomLeft: Radius.circular(12),
+                              topRight: Radius.circular(12),
+                              bottomRight: Radius.circular(12))),
                     ),
                   ),
-                  TextFormField(
-                    controller: _passwordController,
-                    validator: _validatePassword,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      labelText: "Password",
-                      prefixIcon: Icon(CupertinoIcons.lock_fill),
+                  GestureDetector(
+                    child: AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      child: TextFormField(
+                        controller: _passwordController,
+                        validator: _validatePassword,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          labelText: "Password",
+                          prefixIcon: Icon(CupertinoIcons.lock_fill),
+                        ),
+                      ),
                     ),
                   ),
                   TextFormField(
@@ -184,37 +210,107 @@ class _signuppageState extends State<signuppage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  RichText(
-                    text: TextSpan(
-                      style: DefaultTextStyle.of(context).style,
-                      children: const <TextSpan>[
-                        TextSpan(
-                          text: "By creating an account you agree to our ",
-                          style: TextStyle(color: Colors.black, fontSize: 12),
-                        ),
-                        TextSpan(
-                          text: "terms and conditions",
-                          style: TextStyle(color: Colors.blue, fontSize: 12),
-                        ),
-                        TextSpan(
-                          text: " and ",
-                          style: TextStyle(color: Colors.black, fontSize: 12),
-                        ),
-                        TextSpan(
-                          text: "privacy policy",
-                          style: TextStyle(color: Colors.blue, fontSize: 12),
-                        ),
-                      ],
-                    ),
+                  // RichText(
+                  //   text: TextSpan(
+                  //     style: DefaultTextStyle.of(context).style,
+                  //     children: const [
+                  //       TextSpan(
+                  //         text: "By creating an account you agree to our ",
+                  //         style: TextStyle(color: Colors.black, fontSize: 12),
+                  //       ),
+                  //       TextSpan(
+                  //         text: "terms and conditions",
+                  //         style: TextStyle(
+                  //             color: Colors.blue,
+                  //             fontSize: 12,
+                  //             decoration: TextDecoration.underline),
+                  //       ),
+                  //       TextSpan(
+                  //         text: " and ",
+                  //         style: TextStyle(color: Colors.black, fontSize: 12),
+                  //       ),
+                  //       TextSpan(
+                  //         text: "privacy policy",
+                  //         style: TextStyle(
+                  //             color: Colors.blue,
+                  //             fontSize: 12,
+                  //             decoration: TextDecoration.underline),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  const Column(
+                    children: [
+                      Text(
+                        "By creating an account you agree to our ",
+                        style: TextStyle(color: Colors.black, fontSize: 12),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "terms and conditions",
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 12,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          Text(
+                            " and ",
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                          Text(
+                            "privacy policy",
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontSize: 12,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
+
                   const SizedBox(height: 15),
-                  ElevatedButton(
-                    onPressed: () {
+                  // AnimatedContainer(
+                  //   duration: const Duration(milliseconds: 1000),
+                  //   width: 400,
+                  //   height: 50,
+                  //   alignment: Alignment.center,
+                  //   child: ElevatedButton(
+                  //     onPressed: () {
+                  //       if (_formKey.currentState!.validate()) {
+                  //         Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                  //       }
+                  //     },
+                  //     child: const Text("Register"),
+                  //   ),
+                  // ),
+                  GestureDetector(
+                    onTap: () {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                        Navigator.pushNamed(context, MyRoutes.otpRoute);
                       }
                     },
-                    child: const Text("Register"),
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 500),
+                      width: 200,
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 6, 144, 152),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

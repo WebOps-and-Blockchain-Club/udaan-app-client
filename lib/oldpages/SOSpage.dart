@@ -44,7 +44,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-import 'package:mapbox_turn_by_turn/ui/splash.dart';
+//import 'package:mapbox_turn_by_turn/ui/splash.dart';
 
 class SOSpage extends StatefulWidget {
   const SOSpage({Key? key}) : super(key: key);

@@ -1,9 +1,11 @@
 import 'package:http/http.dart' as http;
 
-Future<void> sendDataToApi(String username, String password) async {
-  const apiUrl = 'http://localhost:3000/api/register';
+Future<void> sendDataToApi(
+    String username, String password, String type) async {
+  const apiUrl = 'http://localhost:3000';
 
   final response = await http.post(Uri.parse(apiUrl), body: {
+    'type': type,
     'username': username,
     'password': password,
   });

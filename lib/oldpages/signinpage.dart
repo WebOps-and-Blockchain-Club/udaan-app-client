@@ -23,6 +23,7 @@ class signinpage extends StatefulWidget {
 class _signinpageState extends State<signinpage> {
   String username = "";
   String password = "";
+  String type = "User";
   String abc = "";
   bool onChange = false;
   // Future<void> sendDataToApi(String username, String password) async {
@@ -48,7 +49,7 @@ class _signinpageState extends State<signinpage> {
   // }
 
   List<String> typeUser = ['Cadet', 'User'];
-  String selectedType = 'User';
+  String selectedType = 'Cadet';
 
   final _formKey = GlobalKey<FormState>();
   moveToHome(BuildContext context) async {
@@ -69,8 +70,9 @@ class _signinpageState extends State<signinpage> {
     return Stack(
       children: [
         ColorFiltered(
-            colorFilter: const ColorFilter.mode(
-                Color.fromRGBO(255, 239, 239, 239), BlendMode.darken),
+            colorFilter: ColorFilter.mode(
+                Color.fromARGB(1, 36, 107, 8).withOpacity(0.5),
+                BlendMode.luminosity),
             child: Image.asset(
               "assets/image/flag2.jpeg",
               width: double.infinity,
@@ -148,6 +150,7 @@ class _signinpageState extends State<signinpage> {
                                     onChanged: (String? newValue) {
                                       setState(() {
                                         selectedType = newValue!;
+                                        type = newValue;
                                       });
                                     },
                                     items: typeUser
@@ -177,7 +180,7 @@ class _signinpageState extends State<signinpage> {
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
-                              keyboardType: TextInputType.emailAddress,
+                              //keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 //icon: Icon(CupertinoIcons.person_solid),
                                 hintText: "User Name",
@@ -264,7 +267,7 @@ class _signinpageState extends State<signinpage> {
                       color: const Color.fromARGB(255, 3, 51, 103),
                       child: InkWell(
                         onTap: () async => {
-                          //await sendDataToApi(username, password),
+                          await sendDataToApi(username, password, type),
                           Navigator.pushNamed(context, MyRoutes.homeRoutes)
                         },
                         child: AnimatedContainer(

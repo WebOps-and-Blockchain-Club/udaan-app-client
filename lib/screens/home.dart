@@ -4,6 +4,7 @@ import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:mapbox_turn_by_turn/helpers/shared_prefs.dart';
 import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
 
+//import 'package:camera_android/camera_android.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -19,6 +20,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    //_initialCameraPosition = CameraPosition(target: currentLocation, zoom: 14);
     _initialCameraPosition = CameraPosition(target: currentLocation, zoom: 14);
     currentAddress = getCurrentAddressFromSharedPrefs();
   }

@@ -15,8 +15,12 @@ class _askpersonState extends State<askperson> {
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/image/udaan_try1.jpg"),
-                fit: BoxFit.fill)),
+                image: AssetImage(
+                  "assets/image/udaan_try1.jpg",
+                ),
+                fit: BoxFit.contain
+                // fit: BoxFit.fill
+                )),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
