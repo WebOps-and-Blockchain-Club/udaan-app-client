@@ -267,8 +267,9 @@ class _signinpageState extends State<signinpage> {
                       color: const Color.fromARGB(255, 3, 51, 103),
                       child: InkWell(
                         onTap: () async => {
-                          await sendDataToApi(username, password, type),
-                          Navigator.pushNamed(context, MyRoutes.homeRoutes)
+                          await sendDataToApi(username, password),
+                          Navigator.pushNamed(context, MyRoutes.homeRoutes),
+                          //moveToHome(context)
                         },
                         child: AnimatedContainer(
                           width: onChange ? 50 : 150,

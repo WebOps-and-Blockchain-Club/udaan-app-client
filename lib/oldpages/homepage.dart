@@ -12,6 +12,7 @@ import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
 import 'package:mapbox_turn_by_turn/oldpages/signuppage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
+import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
@@ -68,7 +69,8 @@ class _homepageState extends State<homepage> {
           GestureDetector(
             onTap: () {
               //Profile page not created yet
-              Navigator.pushNamed(context, MyRoutes.signinRoutes);
+              //Navigator.push(context, ProfileScreen());
+              Navigator.pushNamed(context, MyRoutes.profileRoute);
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),

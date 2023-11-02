@@ -24,6 +24,10 @@ class _signuppageState extends State<signuppage> {
   final _addressController = TextEditingController();
   final _passwordController = TextEditingController();
   final _phoneController = TextEditingController();
+  String name = "";
+  //String username = "";
+  String password = "";
+  String email = "";
 
   final _formKey = GlobalKey<FormState>();
 
@@ -155,6 +159,9 @@ class _signuppageState extends State<signuppage> {
                   TextFormField(
                     controller: _nameController,
                     validator: (value) => _validateNotEmpty(value, "Name"),
+                    onChanged: (value) {
+                      name = value;
+                    },
                     decoration: const InputDecoration(
                       labelText: "Name",
                       prefixIcon: Icon(CupertinoIcons.person_fill),
@@ -162,10 +169,13 @@ class _signuppageState extends State<signuppage> {
                   ),
                   TextFormField(
                     controller: _usernameController,
-                    validator: (value) => _validateNotEmpty(value, "Username"),
+                    validator: (value) => _validateNotEmpty(value, "Email"),
+                    onChanged: (value) {
+                      email = value;
+                    },
                     decoration: const InputDecoration(
-                      labelText: "Username",
-                      prefixIcon: Icon(CupertinoIcons.person_fill),
+                      labelText: "Email",
+                      prefixIcon: Icon(CupertinoIcons.mail_solid),
                     ),
                   ),
                   TextFormField(
@@ -174,6 +184,7 @@ class _signuppageState extends State<signuppage> {
                     ),
                     controller: _addressController,
                     validator: (value) => _validateNotEmpty(value, "Address"),
+                    onChanged: (value) {},
                     decoration: const InputDecoration(
                       labelText: "Address",
                       prefixIcon: Icon(CupertinoIcons.location_fill),
@@ -193,6 +204,9 @@ class _signuppageState extends State<signuppage> {
                       child: TextFormField(
                         controller: _passwordController,
                         validator: _validatePassword,
+                        onChanged: (value) {
+                          password = value;
+                        },
                         obscureText: true,
                         decoration: const InputDecoration(
                           labelText: "Password",
@@ -204,6 +218,9 @@ class _signuppageState extends State<signuppage> {
                   TextFormField(
                     controller: _phoneController,
                     validator: _validatePhone,
+                    // onChanged: (value) {
+                    //   email = value;
+                    // },
                     decoration: const InputDecoration(
                       labelText: "Phone",
                       prefixIcon: Icon(CupertinoIcons.phone_fill),
@@ -289,7 +306,8 @@ class _signuppageState extends State<signuppage> {
                   //   ),
                   // ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      await sendDataToApi1(name, password, email);
                       if (_formKey.currentState!.validate()) {
                         Navigator.pushNamed(context, MyRoutes.otpRoute);
                       }

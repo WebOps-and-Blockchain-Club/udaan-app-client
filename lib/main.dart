@@ -8,6 +8,7 @@ import 'package:mapbox_turn_by_turn/oldpages/askperson.dart';
 import 'package:mapbox_turn_by_turn/oldpages/cancel_request.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
+import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'UDAAN NCC',
+      //title: 'UDAAN NCC',
       debugShowCheckedModeBanner: false,
       //theme: customTheme, // Use the custom theme here
       home: const askperson(),
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.cancelRoutes: (context) => TimeGiven(),
         MyRoutes.askthem: (context) => const askperson(),
         MyRoutes.otpRoute: (context) => const OTPScreen(),
+        MyRoutes.profileRoute: (context) => const Profile(),
         //MyRoutes.mapRoute: (context) => MyMapapi(),
       },
     );
