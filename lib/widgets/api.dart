@@ -39,7 +39,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mapbox_gl/mapbox_gl.dart';
 
-String ngroklink = '';
+String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
 
 Future<void> sendDataToApi(String username, String password) async {
   print("Sending data to API: username=$username, password=$password");
@@ -53,7 +53,7 @@ Future<void> sendDataToApi(String username, String password) async {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: jsonEncode(<String, String>{
+      body: jsonEncode({
         'email': username,
         'password': password,
       }),
@@ -76,7 +76,7 @@ Future<void> sendDataToApi(String username, String password) async {
 }
 
 Future<void> sendDataToApi1(String username, String password, String email,
-    String coordinate, String state, String city) async {
+    String coordinate, String state, String city, String role) async {
   print(
       "Sending data to API: username=$username, password=$password, email=$email");
 
@@ -92,9 +92,10 @@ Future<void> sendDataToApi1(String username, String password, String email,
         'username': username,
         'password': password,
         'email': email,
-        'coordinates': coordinate,
-        'state': state,
-        'city': city,
+        'coordinates': "1230978",
+        'state': "PUNJAB ",
+        'city': "BHATINDA",
+        'role': "user",
       }),
       // body: jsonEncode({
       //   "username": "vgvyjh",
@@ -117,7 +118,7 @@ Future<void> sendDataToApi1(String username, String password, String email,
     }
   } catch (error) {
     print('Error: $error');
-    //throw Exception('Failed to send data to the API');
+    throw Exception('Failed to send data to the API');
   }
 }
 

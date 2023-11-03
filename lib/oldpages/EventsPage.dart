@@ -92,12 +92,12 @@ class _EventsPageState extends State<EventsPage> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.blueAccent, Colors.white],
-          ),
-        ),
+            // gradient: LinearGradient(
+            //   begin: Alignment.topCenter,
+            //   end: Alignment.bottomCenter,
+            //   colors: [Colors.blueAccent, Colors.white],
+            // ),
+            ),
         child: Stack(
           children: [
             //Padding(padding: EdgeInsets.only(top: 10, left: 100)),

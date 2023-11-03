@@ -6,6 +6,10 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 //import '';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mapbox_turn_by_turn/oldpages/signuppage.dart';
+
+String emailFromSignInPage = email;
 
 class OTPScreen extends StatefulWidget {
   OTPScreen({Key? key}) : super(key: key);
@@ -18,7 +22,8 @@ class _OTPScreenState extends State<OTPScreen> {
   //tDefa
   String otp = "";
 
-  @override
+  // final String email =
+  //     ModalRoute.of(BuildContext as BuildContext)!.settings.arguments as String;
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -55,19 +60,89 @@ class _OTPScreenState extends State<OTPScreen> {
               },
             ),
             const SizedBox(height: 20.0),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                  onPressed: () async {
-                    //await sendDataToApiotp(otp);
-                    Navigator.pushNamed(context, MyRoutes.homeRoutes);
-                  },
-                  child: const Text('NEXT')),
+            // SizedBox(
+            //   width: double.infinity,
+            //   child: ElevatedButton(
+            //       onPressed: () async {
+            //         // late var name = getDataFromLocalStorage("name");
+            //         // late var password = getDataFromLocalStorage("password");
+            //         // late var email = getDataFromLocalStorage("email");
+            //         // late var coordinates =
+            //         //     getDataFromLocalStorage("coordinates");
+            //         // late var state = getDataFromLocalStorage("state");
+            //         // late var city = getDataFromLocalStorage("city");
+            //         // late var role = getDataFromLocalStorage("role");
+            //         // var data = {
+            //         //   "name": name,
+            //         //   "password": password,
+            //         //   "email": email,
+            //         //   "coordinates": coordinates,
+            //         //   "state": state,
+            //         //   "city": city,
+            //         //   "role": role,
+            //         // };
+            //         print(
+            //             "its working------------------------------------------------------------");
+            //         //print(data);
+
+            //         await sendDataToApiotp(emailFromSignInPage, otp);
+            //         Navigator.pushNamed(context, MyRoutes.homeRoutes);
+            //       },
+            //       child: const Text('NEXT')),
+            // ),
+            const Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "           If you didn't receive the code  ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Text(
+                      " Resend ",
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            const Text(
-              "Resend OTP",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.blue),
+            SizedBox(
+              height: 30,
+            ),
+            SizedBox(
+              //width: double.infinity,
+              child: Container(
+                height: 45,
+                width: 200,
+                child: ElevatedButton(
+                    onPressed: () async {
+                      // late var name = getDataFromLocalStorage("name");
+                      // late var password = getDataFromLocalStorage("password");
+                      // late var email = getDataFromLocalStorage("email");
+                      // late var coordinates =
+                      //     getDataFromLocalStorage("coordinates");
+                      // late var state = getDataFromLocalStorage("state");
+                      // late var city = getDataFromLocalStorage("city");
+                      // late var role = getDataFromLocalStorage("role");
+                      // var data = {
+                      //   "name": name,
+                      //   "password": password,
+                      //   "email": email,
+                      //   "coordinates": coordinates,
+                      //   "state": state,
+                      //   "city": city,
+                      //   "role": role,
+                      // };
+                      print(
+                          "its working------------------------------------------------------------");
+                      //print(data);
+
+                      await sendDataToApiotp(emailFromSignInPage, otp);
+                      Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                    },
+                    child: const Text('NEXT')),
+              ),
             ),
           ],
         ),
@@ -76,11 +151,21 @@ class _OTPScreenState extends State<OTPScreen> {
   }
 }
 
-String ngroklink = '';
-Future<void> sendDataToApiotp(String otp) async {
-  print("Sending data to API: $otp");
+Future<String?> getDataFromLocalStorage(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  var data = prefs.getString(key);
+  return data;
+  // print(data);
+  // return data;
+}
 
-  final apiUrl = '$ngroklink/api/v1/auth/varifyotp';
+String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
+Future<void> sendDataToApiotp(String email, String otp) async {
+  print("Sending data to API: $otp");
+  //print(Type)
+  print("Type: ${email.runtimeType}");
+
+  final apiUrl = '$ngroklink/api/v1/auth/verifyotp';
 
   try {
     final response = await http.post(
@@ -97,6 +182,7 @@ Future<void> sendDataToApiotp(String otp) async {
       //   'city': city,
       // }),
       body: jsonEncode({
+        'email': email,
         'otp': otp,
       }),
     );
@@ -112,6 +198,6 @@ Future<void> sendDataToApiotp(String otp) async {
     }
   } catch (error) {
     print('Error: $error');
-    //throw Exception('Failed to send data to the API');
+    throw Exception('Failed to send data to the API');
   }
 }

@@ -1,5 +1,7 @@
 // ignore_for_file: unused_import
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_application_udaantfr/pages/EventsPage.dart';
@@ -10,13 +12,21 @@ import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+// export 'var';
 
+// void savedata(String key, String value) async {
+//   final pref = await SharedPreferences.getInstance();
+//   await pref.setString(key, value);
+// }
 class signuppage extends StatefulWidget {
   const signuppage({Key? key}) : super(key: key);
 
   @override
   State<signuppage> createState() => _signuppageState();
 }
+
+String email = "";
 
 class _signuppageState extends State<signuppage> {
   final _nameController = TextEditingController();
@@ -31,6 +41,7 @@ class _signuppageState extends State<signuppage> {
   String coordinates = "hi";
   String state = "Punjab";
   String city = "Bhatinda";
+  String role = "s";
 
   final _formKey = GlobalKey<FormState>();
 
@@ -65,7 +76,7 @@ class _signuppageState extends State<signuppage> {
       body: Stack(
         children: [
           Positioned(
-            top: 0,
+            top: 20,
             left: 0,
             right: 0,
             //bottom: 500,
@@ -76,7 +87,7 @@ class _signuppageState extends State<signuppage> {
               //       bottomRight: Radius.circular(90)),
               // ),
               child: Image.asset(
-                "assets/image/udaan_try1.jpg",
+                "assets/image/WhatsApp Image 2023-11-03 at 9.53.36 PM.jpeg",
                 width: 800,
                 height: 200,
                 //fit: BoxFit.fitHeight,
@@ -84,6 +95,13 @@ class _signuppageState extends State<signuppage> {
               ),
             ),
           ),
+          // const Divider(
+          //   color: Colors.white,
+          //   thickness: 3,
+          //   indent: 10,
+          //   endIndent: 10,
+          // ),
+
           Positioned(
             top: 20,
             left: 0,
@@ -123,6 +141,12 @@ class _signuppageState extends State<signuppage> {
                         )),
                   ],
                 ),
+                // const Divider(
+                //   color: Colors.black12,
+                //   thickness: 2,
+                //   indent: 10,
+                //   endIndent: 10,
+                // ),
                 // const Text(
                 //   "Sign Up",
                 //   style: TextStyle(
@@ -140,6 +164,12 @@ class _signuppageState extends State<signuppage> {
           // const SizedBox(
           //   height: 20,
           // ),
+          // const Divider(
+          //   color: Colors.black12,
+          //   thickness: 2,
+          //   indent: 10,
+          //   endIndent: 10,
+          // ),
           const Positioned(
             bottom: 500,
             top: 180,
@@ -151,14 +181,21 @@ class _signuppageState extends State<signuppage> {
             ),
           ),
           Positioned(
-            top: 200,
+            top: 250,
             left: 20,
             right: 20,
             //bottom: 0,
+
             child: Form(
               key: _formKey,
               child: Column(
                 children: [
+                  const Divider(
+                    color: Colors.black12,
+                    thickness: 2,
+                    indent: 10,
+                    endIndent: 10,
+                  ),
                   TextFormField(
                     controller: _nameController,
                     validator: (value) => _validateNotEmpty(value, "Name"),
@@ -310,8 +347,22 @@ class _signuppageState extends State<signuppage> {
                   // ),
                   GestureDetector(
                     onTap: () async {
-                      // await sendDataToApi1(
-                      //     name, password, email, coordinates, state, city);
+                      // email;
+                      await sendDataToApi1(name, password, email, coordinates,
+                          state, city, role);
+                      Navigator.pushNamed(context, MyRoutes.otpRoute,
+                          arguments: email);
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => OTPScreen(email: email)));
+                      await savedata("name", name);
+                      await savedata("password", password);
+                      await savedata("email", email);
+                      await savedata("coordinates", coordinates);
+                      await savedata("state", state);
+                      await savedata("city", city);
+                      await savedata("role", role);
                       if (_formKey.currentState!.validate()) {
                         Navigator.pushNamed(context, MyRoutes.otpRoute);
                       }
@@ -365,4 +416,11 @@ class ParabolaPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
   }
+}
+
+Future<void> savedata(String key, var data) async {
+  final pref = await SharedPreferences.getInstance();
+  await pref.setString(key, data);
+  print(key);
+  print(data);
 }

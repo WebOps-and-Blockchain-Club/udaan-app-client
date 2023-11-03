@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:mapbox_gl/mapbox_gl.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 import '../main.dart';
 
@@ -9,8 +10,14 @@ LatLng getCurrentLatLngFromSharedPrefs() {
       sharedPreferences.getDouble('longitude')!);
 }
 
+// void savedata(String key, String value) async {
+//   final pref = await SharedPreferences.getInstance();
+//   await pref.setString(key, value);
+// }
+
 String getCurrentAddressFromSharedPrefs() {
   return sharedPreferences.getString('current-address')!;
+  //sharedPreferences.getIntstance()
 }
 
 LatLng getTripLatLngFromSharedPrefs(String type) {

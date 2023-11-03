@@ -68,7 +68,7 @@ class _homepageState extends State<homepage> {
       drawer: const MyDrawer(),
       appBar: AppBar(
         iconTheme: const IconThemeData(
-          color: Colors.redAccent,
+          color: Color.fromARGB(96, 50, 10, 134),
         ),
         backgroundColor: Colors.blue,
         title: const Text('Home Page'),
@@ -90,10 +90,10 @@ class _homepageState extends State<homepage> {
               child: Container(
                 alignment: Alignment.centerRight,
                 child: Transform.scale(
-                  scale: 1.8,
+                  scale: 1.5,
                   child: const Icon(
                     CupertinoIcons.profile_circled,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
