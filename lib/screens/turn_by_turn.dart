@@ -108,8 +108,8 @@ class _TurnByTurnState extends State<TurnByTurn> {
   }
 
   Future<void> _onRouteEvent(e) async {
-    distanceRemaining = (await directions.distanceRemaining)!;
-    durationRemaining = (await directions.durationRemaining)!;
+    distanceRemaining = (await directions.distanceRemaining);
+    durationRemaining = (await directions.durationRemaining);
 
     switch (e.eventType) {
       case MapBoxEvent.progress_change:

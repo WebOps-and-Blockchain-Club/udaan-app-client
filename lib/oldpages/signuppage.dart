@@ -28,6 +28,9 @@ class _signuppageState extends State<signuppage> {
   //String username = "";
   String password = "";
   String email = "";
+  String coordinates = "hi";
+  String state = "Punjab";
+  String city = "Bhatinda";
 
   final _formKey = GlobalKey<FormState>();
 
@@ -307,7 +310,8 @@ class _signuppageState extends State<signuppage> {
                   // ),
                   GestureDetector(
                     onTap: () async {
-                      await sendDataToApi1(name, password, email);
+                      // await sendDataToApi1(
+                      //     name, password, email, coordinates, state, city);
                       if (_formKey.currentState!.validate()) {
                         Navigator.pushNamed(context, MyRoutes.otpRoute);
                       }
@@ -318,13 +322,13 @@ class _signuppageState extends State<signuppage> {
                       height: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 6, 144, 152),
+                        color: const Color.fromARGB(255, 3, 51, 103),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: const Text(
                         'Sign Up',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

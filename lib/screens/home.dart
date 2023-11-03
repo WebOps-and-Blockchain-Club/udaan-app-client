@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
                           child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Where do you wanna go today?'),
+                                Text('Start Your Help'),
                               ])),
                     ]),
               ),

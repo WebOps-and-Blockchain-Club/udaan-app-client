@@ -9,6 +9,17 @@ import 'package:mapbox_turn_by_turn/oldpages/bottombar.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
+import 'package:http/http.dart ' as http;
+
+Future<void> fetchData() async {
+  final response = await http
+      .get(Uri.parse('https://2ae2-103-158-43-17.ngrok.io/api/v1/events'));
+  if (response.statusCode == 200) {
+    print(response.body);
+  } else {
+    print('Failed to fetch data');
+  }
+}
 
 class EventBox extends StatelessWidget {
   final String eventName;
@@ -54,6 +65,7 @@ class _EventsPageState extends State<EventsPage> {
 
   @override
   void initState() {
+    fetchData();
     super.initState();
     items = [
       NavModel(

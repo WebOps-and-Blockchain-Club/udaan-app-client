@@ -30,11 +30,14 @@ class _homepageState extends State<homepage> {
   final notificationNavKey = GlobalKey<NavigatorState>();
 
   final profileNavKey = GlobalKey<NavigatorState>();
+  // final username =
+  // ModalRoute.of(context)!.settings.arguments as String;
+  //String? username;
 
   int selectedTab = 0;
 
   List<NavModel> items = [];
-
+  //final username = ModalRoute.of(context)!.settings.arguments as String;
   @override
   void initState() {
     super.initState();
@@ -60,10 +63,14 @@ class _homepageState extends State<homepage> {
 
   @override
   Widget build(BuildContext context) {
+    //final username = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       drawer: const MyDrawer(),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        iconTheme: const IconThemeData(
+          color: Colors.redAccent,
+        ),
+        backgroundColor: Colors.blue,
         title: const Text('Home Page'),
         actions: [
           GestureDetector(
@@ -71,6 +78,12 @@ class _homepageState extends State<homepage> {
               //Profile page not created yet
               //Navigator.push(context, ProfileScreen());
               Navigator.pushNamed(context, MyRoutes.profileRoute);
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => ProfileScreen(username: username),
+              //   ),
+              // );
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -80,7 +93,7 @@ class _homepageState extends State<homepage> {
                   scale: 1.8,
                   child: const Icon(
                     CupertinoIcons.profile_circled,
-                    color: Colors.blue,
+                    color: Colors.black,
                   ),
                 ),
               ),

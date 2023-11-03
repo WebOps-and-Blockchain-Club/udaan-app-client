@@ -7,10 +7,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_application_udaantfr/utils/MyRoutes.dart';
 import 'package:http/http.dart' as http;
+import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 //import 'package:flutter_application_udaantfr/widgets/api.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
-
+//export 'username';
 //import 'package:flutter/src/painting/border_radius.dart';
 
 class signinpage extends StatefulWidget {
@@ -25,29 +26,11 @@ class _signinpageState extends State<signinpage> {
   String password = "";
   String type = "User";
   String abc = "";
+  // String address = "";
+  // String coordinates = "hi";
+  // String state = "Punjab";
+  // String city = "Bhatinda";
   bool onChange = false;
-  // Future<void> sendDataToApi(String username, String password) async {
-  //   if (_formKey.currentState!.validate()) {
-  //     setState(() {
-  //       onChange = true;
-  //     });
-
-  //     // Send user data to the API
-  //     try {
-  //       await sendDataToApi(username, password);
-  //       // API request successful
-  //       await Navigator.pushNamed(context, MyRoutes.homeRoutes);
-  //     } catch (e) {
-  //       // Handle API request error
-  //       // You can show an error message or perform other actions
-  //     } finally {
-  //       setState(() {
-  //         onChange = false;
-  //       });
-  //     }
-  //   }
-  // }
-
   List<String> typeUser = ['Cadet', 'User'];
   String selectedType = 'Cadet';
 
@@ -263,13 +246,18 @@ class _signinpageState extends State<signinpage> {
                       height: 20,
                     ),
                     Material(
-                      borderRadius: BorderRadius.circular(onChange ? 25 : 8),
+                      borderRadius: BorderRadius.circular(25),
                       color: const Color.fromARGB(255, 3, 51, 103),
                       child: InkWell(
                         onTap: () async => {
                           await sendDataToApi(username, password),
-                          Navigator.pushNamed(context, MyRoutes.homeRoutes),
-                          //moveToHome(context)
+                          Navigator.pushNamed(context, MyRoutes.homeRoutes,
+                              arguments: username),
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             ProfileScreen(username: username))),
                         },
                         child: AnimatedContainer(
                           width: onChange ? 50 : 150,
@@ -307,7 +295,19 @@ class _signinpageState extends State<signinpage> {
                     const SizedBox(
                       height: 120,
                     ),
-                    // const Divider(
+                    // add divider here
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// const Divider(
                     //   color: Colors.white,
                     //   thickness: 3,
                     //   indent: 10,
@@ -333,13 +333,3 @@ class _signinpageState extends State<signinpage> {
                     //               context, MyRoutes.signupRoutes);
                     //         }),
                     // ]))
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}

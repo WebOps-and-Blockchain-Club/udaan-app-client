@@ -37,22 +37,27 @@
 // }
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:mapbox_gl/mapbox_gl.dart';
+
+String ngroklink = '';
 
 Future<void> sendDataToApi(String username, String password) async {
   print("Sending data to API: username=$username, password=$password");
 
-  const apiUrl = 'http://localhost:3000/api/v1/auth/login';
+  final apiUrl = '$ngroklink/api/v1/auth/login';
 
   try {
+    print("hii");
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {
         'Content-Type': 'application/json',
       },
-      body: jsonEncode({
-        'username': username,
+      body: jsonEncode(<String, String>{
+        'email': username,
         'password': password,
       }),
+      //body: jsonEncode(<String, String>{"email": "HH", "password": "HH1"}),
     );
 
     if (response.statusCode == 200) {
@@ -61,7 +66,7 @@ Future<void> sendDataToApi(String username, String password) async {
       print('Successfully done');
     } else {
       final errorData = json.decode(response.body);
-      print("Error data: $errorData");
+      print("Error data: $errorData LAUDE");
       throw Exception('Failed to send data to the API');
     }
   } catch (error) {
@@ -70,12 +75,12 @@ Future<void> sendDataToApi(String username, String password) async {
   }
 }
 
-Future<void> sendDataToApi1(
-    String username, String password, String email) async {
+Future<void> sendDataToApi1(String username, String password, String email,
+    String coordinate, String state, String city) async {
   print(
       "Sending data to API: username=$username, password=$password, email=$email");
 
-  const apiUrl = 'http://localhost:3000/api/v1/auth/register';
+  final apiUrl = '$ngroklink/api/v1/auth/register';
 
   try {
     final response = await http.post(
@@ -87,7 +92,18 @@ Future<void> sendDataToApi1(
         'username': username,
         'password': password,
         'email': email,
+        'coordinates': coordinate,
+        'state': state,
+        'city': city,
       }),
+      // body: jsonEncode({
+      //   "username": "vgvyjh",
+      //   "email": "h",
+      //   "password": "vgbhghj",
+      //   "coordinates": "",
+      //   "state": "dd",
+      //   "city": "dwhjdjh"
+      // }),
     );
 
     if (response.statusCode == 200) {
@@ -101,6 +117,62 @@ Future<void> sendDataToApi1(
     }
   } catch (error) {
     print('Error: $error');
-    throw Exception('Failed to send data to the API');
+    //throw Exception('Failed to send data to the API');
+  }
+}
+
+void postDataToApiAddress(LatLng currentLocation, String currentAddress) async {
+  final apiUrl = '$ngroklink/api/v1/getCadet/:userId';
+
+  Map<String, dynamic> requestData = {
+    'latitude': currentLocation.latitude,
+    'longitude': currentLocation.longitude,
+    'address': currentAddress,
+  };
+
+  try {
+    var response = await http.post(
+      Uri.parse(apiUrl),
+      body: requestData,
+    );
+
+    if (response.statusCode == 200) {
+      // Request successful, do something with the response
+      print('Data posted successfully');
+    } else {
+      // Request failed, handle the error
+      print('Failed to post data. Status code: ${response.statusCode}');
+    }
+  } catch (error) {
+    // Handle any error that might occur during the HTTP request
+    print('Error: $error');
+  }
+}
+
+void getDataFromApiAddress(LatLng cadetLocation) async {
+  String apiUrl = '$ngroklink/api/v1/getCadet/:userId';
+
+  // Map<String, dynamic> requestData = {
+  //   'latitude': currentLocation.latitude,
+  //   'longitude': currentLocation.longitude,
+  //   'address': currentAddress,
+  // };
+
+  try {
+    var response = await http.get(
+      Uri.parse(apiUrl),
+      //body: requestData,
+    );
+
+    if (response.statusCode == 200) {
+      // Request successful, do something with the response
+      print('Data posted successfully');
+    } else {
+      // Request failed, handle the error
+      print('Failed to post data. Status code: ${response.statusCode}');
+    }
+  } catch (error) {
+    // Handle any error that might occur during the HTTP request
+    print('Error: $error');
   }
 }

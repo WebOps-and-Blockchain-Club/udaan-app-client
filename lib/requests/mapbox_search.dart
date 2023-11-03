@@ -11,7 +11,7 @@ String searchType = 'place%2Cpostcode%2Caddress';
 String searchResultsLimit = '5';
 String proximity =
     '${sharedPreferences.getDouble('longitude')}%2C${sharedPreferences.getDouble('latitude')}';
-String country = 'us';
+String country = 'in';
 
 Dio _dio = Dio();
 

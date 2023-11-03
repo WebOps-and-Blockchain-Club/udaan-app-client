@@ -8,7 +8,7 @@ Widget reviewRideBottomSheet(
     BuildContext context, String distance, String dropOffTime) {
   String sourceAddress = getSourceAndDestinationPlaceText('source');
   String destinationAddress = getSourceAndDestinationPlaceText('destination');
-  var a = distance * 12;
+  //var a = distance * 12;
   return Positioned(
     bottom: 0,
     child: SizedBox(
@@ -37,11 +37,11 @@ Widget reviewRideBottomSheet(
                     title: const Text('<Cadet>',
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold)),
-                    subtitle: Text('$distance km, $dropOffTime drop off'),
+                    subtitle: Text('$distance km,  $dropOffTime drop off'),
                     // ignore: unnecessary_string_interpolations
-                    trailing: const Text('₹2000',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18)),
+                    // trailing: const Text('₹2000',
+                    //     style: TextStyle(
+                    //         fontWeight: FontWeight.bold, fontSize: 18)),
                   ),
                 ),
                 ElevatedButton(
@@ -52,7 +52,7 @@ Widget reviewRideBottomSheet(
                     child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Start your premier ride now'),
+                          Text('Start Navigation'),
                         ])),
               ]),
         ),
