@@ -11,5 +11,6 @@ class MyRoutes {
   static String askthem = "/ask";
   static String otpRoute = "/otp";
   static String profileRoute = "/profile";
+  static String eventDetails = "/eventdetails";
   static String previewride = "/preview";
 }
