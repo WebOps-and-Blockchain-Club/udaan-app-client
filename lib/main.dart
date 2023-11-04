@@ -12,6 +12,7 @@ import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
+import 'package:mapbox_turn_by_turn/oldpages/eventDetails.dart';
 import 'oldpages/signinpage.dart';
 import 'oldpages/signuppage.dart';
 import 'ui/splash.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.askthem: (context) => const askperson(),
         MyRoutes.otpRoute: (context) => OTPScreen(),
         MyRoutes.profileRoute: (context) => const Profile(),
+        //MyRoutes.eventDetails: (context) => const EventDetailsPage(),
         //MyRoutes.mapRoute: (context) => MyMapapi(),
       },
     );

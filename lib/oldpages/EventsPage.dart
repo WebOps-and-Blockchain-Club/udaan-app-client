@@ -9,6 +9,7 @@ import 'package:mapbox_turn_by_turn/oldpages/bottombar.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
+import 'package:mapbox_turn_by_turn/oldpages/eventDetails.dart';
 import 'package:http/http.dart ' as http;
 
 Future<void> fetchData() async {
@@ -22,31 +23,44 @@ Future<void> fetchData() async {
 }
 
 class EventBox extends StatelessWidget {
-  final String eventName;
-  final String imageAsset; // Add this line
+  final String imageAsset;
+  final String title;
+  final String location;
+  final String date;
+  final String description;
+  final String registrationlink;
+  final VoidCallback onTap;
 
-  EventBox({required this.eventName, required this.imageAsset});
+  EventBox({
+    required this.imageAsset,
+    required this.title,
+    required this.location,
+    required this.date,
+    required this.description,
+    required this.registrationlink,
+    required this.onTap
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 200,
-      height: 200,
-      padding: const EdgeInsets.all(4),
-      //decoration: BoxDecoration(
-      //borderRadius: BorderRadius.circular(10),
-      //color: Colors.transparent,
-      //),
-      color: Colors.transparent,
-      child: Image.asset(
-        imageAsset,
-        //width: double.infinity,
-        height: double.infinity,
-        fit: BoxFit.fitHeight,
+    return GestureDetector(
+      onTap: onTap, // Trigger onTap callback
+      child: Container(
+        width: 200,
+        height: 200,
+        padding: const EdgeInsets.all(4),
+        color: Colors.transparent,
+        child: Image.asset(
+          imageAsset,
+          height: double.infinity,
+          fit: BoxFit.fitHeight,
+        ),
       ),
     );
   }
 }
+
+
 
 class EventsPage extends StatefulWidget {
   const EventsPage({Key? key}) : super(key: key);
@@ -154,17 +168,77 @@ class _EventsPageState extends State<EventsPage> {
                   CarouselSlider(
                     items: [
                       EventBox(
-                        eventName: "Event 1",
-                        imageAsset: "assets/image/Events1.jpg",
+                        title: "Leadership Workshop",
+                        imageAsset: 'assets/image/Events1.jpg',
+                        location: 'NCC Training Grounds',
+                        date: '2023-11-15',
+                        description: 'Enhance your leadership skills with interactive workshops and real-world scenarios.',
+                        registrationlink: 'https://example.com/leadership-workshop',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => EventDetailsPage(
+                                imageAsset: 'assets/image/Events1.jpg',
+                                title: 'Leadership Workshop',
+                                location: 'NCC Training Grounds',
+                                date: '2023-11-15',
+                                description: 'Enhance your leadership skills with interactive workshops and real-world scenarios.',
+                                registrationlink: 'https://example.com/leadership-workshop',
+                              ),
+                            ),
+                          );
+                        },
                       ),
+
                       EventBox(
-                        eventName: "Event 2",
-                        imageAsset: "assets/image/Events2.jpg",
+                        title: "Adventure Camp",
+                        imageAsset: 'assets/image/Events2.jpg',
+                        location: 'Mount Adventure Base',
+                        date: '2023-12-02',
+                        description: 'Embark on an adventurous journey with fellow cadets. Learn survival skills and team building.',
+                        registrationlink: 'https://example.com/adventure-camp',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => EventDetailsPage(
+                                imageAsset: 'assets/image/Events2.jpg',
+                                title: 'Adventure Camp',
+                                location: 'Mount Adventure Base',
+                                date: '2023-12-02',
+                                description: 'Embark on an adventurous journey with fellow cadets. Learn survival skills and team building.',
+                                registrationlink: 'https://example.com/adventure-camp',
+                              ),
+                            ),
+                          );
+                        },
                       ),
+
                       EventBox(
-                        eventName: "Event 3",
-                        imageAsset: "assets/image/Events3.jpeg",
+                        title: "Drill Competition",
+                        imageAsset: 'assets/image/Events3.jpeg',
+                        location: 'Parade Ground',
+                        date: '2023-11-30',
+                        description: 'Showcase your precision and discipline in the annual drill competition. Trophies and recognition await!',
+                        registrationlink: 'https://example.com/drill-competition',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => EventDetailsPage(
+                                imageAsset: 'assets/image/Events3.jpeg',
+                                title: 'Drill Competition',
+                                location: 'Parade Ground',
+                                date: '2023-11-30',
+                                description: 'Showcase your precision and discipline in the annual drill competition. Trophies and recognition await!',
+                                registrationlink: 'https://example.com/drill-competition',
+                              ),
+                            ),
+                          );
+                        },
                       ),
+          
                       // Events can be added more
                     ],
                     options: CarouselOptions(
@@ -205,19 +279,76 @@ class _EventsPageState extends State<EventsPage> {
                         shrinkWrap: true,
                         children: [
                           EventBox(
-                            eventName: "Upcoming Event 1",
-                            imageAsset: "assets/image/Events3.jpeg",
+                            title: "Blood Donation Drive",
+                            imageAsset: 'assets/image/Events4.jpeg',
+                            location: 'NCC Community Center',
+                            date: '2023-12-18',
+                            description: 'Contribute to a noble cause. Join us in saving lives through voluntary blood donations.',
+                            registrationlink: 'https://example.com/blood-donation-drive',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => EventDetailsPage(
+                                    imageAsset: 'assets/image/Events4.jpeg',
+                                    title: 'Blood Donation Drive',
+                                    location: 'NCC Community Center',
+                                    date: '2023-12-18',
+                                    description: 'Contribute to a noble cause. Join us in saving lives through voluntary blood donations.',
+                                    registrationlink: 'https://example.com/blood-donation-drive',
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                           EventBox(
-                            eventName: "Upcoming Event 2",
-                            imageAsset: "assets/image/Events4.jpeg",
+                            title: "Environmental Cleanup Campaign",
+                            imageAsset: 'assets/image/indian-flag-2644512_1280.jpeg',
+                            location: 'City Park',
+                            date: '2023-11-25',
+                            description: 'Join hands to make a positive impact on the environment. Let\'s keep our surroundings clean and green.',
+                            registrationlink: 'https://example.com/environmental-cleanup',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => EventDetailsPage(
+                                    imageAsset: 'assets/image/indian-flag-2644512_1280.jpeg',
+                                    title: 'Environmental Cleanup Campaign',
+                                    location: 'City Park',
+                                    date: '2023-11-25',
+                                    description: 'Join hands to make a positive impact on the environment. Let\'s keep our surroundings clean and green.',
+                                    registrationlink: 'https://example.com/environmental-cleanup',
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                           EventBox(
-                            eventName: "Upcoming Event 3",
-                            imageAsset:
-                                "assets/image/indian-flag-2644512_1280.jpeg",
+                            title: "Sports Meet",
+                            imageAsset: 'assets/image/Events3.jpeg',
+                            location: 'NCC Sports Complex',
+                            date: '2023-12-10',
+                            description: 'Unleash your sportsmanship! Participate in a variety of sports and showcase your athletic prowess.',
+                            registrationlink: 'https://example.com/sports-meet',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => EventDetailsPage(
+                                    imageAsset: 'assets/image/Events3.jpeg',
+                                    title: 'Sports Meet',
+                                    location: 'NCC Sports Complex',
+                                    date: '2023-12-10',
+                                    description: 'Unleash your sportsmanship! Participate in a variety of sports and showcase your athletic prowess.',
+                                    registrationlink: 'https://example.com/sports-meet',
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                          // Events can be added more
+                        
+                        // Events can be added more
                         ],
                       ),
                     ),
