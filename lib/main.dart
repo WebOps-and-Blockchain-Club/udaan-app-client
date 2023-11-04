@@ -8,6 +8,7 @@ import 'package:mapbox_turn_by_turn/oldpages/askperson.dart';
 import 'package:mapbox_turn_by_turn/oldpages/cancel_request.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
+import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
 import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.askthem: (context) => const askperson(),
         MyRoutes.otpRoute: (context) => OTPScreen(),
         MyRoutes.profileRoute: (context) => const Profile(),
+        MyRoutes.previewride: (context) => const PrepareRide(),
         //MyRoutes.mapRoute: (context) => MyMapapi(),
       },
     );

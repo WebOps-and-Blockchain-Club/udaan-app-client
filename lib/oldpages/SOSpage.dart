@@ -65,7 +65,7 @@ class SOSpage extends StatefulWidget {
 }
 
 class _SOSpageState extends State<SOSpage> {
-  int _secondsRemaining = 30;
+  int _secondsRemaining = 14;
   late Timer _timer;
 
   @override
@@ -119,7 +119,7 @@ class _SOSpageState extends State<SOSpage> {
       if (_secondsRemaining == 0) {
         timer.cancel();
         // Navigate to the homepage when the timer is done.
-        Navigator.pushReplacementNamed(context, MyRoutes.splashRoute);
+        Navigator.pushNamed(context, MyRoutes.splashRoute);
       } else {
         setState(() {
           _secondsRemaining--;
@@ -148,27 +148,27 @@ class _SOSpageState extends State<SOSpage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Stack(
+                const Stack(
                   alignment: Alignment.center,
                   children: <Widget>[
-                    AnimatedContainer(
-                      duration: const Duration(seconds: 1),
-                      width: 110,
-                      height: 110,
-                      decoration: const BoxDecoration(
-                        color: Colors.black, // Change background color to red
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Text(
-                          '$_secondsRemaining',
-                          style: const TextStyle(
-                              fontSize: 34,
-                              color:
-                                  Colors.white), // Change text color to yellow
-                        ),
-                      ),
-                    ),
+                    // AnimatedContainer(
+                    //   duration: const Duration(seconds: 1),
+                    //   width: 110,
+                    //   height: 110,
+                    //   decoration: const BoxDecoration(
+                    //     color: Colors.black, // Change background color to red
+                    //     shape: BoxShape.circle,
+                    //   ),
+                    //   child: Center(
+                    //     child: Text(
+                    //       '$_secondsRemaining',
+                    //       style: const TextStyle(
+                    //           fontSize: 34,
+                    //           color:
+                    //               Colors.white), // Change text color to yellow
+                    //     ),
+                    //   ),
+                    // ),
                     // Positioned(
                     //   top: 0,
                     //   bottom: 0,

@@ -48,14 +48,14 @@ Future<Map> getParsedReverseGeocoding(LatLng latLng) async {
   //response= response.toString;
   // response = json.encode("[" + response.body + "]");
   // print('Response: $response');
-  if (response != null //response['features'] != null &&
+  if ( //response['features'] != null &&
       //response['features'].isNotEmpty
       //response is Map<String, dynamic>
       //&& response is List && response.isNotEmpty
-      &&
+
       response is Map &&
-      response['features'] is List &&
-      response['features'].isNotEmpty) {
+          response['features'] is List &&
+          response['features'].isNotEmpty) {
     Map feature = response['features'][0];
     //Map feature = response[0];
 

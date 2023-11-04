@@ -62,7 +62,7 @@ class _PrepareRideState extends State<PrepareRide> {
         leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back)),
-        title: const Text('Mapbox Cabs'),
+        title: const Text('Udaan NCC'),
         actions: const [
           CircleAvatar(backgroundImage: AssetImage('assets/image/person.jpg')),
         ],

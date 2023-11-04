@@ -118,6 +118,7 @@ class _TurnByTurnState extends State<TurnByTurn> {
         if (progressEvent.currentStepInstruction != null) {
           instruction = progressEvent.currentStepInstruction!;
         }
+
         break;
       case MapBoxEvent.route_building:
       case MapBoxEvent.route_built:
