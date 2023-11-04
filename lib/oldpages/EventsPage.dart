@@ -590,7 +590,7 @@ class _EventsPageState extends State<EventsPage> {
                   SingleChildScrollView(
                     child: Container(
                       width: 800,
-                      height: 450,
+                      height: 320,
                       child: ListView(
                         padding: const EdgeInsets.only(
                           left: 15,

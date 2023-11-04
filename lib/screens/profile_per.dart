@@ -10,9 +10,9 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      //title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
+        primarySwatch: Colors.blue,
       ),
       home: const ProfileScreen(username: ''),
     );
@@ -40,15 +40,16 @@ class ProfileScreen extends StatelessWidget {
               backgroundImage: AssetImage('assets/image/Events1.jpg'),
             ),
             const SizedBox(height: 20),
-            itemProfile('Name', username, CupertinoIcons.person),
+            //username = "Abhishek";
+            itemProfile('Name', "Dikshant", CupertinoIcons.person),
             const SizedBox(height: 10),
-            itemProfile('Phone', '1234567890', CupertinoIcons.phone),
+            itemProfile('Phone', '9646071964', CupertinoIcons.phone),
+            const SizedBox(height: 10),
+            itemProfile('Address', 'Rich Palace,Bhatinda,Punjab',
+                CupertinoIcons.location),
             const SizedBox(height: 10),
             itemProfile(
-                'Address', 'abc address, xyz city', CupertinoIcons.location),
-            const SizedBox(height: 10),
-            itemProfile(
-                'Email', 'ahadhashmideveloper@gmail.com', CupertinoIcons.mail),
+                'Email', 'eveloperdikshant@gmail.com', CupertinoIcons.mail),
             const SizedBox(
               height: 20,
             ),
@@ -75,7 +76,7 @@ class ProfileScreen extends StatelessWidget {
           boxShadow: [
             BoxShadow(
                 offset: Offset(0, 5),
-                color: Colors.deepOrange.withOpacity(.2),
+                color: Colors.blue.withOpacity(.2),
                 spreadRadius: 2,
                 blurRadius: 10)
           ]),

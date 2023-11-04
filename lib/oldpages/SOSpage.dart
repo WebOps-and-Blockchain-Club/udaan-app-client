@@ -53,7 +53,7 @@ import 'package:mapbox_gl/mapbox_gl.dart';
 
 import '../helpers/mapbox_handler.dart';
 import '../main.dart';
-import '../screens/home.dart';
+//import '../screens/home.dart';
 import '../widgets/api.dart';
 //import 'package:mapbox_turn_by_turn/ui/splash.dart';
 

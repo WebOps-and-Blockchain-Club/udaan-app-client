@@ -17,7 +17,7 @@ class _askpersonState extends State<askperson> {
       right: 0,
       child: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(
                     "assets/image/WhatsApp Image 2023-11-03 at 9.53.36 PM.jpeg",
@@ -34,7 +34,7 @@ class _askpersonState extends State<askperson> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
-                    height: 350,
+                    height: 380,
                     //width: 450,
                   ),
                   GestureDetector(
@@ -51,6 +51,20 @@ class _askpersonState extends State<askperson> {
                         borderRadius: BorderRadius.circular(25),
                         //border: CircleBorder( )
                         //border: Colors.accents,
+                        border: Border.all(
+                          color: Colors
+                              .blue, // Change the color to your desired border color
+                          width: 2, // Adjust the width of the border
+                        ),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: Colors.black.withOpacity(
+                        //         0.3), // Change the shadow color and opacity
+                        //     spreadRadius: 2, // Spread radius
+                        //     blurRadius: 4, // Blur radius
+                        //     offset: Offset(0, 3), // Shadow offset
+                        //   ),
+                        // ],
                       ),
                       child: const Text(
                         'Sign Up',
