@@ -8,7 +8,7 @@ import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 //import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 // export 'var';
 
 // void savedata(String key, String value) async {
@@ -356,11 +356,12 @@ class _signuppageState extends State<signuppage> {
                                   )),
                           (Route<dynamic> route) => false,
                         );
-                      } else
+                      } else {
                         Navigator.pushNamed(context, MyRoutes.signinRoutes);
+                      }
                     },
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                       width: 200,
                       height: 50,
                       alignment: Alignment.center,

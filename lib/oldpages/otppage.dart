@@ -7,14 +7,14 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:mapbox_turn_by_turn/oldpages/signuppage.dart';
+// import 'package:mapbox_turn_by_turn/oldpages/signuppage.dart';
 
 // String emailFromSignInPage = email;
 // final String emailFromSignInPag =
 //       ModalRoute.of(BuildContext as BuildContext)!.settings.arguments as String;
 class OTPScreen extends StatefulWidget {
+  const OTPScreen({super.key, required this.email});
   final String email;
-  OTPScreen({Key? key, required this.email}) : super(key: key);
 
   @override
   State<OTPScreen> createState() => _OTPScreenState();
@@ -23,7 +23,7 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> {
   //tDefa
   String otp = "";
-
+  @override
   Widget build(BuildContext context) {
     final String email = widget.email;
     return Scaffold(
@@ -108,7 +108,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             SizedBox(

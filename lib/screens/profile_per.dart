@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mapbox_turn_by_turn/oldpages/signinpage.dart';
+// import 'package:mapbox_turn_by_turn/oldpages/signinpage.dart';
 
 //import 'package:flutter/services.dart';
 class Profile extends StatelessWidget {
@@ -75,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 5),
+                offset:const  Offset(0, 5),
                 color: Colors.blue.withOpacity(.2),
                 spreadRadius: 2,
                 blurRadius: 10)

@@ -8,7 +8,8 @@ class EventDetailsPage extends StatelessWidget {
   final String description;
   final String registrationlink;
 
-  EventDetailsPage({
+  const EventDetailsPage({
+    super.key,
     required this.imageAsset,
     required this.title,
     required this.location,
@@ -23,10 +24,10 @@ class EventDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           title,
-          style: TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme:const  IconThemeData(color: Colors.black),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -49,13 +50,13 @@ class EventDetailsPage extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     description,
                     style: TextStyle(
@@ -63,7 +64,7 @@ class EventDetailsPage extends StatelessWidget {
                       color: Colors.grey[800],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text(
                     "Location:",
                     style: TextStyle(
@@ -72,7 +73,7 @@ class EventDetailsPage extends StatelessWidget {
                       color: Colors.grey[800],
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     location,
                     style: TextStyle(
@@ -80,7 +81,7 @@ class EventDetailsPage extends StatelessWidget {
                       color: Colors.grey[800],
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     "Date:",
                     style: TextStyle(
@@ -89,7 +90,7 @@ class EventDetailsPage extends StatelessWidget {
                       color: Colors.grey[800],
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     date,
                     style: TextStyle(
@@ -97,7 +98,7 @@ class EventDetailsPage extends StatelessWidget {
                       color: Colors.grey[800],
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     "Registration Link:",
                     style: TextStyle(
@@ -106,14 +107,14 @@ class EventDetailsPage extends StatelessWidget {
                       color: Colors.grey[800],
                     ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   InkWell(
                     onTap: () {
                       // Add your navigation logic here
                     },
                     child: Text(
                       registrationlink,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.blue,
                         decoration: TextDecoration.underline,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 
 class askperson extends StatefulWidget {
-  const askperson({Key? key}) : super(key: key);
+  const askperson({super.key}) ;
 
   @override
   State<askperson> createState() => _askpersonState();
@@ -42,7 +42,7 @@ class _askpersonState extends State<askperson> {
                       Navigator.pushNamed(context, MyRoutes.signupRoutes);
                     },
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                       width: 200,
                       height: 50,
                       alignment: Alignment.center,
@@ -82,12 +82,12 @@ class _askpersonState extends State<askperson> {
                       Navigator.pushNamed(context, MyRoutes.signinRoutes);
                     },
                     child: AnimatedContainer(
-                      duration: Duration(milliseconds: 500),
+                      duration:const  Duration(milliseconds: 500),
                       width: 200,
                       height: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 8, 93, 220),
+                        color: const Color.fromARGB(255, 8, 93, 220),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: const Text(

@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.drawerRoute: (context) => const MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
         MyRoutes.splashRoute: (context) => const Splash(),
-        MyRoutes.cancelRoutes: (context) => TimeGiven(),
+        MyRoutes.cancelRoutes: (context) =>const  TimeGiven(),
         MyRoutes.askthem: (context) => const askperson(),
         // MyRoutes.otpRoute: (context) => OTPScreen(email: ,),
         MyRoutes.profileRoute: (context) => const Profile(),

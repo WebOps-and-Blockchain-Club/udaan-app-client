@@ -348,8 +348,8 @@ class EventBox extends StatelessWidget {
   final String registrationlink;
   final VoidCallback onTap;
 
-  EventBox(
-      {required this.imageAsset,
+  const EventBox(
+      {super.key,required this.imageAsset,
       required this.title,
       required this.location,
       required this.date,
@@ -494,7 +494,7 @@ class _EventsPageState extends State<EventsPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => EventDetailsPage(
+                              builder: (_) => const EventDetailsPage(
                                 imageAsset: 'assets/image/Events1.jpg',
                                 title: 'Leadership Workshop',
                                 location: 'NCC Training Grounds',
@@ -521,7 +521,7 @@ class _EventsPageState extends State<EventsPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => EventDetailsPage(
+                              builder: (_) => const EventDetailsPage(
                                 imageAsset: 'assets/image/Events2.jpg',
                                 title: 'Adventure Camp',
                                 location: 'Mount Adventure Base',
@@ -549,7 +549,7 @@ class _EventsPageState extends State<EventsPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => EventDetailsPage(
+                              builder: (_) => const EventDetailsPage(
                                 imageAsset: 'assets/image/Events3.jpeg',
                                 title: 'Drill Competition',
                                 location: 'Parade Ground',
@@ -616,7 +616,7 @@ class _EventsPageState extends State<EventsPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => EventDetailsPage(
+                                  builder: (_) => const EventDetailsPage(
                                     imageAsset: 'assets/image/Events4.jpeg',
                                     title: 'Blood Donation Drive',
                                     location: 'NCC Community Center',
@@ -644,7 +644,7 @@ class _EventsPageState extends State<EventsPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => EventDetailsPage(
+                                  builder: (_) => const EventDetailsPage(
                                     imageAsset:
                                         'assets/image/indian-flag-2644512_1280.jpeg',
                                     title: 'Environmental Cleanup Campaign',
@@ -671,7 +671,7 @@ class _EventsPageState extends State<EventsPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => EventDetailsPage(
+                                  builder: (_) => const EventDetailsPage(
                                     imageAsset: 'assets/image/Events3.jpeg',
                                     title: 'Sports Meet',
                                     location: 'NCC Sports Complex',

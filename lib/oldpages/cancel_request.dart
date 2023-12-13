@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 
 class TimeGiven extends StatelessWidget {
+  const TimeGiven({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.lightBlue,
       home: TimerScreen(),
@@ -14,6 +15,7 @@ class TimeGiven extends StatelessWidget {
 }
 
 class TimerScreen extends StatefulWidget {
+  const TimerScreen({super.key});
   @override
   _TimerScreenState createState() => _TimerScreenState();
 }
@@ -29,7 +31,7 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_secondsRemaining == 0) {
         timer.cancel();
         // Navigate to the homepage when the timer is done.

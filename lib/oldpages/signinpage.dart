@@ -54,7 +54,7 @@ class _signinpageState extends State<signinpage> {
       children: [
         ColorFiltered(
             colorFilter: ColorFilter.mode(
-                Color.fromARGB(1, 36, 107, 8).withOpacity(0.5),
+                const Color.fromARGB(1, 36, 107, 8).withOpacity(0.5),
                 BlendMode.luminosity),
             child: Image.asset(
               "assets/image/flag2.jpeg",

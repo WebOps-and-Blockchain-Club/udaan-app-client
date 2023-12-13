@@ -41,7 +41,7 @@
 //     ));
 //   }
 // }
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
@@ -140,7 +140,7 @@ class _SOSpageState extends State<SOSpage> {
       body: Stack(
         children: <Widget>[
           Container(
-            color: Color.fromARGB(231, 9, 3, 37),
+            color: const Color.fromARGB(231, 9, 3, 37),
             width: double.infinity,
             height: double.infinity,
           ),
