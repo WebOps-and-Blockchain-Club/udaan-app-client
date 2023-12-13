@@ -39,8 +39,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mapbox_gl/mapbox_gl.dart';
 
-String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
-
+// String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
+String ngroklink =
+    'https://0a9d-2409-40d1-1005-7233-c936-c35d-608e-3865.ngrok-free.app';
 Future<void> sendDataToApi(String username, String password) async {
   print("Sending data to API: username=$username, password=$password");
 

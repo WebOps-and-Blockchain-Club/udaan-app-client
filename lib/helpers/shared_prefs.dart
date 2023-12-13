@@ -39,10 +39,10 @@ LatLng getTripLatLngFromSharedPrefs(String type) {
 String getSourceAndDestinationPlaceText(String type) {
   String sourceAddress =
       json.decode(sharedPreferences.getString('source')!)['name'];
-  // sharedPreferences.getString('source')!;
+  sharedPreferences.getString('source')!;
   String destinationAddress =
       json.decode(sharedPreferences.getString('destination')!)['name'];
-  // sharedPreferences.getString('destination')!;
+  sharedPreferences.getString('destination')!;
 
   if (type == 'source') {
     return sourceAddress;

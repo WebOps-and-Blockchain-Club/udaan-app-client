@@ -1,15 +1,11 @@
-// ignore_for_file: unused_import
-
-import 'dart:convert';
+//import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_application_udaantfr/pages/EventsPage.dart';
-//import 'package:flutter_application_udaantfr/utils/MyRoutes.dart';
-//import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:http/http.dart' as http;
-import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
+//import 'package:http/http.dart' as http;
+//import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
+//import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,7 +22,7 @@ class signuppage extends StatefulWidget {
   State<signuppage> createState() => _signuppageState();
 }
 
-String email = "";
+String email = "abc";
 
 class _signuppageState extends State<signuppage> {
   final _nameController = TextEditingController();
@@ -34,10 +30,9 @@ class _signuppageState extends State<signuppage> {
   final _addressController = TextEditingController();
   final _passwordController = TextEditingController();
   final _phoneController = TextEditingController();
-  String name = "";
+  String name = "fdfd";
   //String username = "";
-  String password = "";
-  String email = "";
+  String password = "fyfygyhff";
   String coordinates = "hi";
   String state = "Punjab";
   String city = "Bhatinda";
@@ -347,25 +342,22 @@ class _signuppageState extends State<signuppage> {
                   // ),
                   GestureDetector(
                     onTap: () async {
-                      // email;
                       await sendDataToApi1(name, password, email, coordinates,
                           state, city, role);
-                      Navigator.pushNamed(context, MyRoutes.otpRoute,
-                          arguments: email);
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => OTPScreen(email: email)));
-                      await savedata("name", name);
-                      await savedata("password", password);
-                      await savedata("email", email);
-                      await savedata("coordinates", coordinates);
-                      await savedata("state", state);
-                      await savedata("city", city);
-                      await savedata("role", role);
                       if (_formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, MyRoutes.otpRoute);
-                      }
+                        // Navigator.pushNamed(context, MyRoutes.otpRoute,
+                        //     arguments: email);
+                        // Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => OTPScreen(
+                                    email: email,
+                                  )),
+                          (Route<dynamic> route) => false,
+                        );
+                      } else
+                        Navigator.pushNamed(context, MyRoutes.signinRoutes);
                     },
                     child: AnimatedContainer(
                       duration: Duration(milliseconds: 500),
@@ -416,11 +408,4 @@ class ParabolaPainter extends CustomPainter {
   bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
   }
-}
-
-Future<void> savedata(String key, var data) async {
-  final pref = await SharedPreferences.getInstance();
-  await pref.setString(key, data);
-  print(key);
-  print(data);
 }

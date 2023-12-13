@@ -52,7 +52,7 @@ class _TurnByTurnState extends State<TurnByTurn> {
     if (!mounted) return;
 
     // Setup directions and options
-    //directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
+    directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
     //directions = MapBoxNavigation();
     _options = MapBoxOptions(
         zoom: 5.0,

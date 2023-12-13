@@ -26,25 +26,26 @@ class _ReviewRideState extends State<ReviewRide> {
   late String distance;
   late String dropOffTime;
   late Map geometry;
-  final LatLng fixedSource = const LatLng(13.054976, 80.278294);
-  final LatLng fixedDestination = const LatLng(12.991989, 80.230965);
+  // final LatLng fixedSource = const LatLng(13.054976, 80.278294);
+  // final LatLng fixedDestination = const LatLng(12.991989, 80.230965);
 
   @override
   void initState() {
     // initialise distance, dropOffTime, geometry
+    print(widget.modifiedResponse);
     _initialiseDirectionsResponse();
 
     //initialise initialCameraPosition, address and trip end points
     _initialCameraPosition = CameraPosition(
         target: getCenterCoordinatesForPolyline(geometry), zoom: 11);
-    //_initialCameraPosition = CameraPosition(target: fixedSource, zoom: 11);
+    // _initialCameraPosition = CameraPosition(target: fixedSource, zoom: 11);
 
-    // for (String type in ['source', 'destination']) {
-    //   _kTripEndPoints
-    //       .add(CameraPosition(target: getTripLatLngFromSharedPrefs(type)));
-    // }
-    _kTripEndPoints.add(CameraPosition(target: fixedSource));
-    _kTripEndPoints.add(CameraPosition(target: fixedDestination));
+    for (String type in ['source', 'destination']) {
+      _kTripEndPoints
+          .add(CameraPosition(target: getTripLatLngFromSharedPrefs(type)));
+    }
+    // _kTripEndPoints.add(CameraPosition(target: fixedSource));
+    // _kTripEndPoints.add(CameraPosition(target: fixedDestination));
     super.initState();
   }
 

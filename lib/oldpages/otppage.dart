@@ -9,10 +9,12 @@ import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mapbox_turn_by_turn/oldpages/signuppage.dart';
 
-String emailFromSignInPage = email;
-
+// String emailFromSignInPage = email;
+// final String emailFromSignInPag =
+//       ModalRoute.of(BuildContext as BuildContext)!.settings.arguments as String;
 class OTPScreen extends StatefulWidget {
-  OTPScreen({Key? key}) : super(key: key);
+  final String email;
+  OTPScreen({Key? key, required this.email}) : super(key: key);
 
   @override
   State<OTPScreen> createState() => _OTPScreenState();
@@ -22,9 +24,8 @@ class _OTPScreenState extends State<OTPScreen> {
   //tDefa
   String otp = "";
 
-  // final String email =
-  //     ModalRoute.of(BuildContext as BuildContext)!.settings.arguments as String;
   Widget build(BuildContext context) {
+    final String email = widget.email;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(10),
@@ -51,9 +52,9 @@ class _OTPScreenState extends State<OTPScreen> {
               numberOfFields: 4,
               fillColor: Colors.black.withOpacity(0.1),
               filled: true,
-              // onCodeChanged: (value) {
-              //   otp = value;
-              // },
+              onCodeChanged: (value) {
+                otp = value;
+              },
               //onSubmit: (code) => print("OTP is => $code")
               onSubmit: (value) {
                 otp = value;
@@ -138,7 +139,7 @@ class _OTPScreenState extends State<OTPScreen> {
                           "its working------------------------------------------------------------");
                       //print(data);
 
-                      await sendDataToApiotp(emailFromSignInPage, otp);
+                      await sendDataToApiotp(email, otp);
                       Navigator.pushNamed(context, MyRoutes.homeRoutes);
                     },
                     child: const Text('NEXT')),
@@ -159,7 +160,10 @@ Future<String?> getDataFromLocalStorage(String key) async {
   // return data;
 }
 
-String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
+// String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
+String ngroklink =
+    'https://0a9d-2409-40d1-1005-7233-c936-c35d-608e-3865.ngrok-free.app';
+
 Future<void> sendDataToApiotp(String email, String otp) async {
   print("Sending data to API: $otp");
   //print(Type)

@@ -8,6 +8,8 @@ Widget reviewRideBottomSheet(
     BuildContext context, String distance, String dropOffTime) {
   String sourceAddress = getSourceAndDestinationPlaceText('source');
   String destinationAddress = getSourceAndDestinationPlaceText('destination');
+  // String sourceAddress = "Campus Cafe,IIT Madras";
+  // String destinationAddress = "Kannagi Statue,Marina Road";
   //var a = distance * 12;
   return Positioned(
     bottom: 0,
@@ -39,9 +41,9 @@ Widget reviewRideBottomSheet(
                             fontSize: 18, fontWeight: FontWeight.bold)),
                     subtitle: Text('$distance km,  $dropOffTime drop off'),
                     // ignore: unnecessary_string_interpolations
-                    // trailing: const Text('₹2000',
-                    //     style: TextStyle(
-                    //         fontWeight: FontWeight.bold, fontSize: 18)),
+                    trailing: const Text('₹2000',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18)),
                   ),
                 ),
                 ElevatedButton(
