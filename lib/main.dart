@@ -30,7 +30,7 @@ void main() async {
 
 // Define your custom text styles here
 TextTheme customTextTheme = TextTheme(
-  bodyText1: TextStyle(
+  bodyLarge: TextStyle(
     fontFamily: 'Arial', // Replace 'Arial' with your desired system font
     color: Colors.indigo[300],
   ),
@@ -53,12 +53,13 @@ class MyApp extends StatelessWidget {
       //title: 'UDAAN NCC',
       debugShowCheckedModeBanner: false,
       //theme: customTheme, // Use the custom theme here
-      home: const askperson(),
+      // home: const askperson(),
+      home: const homepage(),
       routes: {
         MyRoutes.signinRoutes: (context) => const signinpage(),
         MyRoutes.signupRoutes: (context) => const signuppage(),
         MyRoutes.eventsRoutes: (context) => const EventsPage(),
-        MyRoutes.homeRoutes: (context) => homepage(),
+        MyRoutes.homeRoutes: (context) => const homepage(),
         MyRoutes.drawerRoute: (context) => const MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
         MyRoutes.splashRoute: (context) => const Splash(),

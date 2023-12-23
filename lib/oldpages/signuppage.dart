@@ -7,7 +7,6 @@ import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 //import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 //import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-import 'package:mapbox_turn_by_turn/widgets/api.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // export 'var';
 
@@ -342,8 +341,8 @@ class _signuppageState extends State<signuppage> {
                   // ),
                   GestureDetector(
                     onTap: () async {
-                      await sendDataToApi1(name, password, email, coordinates,
-                          state, city, role);
+                      // await sendDataToApi1(name, password, email, coordinates,
+                      //     state, city, role);
                       if (_formKey.currentState!.validate()) {
                         // Navigator.pushNamed(context, MyRoutes.otpRoute,
                         //     arguments: email);
