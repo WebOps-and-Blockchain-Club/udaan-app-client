@@ -330,8 +330,8 @@ import 'package:mapbox_turn_by_turn/oldpages/eventDetails.dart';
 import 'package:http/http.dart ' as http;
 
 Future<void> fetchData() async {
-  final response = await http
-      .get(Uri.parse('https://2ae2-103-158-43-17.ngrok.io/api/v1/events'));
+  final response = await http.get(Uri.parse(
+      'https://f32d-2409-40d1-102f-dd12-74bf-ee68-e476-74f5.ngrok-free.app/api/v1/events'));
   if (response.statusCode == 200) {
     print(response.body);
   } else {
@@ -349,7 +349,8 @@ class EventBox extends StatelessWidget {
   final VoidCallback onTap;
 
   const EventBox(
-      {super.key,required this.imageAsset,
+      {super.key,
+      required this.imageAsset,
       required this.title,
       required this.location,
       required this.date,

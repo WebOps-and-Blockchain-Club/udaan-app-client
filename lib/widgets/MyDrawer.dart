@@ -41,7 +41,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: const Text(
                 "Home",
-                textScaler: TextScaler.linear(1.2),
+                // textScaler: TextScaler.linear(1.2),
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -59,7 +59,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: const Text(
                 "Profile",
-                textScaler: TextScaler.linear(1.2),
+                // textScaler: TextScaler.linear(1.2),
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -75,7 +75,7 @@ class MyDrawer extends StatelessWidget {
               ),
               title: const Text(
                 "Mail",
-                textScaler: TextScaler.linear(1.2),
+                // textScaler: TextScaler.linear(1.2),
                 style: TextStyle(
                   color: Colors.white,
                 ),

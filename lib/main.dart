@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mapbox_turn_by_turn/api/firebase_api.dart';
 import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/SOSpage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/askperson.dart';
@@ -18,13 +19,18 @@ import 'oldpages/signinpage.dart';
 import 'oldpages/signuppage.dart';
 import 'ui/splash.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:mapbox_turn_by_turn/firebase_options.dart';
 
 late SharedPreferences sharedPreferences;
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  sharedPreferences = await SharedPreferences.getInstance();
-  await dotenv.load(fileName: "assets/config/.env");
+  await Firebase.initializeApp();
+  await FirebaseApi().initNotification();
+
+  // sharedPreferences = await SharedPreferences.getInstance();
+  // await dotenv.load(fileName: "assets/config/.env");
   runApp(const MyApp());
 }
 
@@ -53,8 +59,8 @@ class MyApp extends StatelessWidget {
       //title: 'UDAAN NCC',
       debugShowCheckedModeBanner: false,
       //theme: customTheme, // Use the custom theme here
-      // home: const askperson(),
-      home: const homepage(),
+      home: const askperson(),
+      //home: const homepage(),
       routes: {
         MyRoutes.signinRoutes: (context) => const signinpage(),
         MyRoutes.signupRoutes: (context) => const signuppage(),
@@ -63,7 +69,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.drawerRoute: (context) => const MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
         MyRoutes.splashRoute: (context) => const Splash(),
-        MyRoutes.cancelRoutes: (context) =>const  TimeGiven(),
+        MyRoutes.cancelRoutes: (context) => const TimeGiven(),
         MyRoutes.askthem: (context) => const askperson(),
         // MyRoutes.otpRoute: (context) => OTPScreen(email: ,),
         MyRoutes.profileRoute: (context) => const Profile(),

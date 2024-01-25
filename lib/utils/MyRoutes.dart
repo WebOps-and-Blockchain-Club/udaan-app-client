@@ -1,6 +1,6 @@
 class MyRoutes {
   static String signinRoutes = "/sigin";
-  static String signupRoutes = "/signup";
+  static String signupRoutes = "/";
   static String eventsRoutes = "/event";
   static String homeRoutes = "/home";
   static String drawerRoute = "/drawer";

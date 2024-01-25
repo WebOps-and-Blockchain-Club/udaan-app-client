@@ -9,6 +9,7 @@ import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 // export 'var';
+import 'package:mapbox_turn_by_turn/widgets/api.dart';
 
 // void savedata(String key, String value) async {
 //   final pref = await SharedPreferences.getInstance();
@@ -29,13 +30,15 @@ class _signuppageState extends State<signuppage> {
   final _addressController = TextEditingController();
   final _passwordController = TextEditingController();
   final _phoneController = TextEditingController();
-  String name = "fdfd";
+  String name = "";
   //String username = "";
-  String password = "fyfygyhff";
+  String password = "";
   String coordinates = "hi";
   String state = "Punjab";
   String city = "Bhatinda";
   String role = "s";
+  String phone = "";
+  String address = "";
 
   final _formKey = GlobalKey<FormState>();
 
@@ -218,7 +221,9 @@ class _signuppageState extends State<signuppage> {
                     ),
                     controller: _addressController,
                     validator: (value) => _validateNotEmpty(value, "Address"),
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      address = value;
+                    },
                     decoration: const InputDecoration(
                       labelText: "Address",
                       prefixIcon: Icon(CupertinoIcons.location_fill),
@@ -252,9 +257,9 @@ class _signuppageState extends State<signuppage> {
                   TextFormField(
                     controller: _phoneController,
                     validator: _validatePhone,
-                    // onChanged: (value) {
-                    //   email = value;
-                    // },
+                    onChanged: (value) {
+                      phone = value;
+                    },
                     decoration: const InputDecoration(
                       labelText: "Phone",
                       prefixIcon: Icon(CupertinoIcons.phone_fill),
@@ -341,11 +346,11 @@ class _signuppageState extends State<signuppage> {
                   // ),
                   GestureDetector(
                     onTap: () async {
-                      // await sendDataToApi1(name, password, email, coordinates,
-                      //     state, city, role);
+                      await sendDataToApi1(name, password, email, coordinates,
+                          state, city, role);
                       if (_formKey.currentState!.validate()) {
-                        // Navigator.pushNamed(context, MyRoutes.otpRoute,
-                        //     arguments: email);
+                        Navigator.pushNamed(context, MyRoutes.otpRoute,
+                            arguments: email);
                         // Navigator.pushNamed(context, MyRoutes.homeRoutes);
                         Navigator.pushAndRemoveUntil(
                           context,
