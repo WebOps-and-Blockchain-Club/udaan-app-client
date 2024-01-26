@@ -25,9 +25,9 @@ import 'package:mapbox_turn_by_turn/firebase_options.dart';
 late SharedPreferences sharedPreferences;
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await FirebaseApi().initNotification();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  // await FirebaseApi().initNotification();
 
   // sharedPreferences = await SharedPreferences.getInstance();
   // await dotenv.load(fileName: "assets/config/.env");
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
       //title: 'UDAAN NCC',
       debugShowCheckedModeBanner: false,
       //theme: customTheme, // Use the custom theme here
-      home: const askperson(),
+      // home: const signuppage(),
       //home: const homepage(),
       routes: {
         MyRoutes.signinRoutes: (context) => const signinpage(),
