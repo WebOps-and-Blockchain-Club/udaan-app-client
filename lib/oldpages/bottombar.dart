@@ -53,6 +53,7 @@ class MyNavibar extends StatelessWidget {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
+                        sendSOS();
                         Navigator.pushNamed(context, MyRoutes.sosRoute);
                       },
                       child: const Text(

@@ -50,6 +50,7 @@ import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 //import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../helpers/mapbox_handler.dart';
 import '../main.dart';
@@ -68,11 +69,22 @@ class _SOSpageState extends State<SOSpage> {
   int _secondsRemaining = 14;
   late Timer _timer;
 
+  String token = "";
+  Future<void> _storing() async {
+    print("sos");
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      token = prefs.getString('token') ?? "";
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     _startTimer();
     initializeLocationAndSave();
+    _storing();
   }
 
   void initializeLocationAndSave() async {
