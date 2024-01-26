@@ -36,8 +36,10 @@
 //   }
 // }
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
 String ngroklink = 'https://367d-103-158-43-18.ngrok-free.app';
@@ -59,9 +61,21 @@ Future<void> sendDataToApi(String email, String password) async {
       }),
       //body: jsonEncode(<String, String>{"email": "HH", "password": "HH1"}),
     );
-    print(response.body);
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
+
+    final data = json.decode(response.body);
+    print(data);
+    print(data.statusCode);
+    print(data.runtimeType);
+    if (data.statusCode == 200) {
+      print("object");
+      String token = data.accessToken;
+      print(data);
+      print(token);
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('token', token) ?? "";
+
+      //Save the token to local storagee
+      // response.headers.addAll
       print("Response data: $data");
       print('Successfully done');
     } else {
@@ -117,7 +131,7 @@ Future<void> sendDataToApi1(
     print(response);
     if (response.statusCode == 200) {
       final data = response.body;
-      print("Response data: $data");
+      print("Response dagfhngfhngfta: $data");
       print('Successfully done');
     } else {
       final errorData = response.body;
@@ -183,5 +197,48 @@ void getDataFromApiAddress(LatLng cadetLocation) async {
   } catch (error) {
     // Handle any error that might occur during the HTTP request
     print('Error: $error');
+  }
+}
+
+Future<void> _storing() async {
+  print("sos");
+}
+
+Future<void> sendSOS() async {
+  // print("Sending data to API: username=$token, password=");
+
+  final apiUrl = '$ngroklink/api/v1/sos/notifycadets';
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('token') ?? "";
+  try {
+    print("hii");
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {'Content-Type': 'application/json', 'auth-token': token},
+      // body: jsonEncode({
+      //   'token': token,
+      // }),
+      //body: jsonEncode(<String, String>{"email": "HH", "password": "HH1"}),
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      String token = data.accessToken;
+
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('token', token) ?? "";
+
+      //Save the token to local storagee
+      // response.headers.addAll
+      print("Response data: $data");
+      print('Successfully done');
+    } else {
+      final errorData = json.decode(response.body);
+      print("Error data: $errorData LAUDE");
+      throw Exception('Failed to send data to the API');
+    }
+  } catch (error) {
+    print('Error: $error');
+    throw Exception('Failed to send data to the API');
   }
 }
