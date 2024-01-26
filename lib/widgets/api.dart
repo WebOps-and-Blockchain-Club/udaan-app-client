@@ -40,10 +40,9 @@ import 'package:http/http.dart' as http;
 import 'package:mapbox_gl/mapbox_gl.dart';
 
 // String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
-String ngroklink =
-    'https://f32d-2409-40d1-102f-dd12-74bf-ee68-e476-74f5.ngrok-free.app';
-Future<void> sendDataToApi(String username, String password) async {
-  print("Sending data to API: username=$username, password=$password");
+String ngroklink = 'https://367d-103-158-43-18.ngrok-free.app';
+Future<void> sendDataToApi(String email, String password) async {
+  print("Sending data to API: username=$email, password=$password");
 
   final apiUrl = '$ngroklink/api/v1/auth/login';
 
@@ -55,12 +54,12 @@ Future<void> sendDataToApi(String username, String password) async {
         'Content-Type': 'application/json',
       },
       body: jsonEncode({
-        'email': username,
+        'email': email,
         'password': password,
       }),
       //body: jsonEncode(<String, String>{"email": "HH", "password": "HH1"}),
     );
-
+    print(response.body);
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       print("Response data: $data");
@@ -76,10 +75,17 @@ Future<void> sendDataToApi(String username, String password) async {
   }
 }
 
-Future<void> sendDataToApi1(String username, String password, String email,
-    String coordinate, String state, String city, String role) async {
+Future<void> sendDataToApi1(
+    String username,
+    String password,
+    String email,
+    Object coordinate,
+    String state,
+    String city,
+    String role,
+    String address) async {
   print(
-      "Sending data to API: username=$username, password=$password, email=$email");
+      "Sending data to API: username=$username, password=$password, email=$email, address=$address");
 
   final apiUrl = '$ngroklink/api/v1/auth/register';
 
@@ -93,10 +99,11 @@ Future<void> sendDataToApi1(String username, String password, String email,
         'username': username,
         'password': password,
         'email': email,
-        'coordinates': "1230978",
+        'coordinates': {"latitude": 12.993006, "longitude": 80.232651},
         'state': "PUNJAB ",
         'city': "BHATINDA",
         'role': "user",
+        'address': address,
       }),
       // body: jsonEncode({
       //   "username": "vgvyjh",
@@ -107,7 +114,7 @@ Future<void> sendDataToApi1(String username, String password, String email,
       //   "city": "dwhjdjh"
       // }),
     );
-
+    print(response);
     if (response.statusCode == 200) {
       final data = response.body;
       print("Response data: $data");

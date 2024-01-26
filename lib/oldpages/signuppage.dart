@@ -33,7 +33,7 @@ class _signuppageState extends State<signuppage> {
   String name = "";
   //String username = "";
   String password = "";
-  String coordinates = "hi";
+  Object coordinates = {"latitude": 12.993006, "longitude": 80.232651};
   String state = "Punjab";
   String city = "Bhatinda";
   String role = "s";
@@ -347,10 +347,12 @@ class _signuppageState extends State<signuppage> {
                   GestureDetector(
                     onTap: () async {
                       await sendDataToApi1(name, password, email, coordinates,
-                          state, city, role);
+                          state, city, role, address);
+                      print("ho gaya");
                       if (_formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, MyRoutes.otpRoute,
-                            arguments: email);
+                        print("true");
+                        // Navigator.pushNamed(context, MyRoutes.otpRoute,
+                        //     arguments: email);
                         // Navigator.pushNamed(context, MyRoutes.homeRoutes);
                         Navigator.pushAndRemoveUntil(
                           context,
@@ -361,6 +363,7 @@ class _signuppageState extends State<signuppage> {
                           (Route<dynamic> route) => false,
                         );
                       } else {
+                        print("false");
                         Navigator.pushNamed(context, MyRoutes.signinRoutes);
                       }
                     },

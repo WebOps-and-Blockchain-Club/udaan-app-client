@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mapbox_turn_by_turn/api/firebase_api.dart';
 import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/SOSpage.dart';
+import 'package:mapbox_turn_by_turn/oldpages/accept_decline.dart';
 import 'package:mapbox_turn_by_turn/oldpages/askperson.dart';
 import 'package:mapbox_turn_by_turn/oldpages/cancel_request.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
@@ -27,7 +28,7 @@ late SharedPreferences sharedPreferences;
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  // await FirebaseApi().initNotification();
+  // await FirebaseApi().initNotification();0
 
   // sharedPreferences = await SharedPreferences.getInstance();
   // await dotenv.load(fileName: "assets/config/.env");
@@ -59,7 +60,8 @@ class MyApp extends StatelessWidget {
       //title: 'UDAAN NCC',
       debugShowCheckedModeBanner: false,
       //theme: customTheme, // Use the custom theme here
-      // home: const signuppage(),
+      // home: AcceptDecline(),
+      // home: askperson(),
       //home: const homepage(),
       routes: {
         MyRoutes.signinRoutes: (context) => const signinpage(),
@@ -74,6 +76,7 @@ class MyApp extends StatelessWidget {
         // MyRoutes.otpRoute: (context) => OTPScreen(email: ,),
         MyRoutes.profileRoute: (context) => const Profile(),
         MyRoutes.previewride: (context) => const PrepareRide(),
+        // MyRoutes.accdecRoutes: (context) => AcceptDecline(),
         //MyRoutes.mapRoute: (context) => MyMapapi(),
       },
     );

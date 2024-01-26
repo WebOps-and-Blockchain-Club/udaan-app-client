@@ -330,8 +330,8 @@ import 'package:mapbox_turn_by_turn/oldpages/eventDetails.dart';
 import 'package:http/http.dart ' as http;
 
 Future<void> fetchData() async {
-  final response = await http.get(Uri.parse(
-      'https://f32d-2409-40d1-102f-dd12-74bf-ee68-e476-74f5.ngrok-free.app/api/v1/events'));
+  final response = await http.get(
+      Uri.parse('https://367d-103-158-43-18.ngrok-free.app/api/v1/events'));
   if (response.statusCode == 200) {
     print(response.body);
   } else {

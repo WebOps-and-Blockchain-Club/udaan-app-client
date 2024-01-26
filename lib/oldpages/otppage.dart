@@ -140,7 +140,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       //print(data);
 
                       await sendDataToApiotp(email, otp);
-                      Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                      Navigator.pushNamed(context, MyRoutes.signinRoutes);
                     },
                     child: const Text('NEXT')),
               ),
@@ -161,8 +161,7 @@ Future<String?> getDataFromLocalStorage(String key) async {
 }
 
 // String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
-String ngroklink =
-    'https://f32d-2409-40d1-102f-dd12-74bf-ee68-e476-74f5.ngrok-free.app';
+String ngroklink = 'https://367d-103-158-43-18.ngrok-free.app';
 
 Future<void> sendDataToApiotp(String email, String otp) async {
   print("Sending data to API: $otp");

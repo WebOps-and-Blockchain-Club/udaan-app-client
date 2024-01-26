@@ -22,7 +22,7 @@ class signinpage extends StatefulWidget {
 }
 
 class _signinpageState extends State<signinpage> {
-  String username = "";
+  String email = "";
   String password = "";
   String type = "User";
   String abc = "";
@@ -193,7 +193,7 @@ class _signinpageState extends State<signinpage> {
                               },
                               onChanged: (value) {
                                 abc = value;
-                                username = value;
+                                email = value;
                                 //build(context);
 
                                 setState(() {
@@ -250,9 +250,9 @@ class _signinpageState extends State<signinpage> {
                       color: const Color.fromARGB(255, 3, 51, 103),
                       child: InkWell(
                         onTap: () async => {
-                          await sendDataToApi(username, password),
+                          await sendDataToApi(email, password),
                           Navigator.pushNamed(context, MyRoutes.homeRoutes,
-                              arguments: username),
+                              arguments: email),
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(

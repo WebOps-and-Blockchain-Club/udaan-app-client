@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 
 class askperson extends StatefulWidget {
-  const askperson({super.key}) ;
+  const askperson({super.key});
 
   @override
   State<askperson> createState() => _askpersonState();
@@ -13,8 +13,8 @@ class _askpersonState extends State<askperson> {
   Widget build(BuildContext context) {
     return Positioned(
       top: 0,
-      left: 0,
-      right: 0,
+      // left: 0,
+      // right: 0,
       child: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
@@ -29,7 +29,7 @@ class _askpersonState extends State<askperson> {
             child: Positioned(
               top: 100,
               left: 0,
-              right: 0,
+              // right: 0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -82,7 +82,7 @@ class _askpersonState extends State<askperson> {
                       Navigator.pushNamed(context, MyRoutes.signinRoutes);
                     },
                     child: AnimatedContainer(
-                      duration:const  Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                       width: 200,
                       height: 50,
                       alignment: Alignment.center,
