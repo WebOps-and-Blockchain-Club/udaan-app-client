@@ -53,6 +53,8 @@ dependencies:
   url_launcher_android: 6.0.27
   url_launcher_ios: 6.1.4
   url_launcher_platform_interface: 2.1.2
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.10
   #flutterflow_ui: ^0.2.0 
   #flutter_mapbox: ^0.9.3
   #flutter_mapbox_autocomplete: ^2.0.0

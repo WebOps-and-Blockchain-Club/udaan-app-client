@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
@@ -19,10 +20,32 @@ import 'oldpages/signuppage.dart';
 import 'ui/splash.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
 
+// firebase imports
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 late SharedPreferences sharedPreferences;
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("Handling a background Message : ${message.messageId}");
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  ///////////////////////////////////
+  // FIREBASE MESSAGING
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  final notificationSettings =
+      await FirebaseMessaging.instance.requestPermission(provisional: true);
+  final fcmToken = await FirebaseMessaging.instance.getToken();
+  print("fcmToken is ${fcmToken} ");
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  await FirebaseMessaging.instance.setAutoInitEnabled(true);
+
+  ////////////////////////////////////////
   sharedPreferences = await SharedPreferences.getInstance();
   await dotenv.load(fileName: "assets/config/.env");
   runApp(const MyApp());
@@ -63,7 +86,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.drawerRoute: (context) => const MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
         MyRoutes.splashRoute: (context) => const Splash(),
-        MyRoutes.cancelRoutes: (context) =>const  TimeGiven(),
+        MyRoutes.cancelRoutes: (context) => const TimeGiven(),
         MyRoutes.askthem: (context) => const askperson(),
         // MyRoutes.otpRoute: (context) => OTPScreen(email: ,),
         MyRoutes.profileRoute: (context) => const Profile(),
