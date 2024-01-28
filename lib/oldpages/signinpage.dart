@@ -11,8 +11,12 @@ import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 //import 'package:flutter_application_udaantfr/widgets/api.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
-//export 'username';
-//import 'package:flutter/src/painting/border_radius.dart';
+import 'package:location/location.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../helpers/mapbox_handler.dart';
+import '../main.dart';
 
 class signinpage extends StatefulWidget {
   const signinpage({Key? key}) : super(key: key);
@@ -22,10 +26,11 @@ class signinpage extends StatefulWidget {
 }
 
 class _signinpageState extends State<signinpage> {
-  String username = "";
+  String email = "";
   String password = "";
   String type = "User";
   String abc = "";
+  Object coordinates = {"latitude": 12.993006, "longitude": 80.232651};
   // String address = "";
   // String coordinates = "hi";
   // String state = "Punjab";
@@ -33,6 +38,45 @@ class _signinpageState extends State<signinpage> {
   bool onChange = false;
   List<String> typeUser = ['Cadet', 'User'];
   String selectedType = 'Cadet';
+  void initializeLocationAndSave() async {
+    // Ensure all permissions are collected for Locations
+    Location _location = Location();
+    bool? _serviceEnabled;
+    PermissionStatus? _permissionGranted;
+
+    _serviceEnabled = await _location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await _location.requestService();
+    }
+
+    _permissionGranted = await _location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await _location.requestPermission();
+    }
+
+    // Get the current user location
+    LocationData _locationData = await _location.getLocation();
+    LatLng currentLocation =
+        LatLng(_locationData.latitude!, _locationData.longitude!);
+
+    // Get the current user address
+    String currentAddress =
+        (await getParsedReverseGeocoding(currentLocation))['place'];
+    postDataToApiAddress(currentLocation,
+        currentAddress); //    --------------->>>>>>>>>>>>>>>    //uncomment thiss for passing lat lng
+    //currentAddress = jsonEncode(currentAddress);
+    coordinates = currentLocation;
+
+    // Store the user location in sharedPreferences
+    sharedPreferences.setDouble('latitude', _locationData.latitude!);
+    sharedPreferences.setDouble('longitude', _locationData.longitude!);
+    sharedPreferences.setString('current-address', currentAddress);
+    //await Duration(seconds: 30);
+    // Navigator.pushAndRemoveUntil(
+    //     context, ////////comment this one
+    //     MaterialPageRoute(builder: (_) => const Home()),
+    //     (route) => false);
+  }
 
   final _formKey = GlobalKey<FormState>();
   moveToHome(BuildContext context) async {
@@ -193,7 +237,7 @@ class _signinpageState extends State<signinpage> {
                               },
                               onChanged: (value) {
                                 abc = value;
-                                username = value;
+                                email = value;
                                 //build(context);
 
                                 setState(() {
@@ -250,9 +294,9 @@ class _signinpageState extends State<signinpage> {
                       color: const Color.fromARGB(255, 3, 51, 103),
                       child: InkWell(
                         onTap: () async => {
-                          await sendDataToApi(username, password),
+                          await sendDataToApi(email, password, coordinates),
                           Navigator.pushNamed(context, MyRoutes.homeRoutes,
-                              arguments: username),
+                              arguments: email),
                           // Navigator.push(
                           //     context,
                           //     MaterialPageRoute(
