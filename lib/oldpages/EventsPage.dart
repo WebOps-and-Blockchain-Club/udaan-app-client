@@ -331,7 +331,7 @@ import 'package:http/http.dart ' as http;
 
 Future<void> fetchData() async {
   final response = await http
-      .get(Uri.parse('https://2ae2-103-158-43-17.ngrok.io/api/v1/events'));
+      .get(Uri.parse('https://ee8f-103-158-43-46.ngrok-free.app/api/v1/events'));
   if (response.statusCode == 200) {
     print(response.body);
   } else {

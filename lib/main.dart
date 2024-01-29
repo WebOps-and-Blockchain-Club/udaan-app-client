@@ -77,7 +77,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //theme: customTheme, // Use the custom theme here
       // home: const askperson(),
-      home: const homepage(),
+      // home: const homepage(),
       routes: {
         MyRoutes.signinRoutes: (context) => const signinpage(),
         MyRoutes.signupRoutes: (context) => const signuppage(),
