@@ -171,6 +171,8 @@ Future<void> sendDataToApiotp(String email, String otp) async {
   final apiUrl = '$ngroklink/api/v1/auth/verifyotp';
 
   try {
+    final prefs = await SharedPreferences.getInstance();
+    var user = prefs.getString('user');
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {
@@ -184,13 +186,8 @@ Future<void> sendDataToApiotp(String email, String otp) async {
       //   'state': state,
       //   'city': city,
       // }),
-      const prefs = await SharedPreferences.getInstance();
-      var user = prefs.getString('user');
-      body: jsonEncode({
-        'email': email,
-        'otp': otp,
-        'user': user
-      }),
+
+      body: jsonEncode({'email': email, 'otp': otp, 'user': user}),
     );
 
     if (response.statusCode == 200) {

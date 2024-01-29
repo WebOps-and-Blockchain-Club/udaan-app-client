@@ -249,6 +249,15 @@ Future<void> sendSOS() async {
 //     throw Exception('Failed to send data to the API');
 //   }
 // }
+
+
+
+
+
+
+
+
+
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
