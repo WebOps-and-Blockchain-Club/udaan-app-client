@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:441073967185:ios:72739dda61ce977adf1870</string>
+	<key>DATABASE_URL</key>
+	<string>https://ncc-udaan-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>
