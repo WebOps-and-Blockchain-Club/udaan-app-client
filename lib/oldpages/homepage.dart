@@ -1,21 +1,10 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
-//import 'package:flutter_application_udaantfr/pages/EventsPage.dart';
-//import 'package:flutter_application_udaantfr/pages/bottombar.dart';
-//import 'package:flutter_application_udaantfr/utils/MyRoutes.dart';
 import 'package:flutter/cupertino.dart';
-//import 'package:flutter_application_udaantfr/widgets/MyDrawer.dart';
 import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
-import 'package:mapbox_turn_by_turn/oldpages/bottombar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
-import 'package:mapbox_turn_by_turn/oldpages/signuppage.dart';
-import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
-import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-import 'package:mapbox_turn_by_turn/widgets/api.dart';
 
 class homepage extends StatefulWidget {
   const homepage({super.key});
@@ -31,9 +20,6 @@ class _homepageState extends State<homepage> {
   final notificationNavKey = GlobalKey<NavigatorState>();
 
   final profileNavKey = GlobalKey<NavigatorState>();
-  // final username =
-  // ModalRoute.of(context)!.settings.arguments as String;
-  //String? username;
 
   int selectedTab = 0;
 
@@ -66,7 +52,7 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     //final username = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Color.fromARGB(96, 50, 10, 134),
@@ -76,15 +62,7 @@ class _homepageState extends State<homepage> {
         actions: [
           GestureDetector(
             onTap: () {
-              //Profile page not created yet
-              //Navigator.push(context, ProfileScreen());
               Navigator.pushNamed(context, MyRoutes.profileRoute);
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => ProfileScreen(username: username),
-              //   ),
-              // );
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -112,7 +90,6 @@ class _homepageState extends State<homepage> {
             "assets/image/logo_ncc.png",
             height: 150,
             width: double.infinity,
-            //alignment: Alignment.center,
           ),
         ),
         const SizedBox(height: 50.0),
@@ -163,7 +140,6 @@ class _homepageState extends State<homepage> {
         child: FloatingActionButton(
             backgroundColor: Colors.white,
             elevation: 0,
-            //onPressed: () => debugPrint("Add Button pressed"),
             onPressed: () {
               Navigator.pushNamed(context, MyRoutes.sosRoute);
             },
