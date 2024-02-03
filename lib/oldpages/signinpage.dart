@@ -1,4 +1,3 @@
-// import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
@@ -83,8 +82,10 @@ class _signinpageState extends State<signinpage> {
                 BlendMode.luminosity),
             child: Image.asset(
               "assets/image/flag2.jpeg",
+              alignment: Alignment.center,
               width: double.infinity,
               height: double.infinity,
+              fit: BoxFit.cover,
             )),
         Material(
           color: Colors.transparent,
@@ -302,7 +303,7 @@ class _signinpageState extends State<signinpage> {
   }
 }
 
-// const Divider(
+                    // const Divider(
                     //   color: Colors.white,
                     //   thickness: 3,
                     //   indent: 10,

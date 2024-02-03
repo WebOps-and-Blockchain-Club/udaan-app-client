@@ -37,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             //username = "Abhishek";
-            itemProfile('Name', "Dikshant", CupertinoIcons.person),
+            itemProfile('Name', username, CupertinoIcons.person),
             const SizedBox(height: 10),
             itemProfile('Phone', '9646071964', CupertinoIcons.phone),
             const SizedBox(height: 10),
@@ -45,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                 CupertinoIcons.location),
             const SizedBox(height: 10),
             itemProfile(
-                'Email', 'eveloperdikshant@gmail.com', CupertinoIcons.mail),
+                'Email', 'developerdikshant@gmail.com', CupertinoIcons.mail),
             const SizedBox(
               height: 20,
             ),
@@ -54,8 +54,10 @@ class ProfileScreen extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(15),
-                  ),
+                      padding: const EdgeInsets.all(15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      )),
                   child: const Text('Edit Profile')),
             )
           ],
@@ -86,3 +88,11 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+// style: ElevatedButton.styleFrom(
+//                         backgroundColor: Colors.blue,
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(40),
+//                         )
+
+//                         //foregroundColor: Colors.black,
+//                         ),

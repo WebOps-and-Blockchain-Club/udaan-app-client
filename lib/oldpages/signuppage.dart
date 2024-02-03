@@ -64,6 +64,7 @@ class _signuppageState extends State<signuppage> {
 
   @override
   void initState() {
+    super.initState();
     initializeLocationAndSave();
   }
 

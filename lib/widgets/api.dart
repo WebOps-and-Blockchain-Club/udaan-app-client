@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:mapbox_turn_by_turn/main.dart';
 
 String ngroklink = 'https://0173-103-158-43-16.ngrok-free.app';
 

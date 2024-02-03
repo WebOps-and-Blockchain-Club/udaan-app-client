@@ -86,7 +86,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                   ),
                 ),
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
 
               // Accept and Decline Boxes
               Row(
@@ -112,7 +112,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                           ),
                         ],
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Accept',
                           style: TextStyle(
@@ -139,11 +139,11 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 5,
-                            offset: Offset(0, 2),
+                            offset:const Offset(0, 2),
                           ),
                         ],
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Decline',
                           style: TextStyle(
