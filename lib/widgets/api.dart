@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String ngroklink = 'https://0173-103-158-43-16.ngrok-free.app';
+String ngroklink = 'http://43.204.145.3:8000';
 
 //  final prefs = await SharedPreferences.getInstance();
 Future<void> sendDataToApi(

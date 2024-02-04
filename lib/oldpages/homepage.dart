@@ -53,8 +53,10 @@ class _homepageState extends State<homepage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white,
@@ -111,7 +113,9 @@ class _homepageState extends State<homepage> {
                   },
                   child: Container(
                     margin: const EdgeInsets.only(left: 10.0),
-                    width: 240,
+                    // width: 240,
+                    width: screenWidth * 0.4,
+                    // height: screenHeight * 0.3,
                     child: Padding(
                       padding: EdgeInsets.only(left: 10, top: 20),
                       child: Text(
@@ -141,8 +145,8 @@ class _homepageState extends State<homepage> {
                   ),
                 ),
                 SizedBox(
-                  height: 150,
-                  width: 142,
+                  height: screenHeight * 0.1,
+                  width: screenWidth * 0.5,
                   child: Image.asset(
                     "assets/image/logo_ncc.png",
                     scale: 1.2,
@@ -218,14 +222,16 @@ class EventCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, MyRoutes.eventsRoutes);
       },
       child: Container(
-        margin: const EdgeInsets.only(left: 4.0, right: 4.0),
+        // margin: const EdgeInsets.only(left: 4.0, right: 4.0),
         height: 340,
-        width: 390,
+        width: double.infinity,
+        // width: screenWidth * 1.1,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
@@ -243,10 +249,10 @@ class EventCarousel extends StatelessWidget {
           itemCount: eventImages.length,
           options: CarouselOptions(
             height: 380,
-            viewportFraction: 0.45,
+            viewportFraction: 0.6,
             enlargeCenterPage: true,
             enableInfiniteScroll: false,
-            initialPage: 0,
+            initialPage: 3,
             onPageChanged: (index, reason) {},
           ),
           itemBuilder: (context, index, realIndex) {
@@ -259,7 +265,7 @@ class EventCarousel extends StatelessWidget {
 
   Widget _buildEventCard(String imagePath, String eventName) {
     return Container(
-      width: 160,
+      width: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
