@@ -1,62 +1,12 @@
-// // ignore_for_file: unused_import
-
-// import 'package:flutter/material.dart';
-// import 'package:mapbox_turn_by_turn/ui/splash.dart';
-// //import 'package:flutter_application_udaantfr/pages/mapdisplay.dart';
-// //import 'package:flutter_application_udaantfr/utils/MyRoutes.dart';
-// import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-// import 'package:mapbox_turn_by_turn/widgets/api.dart';
-
-// class SOSpage extends StatefulWidget {
-//   const SOSpage({Key? key}) : super(key: key);
-
-//   @override
-//   State<SOSpage> createState() => _SOSpageState();
-// }
-
-// class _SOSpageState extends State<SOSpage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: Center(
-//       child: Container(
-//         height: 70,
-//         width: 200,
-//         decoration: BoxDecoration(
-//           color: Colors.blue,
-//           borderRadius: BorderRadius.circular(30),
-//         ),
-//         child: GestureDetector(
-//           onTap: () {
-//             // Navigator.pushNamed(context, MyRoutes.mapRoute);
-//             Navigator.pushNamed(context, MyRoutes.splashRoute);
-//           },
-//           child: const Text("Emergency",
-//               style: TextStyle(
-//                 color: Colors.black,
-//                 fontSize: 40,
-//               )),
-//         ),
-//       ),
-//     ));
-//   }
-// }
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-//import 'package:mapbox_turn_by_turn/ui/splash.dart';
-//import 'package:flutter/cupertino.dart';
-//import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../helpers/mapbox_handler.dart';
 import '../main.dart';
-//import '../screens/home.dart';
 import '../widgets/api.dart';
-//import 'package:mapbox_turn_by_turn/ui/splash.dart';
 
 class SOSpage extends StatefulWidget {
   const SOSpage({Key? key}) : super(key: key);
@@ -162,55 +112,13 @@ class _SOSpageState extends State<SOSpage> {
               children: <Widget>[
                 const Stack(
                   alignment: Alignment.center,
-                  children: <Widget>[
-                    // AnimatedContainer(
-                    //   duration: const Duration(seconds: 1),
-                    //   width: 110,
-                    //   height: 110,
-                    //   decoration: const BoxDecoration(
-                    //     color: Colors.black, // Change background color to red
-                    //     shape: BoxShape.circle,
-                    //   ),
-                    //   child: Center(
-                    //     child: Text(
-                    //       '$_secondsRemaining',
-                    //       style: const TextStyle(
-                    //           fontSize: 34,
-                    //           color:
-                    //               Colors.white), // Change text color to yellow
-                    //     ),
-                    //   ),
-                    // ),
-                    // Positioned(
-                    //   top: 0,
-                    //   bottom: 0,
-                    //   left: 0,
-                    //   right: 0,
-                    //   child: CircularProgressIndicator(
-                    //     value: 1 - (_secondsRemaining / 30),
-                    //     valueColor: const AlwaysStoppedAnimation<Color>(
-                    //         Colors.amberAccent),
-                    //   ),
-                    // ),
-                  ],
+                  children: <Widget>[],
                 ),
                 const SizedBox(height: 80),
                 const Padding(
                   padding: EdgeInsets.only(left: 30, right: 30),
-                  // child: LinearProgressIndicator(
-                  //   value: 1 - (_secondsRemaining / 30),
-                  //   valueColor: const AlwaysStoppedAnimation<Color>(
-                  //       Colors.lightGreenAccent),
-                  // ),
                 ),
-                // const SizedBox(
-                //   height: 120,
-                // ),
-                const CircularProgressIndicator(
-                    // value: 1 - (_secondsRemaining / 30),
-                    // valueColor:
-                    //     const AlwaysStoppedAnimation<Color>(Colors.amberAccent),
-                    ),
+                const CircularProgressIndicator(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -237,10 +145,6 @@ class _SOSpageState extends State<SOSpage> {
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: ElevatedButton(
-                    //   decoration: const BoxDecoration(
-                    //   borderRadius: BorderRadius.all(Radius.circular(40)),
-                    // ),
-
                     onPressed: () {
                       // Cancel the request and navigate to the homepage.
                       Navigator.pushReplacementNamed(
@@ -254,7 +158,6 @@ class _SOSpageState extends State<SOSpage> {
 
                         //foregroundColor: Colors.black,
                         ),
-
                     child: const Text(
                       'Cancel Request',
                       style: TextStyle(

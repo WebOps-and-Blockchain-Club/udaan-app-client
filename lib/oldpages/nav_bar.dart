@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-//import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
 
 class NavBar extends StatelessWidget {
   final int pageIndex;

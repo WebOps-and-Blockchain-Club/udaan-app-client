@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import 'package:flutter/material.dart';
 
 // class MessagePage extends StatefulWidget {
@@ -147,6 +148,8 @@
 //     );
 //   }
 // }
+=======
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
 import 'package:flutter/material.dart';
 
 class MessagePage extends StatefulWidget {
@@ -178,10 +181,17 @@ class _MessagePageState extends State<MessagePage> {
               mainAxisAlignment: MainAxisAlignment.start, // Changed to start
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+<<<<<<< HEAD
                 SizedBox(
                   height: 20,
                 ),
                 Text(
+=======
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
                   "PLEA FOR HELP",
                   style: TextStyle(
                     color: Colors.black,
@@ -203,12 +213,20 @@ class _MessagePageState extends State<MessagePage> {
                       ),
                       child: TextField(
                         controller: messageController,
+<<<<<<< HEAD
                         style: TextStyle(color: Colors.white),
+=======
+                        style: const TextStyle(color: Colors.white),
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
                         maxLines: null,
                         textAlign: TextAlign.left,
                         decoration: InputDecoration(
                           hintText: defaultText,
+<<<<<<< HEAD
                           hintStyle: TextStyle(color: Colors.white),
+=======
+                          hintStyle: const TextStyle(color: Colors.white),
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
                           border: InputBorder.none,
                         ),
                       ),
@@ -230,9 +248,17 @@ class _MessagePageState extends State<MessagePage> {
           // Add functionality to send the message (e.g., print it for now)
           print("Message sent: $message");
         },
+<<<<<<< HEAD
         child: Icon(Icons.send),
+=======
+        child: const Icon(Icons.send),
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
         backgroundColor: Colors.black,
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5

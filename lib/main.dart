@@ -1,30 +1,33 @@
+<<<<<<< HEAD
 // ignore_for_file: unused_import
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+=======
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:mapbox_turn_by_turn/api/firebase_api.dart';
 import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/SOSpage.dart';
-import 'package:mapbox_turn_by_turn/oldpages/accept_decline.dart';
 import 'package:mapbox_turn_by_turn/oldpages/askperson.dart';
 import 'package:mapbox_turn_by_turn/oldpages/cancel_request.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
-import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
 import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-import 'package:mapbox_turn_by_turn/oldpages/eventDetails.dart';
 import 'oldpages/signinpage.dart';
 import 'oldpages/signuppage.dart';
 import 'ui/splash.dart';
+<<<<<<< HEAD
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
 
 // firebase imports
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+=======
+import 'package:mapbox_turn_by_turn/widgets/dotenv.dart';
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
 
 late SharedPreferences sharedPreferences;
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -35,6 +38,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+<<<<<<< HEAD
   ///////////////////////////////////
   // FIREBASE MESSAGING
   await Firebase.initializeApp(
@@ -50,9 +54,15 @@ void main() async {
   ////////////////////////////////////////
   sharedPreferences = await SharedPreferences.getInstance();
   await dotenv.load(fileName: "assets/config/.env");
+=======
+  // sharedPreferences = await SharedPreferences.getInstance();
+  // await dotenv.load(fileName: "assets/config/.env");
+  loadDotenv();
+>>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
   runApp(const MyApp());
 }
 
+String ngroklink = dotenv.env['NGROK_LINK'] ?? '';
 // Define your custom text styles here
 TextTheme customTextTheme = TextTheme(
   bodyLarge: TextStyle(
@@ -85,7 +95,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.signupRoutes: (context) => const signuppage(),
         MyRoutes.eventsRoutes: (context) => const EventsPage(),
         MyRoutes.homeRoutes: (context) => const homepage(),
-        MyRoutes.drawerRoute: (context) => const MyDrawer(),
+        MyRoutes.drawerRoute: (context) => MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
         MyRoutes.splashRoute: (context) => const Splash(),
         MyRoutes.cancelRoutes: (context) => const TimeGiven(),
@@ -94,6 +104,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.profileRoute: (context) => const Profile(),
         MyRoutes.previewride: (context) => const PrepareRide(),
         // MyRoutes.accdecRoutes: (context) => AcceptDecline(),
+        // MyRoutes.MessageRoute: (context) => MessagePage(),
         //MyRoutes.mapRoute: (context) => MyMapapi(),
       },
     );

@@ -10,7 +10,6 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      //title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -22,9 +21,6 @@ class Profile extends StatelessWidget {
 class ProfileScreen extends StatelessWidget {
   // ProfileScreen(this.username);
   final String username;
-  //const ProfileScreen({Key? key}) : super(key: key);
-  //final String username;
-  //ProfileScreen(this.username);
   const ProfileScreen({Key? key, required this.username}) : super(key: key);
 
   @override
@@ -41,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             //username = "Abhishek";
-            itemProfile('Name', "Dikshant", CupertinoIcons.person),
+            itemProfile('Name', username, CupertinoIcons.person),
             const SizedBox(height: 10),
             itemProfile('Phone', '9646071964', CupertinoIcons.phone),
             const SizedBox(height: 10),
@@ -49,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                 CupertinoIcons.location),
             const SizedBox(height: 10),
             itemProfile(
-                'Email', 'eveloperdikshant@gmail.com', CupertinoIcons.mail),
+                'Email', 'developerdikshant@gmail.com', CupertinoIcons.mail),
             const SizedBox(
               height: 20,
             ),
@@ -58,8 +54,10 @@ class ProfileScreen extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(15),
-                  ),
+                      padding: const EdgeInsets.all(15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      )),
                   child: const Text('Edit Profile')),
             )
           ],
@@ -75,7 +73,7 @@ class ProfileScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                offset:const  Offset(0, 5),
+                offset: const Offset(0, 5),
                 color: Colors.blue.withOpacity(.2),
                 spreadRadius: 2,
                 blurRadius: 10)
@@ -90,3 +88,11 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+// style: ElevatedButton.styleFrom(
+//                         backgroundColor: Colors.blue,
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(40),
+//                         )
+
+//                         //foregroundColor: Colors.black,
+//                         ),
