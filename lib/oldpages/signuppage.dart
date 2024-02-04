@@ -1,21 +1,15 @@
-/*
-
-//import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
-//import 'package:http/http.dart' as http;
-//import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
-//import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-// export 'var';
+import 'package:location/location.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
+import '../helpers/mapbox_handler.dart';
+import '../main.dart';
+import '../widgets/api.dart';
+import 'package:bcrypt/bcrypt.dart';
 
-// void savedata(String key, String value) async {
-//   final pref = await SharedPreferences.getInstance();
-//   await pref.setString(key, value);
-// }
 class signuppage extends StatefulWidget {
   const signuppage({Key? key}) : super(key: key);
 
@@ -31,14 +25,17 @@ class _signuppageState extends State<signuppage> {
   final _addressController = TextEditingController();
   final _passwordController = TextEditingController();
   final _phoneController = TextEditingController();
-  String name = "fdfd";
+  String name = "";
   //String username = "";
-  String password = "fyfygyhff";
-  String coordinates = "hi";
+  String password = "";
+  Object coordinates = {"latitude": 12.993006, "longitude": 80.232651};
   String state = "Punjab";
   String city = "Bhatinda";
   String role = "s";
-
+  String phone = "";
+  String address = "";
+  // String latitude="12.993006";
+  String longitude = "80.232651";
   final _formKey = GlobalKey<FormState>();
 
   String? _validateNotEmpty(String? value, String field) {
@@ -67,6 +64,52 @@ class _signuppageState extends State<signuppage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    initializeLocationAndSave();
+  }
+
+  void initializeLocationAndSave() async {
+    // Ensure all permissions are collected for Locations
+    Location _location = Location();
+    bool? _serviceEnabled;
+    PermissionStatus? _permissionGranted;
+
+    _serviceEnabled = await _location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await _location.requestService();
+    }
+
+    _permissionGranted = await _location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await _location.requestPermission();
+    }
+
+    // Get the current user location
+    LocationData _locationData = await _location.getLocation();
+    LatLng currentLocation =
+        LatLng(_locationData.latitude!, _locationData.longitude!);
+// latitude=_locationData.latitude;
+    coordinates = currentLocation;
+    // Get the current user address
+    String currentAddress =
+        (await getParsedReverseGeocoding(currentLocation))['place'];
+    postDataToApiAddress(currentLocation,
+        currentAddress); //    --------------->>>>>>>>>>>>>>>    //uncomment thiss for passing lat lng
+    // currentAddress = jsonEncode(currentAddress);
+
+    // Store the user location in sharedPreferences
+    sharedPreferences.setDouble('latitude', _locationData.latitude!);
+    sharedPreferences.setDouble('longitude', _locationData.longitude!);
+    sharedPreferences.setString('current-address', currentAddress);
+    //await Duration(seconds: 30);
+    // Navigator.pushAndRemoveUntil(
+    //     context, ////////comment this one
+    //     MaterialPageRoute(builder: (_) => const Home()),
+    //     (route) => false);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -77,27 +120,13 @@ class _signuppageState extends State<signuppage> {
             right: 0,
             //bottom: 500,
             child: Container(
-              // decoration: const BoxDecoration(
-              //   borderRadius: BorderRadius.only(
-              //       bottomLeft: Radius.circular(90),
-              //       bottomRight: Radius.circular(90)),
-              // ),
               child: Image.asset(
                 "assets/image/WhatsApp Image 2023-11-03 at 9.53.36 PM.jpeg",
                 width: 800,
                 height: 200,
-                //fit: BoxFit.fitHeight,
-                //height: 190,
               ),
             ),
           ),
-          // const Divider(
-          //   color: Colors.white,
-          //   thickness: 3,
-          //   indent: 10,
-          //   endIndent: 10,
-          // ),
-
           Positioned(
             top: 20,
             left: 0,
@@ -108,16 +137,6 @@ class _signuppageState extends State<signuppage> {
                   children: [
                     Padding(
                         padding: const EdgeInsets.only(left: 10, top: 6),
-                        // child: CupertinoButton(
-                        //   child: const Icon(
-                        //     CupertinoIcons.chevron_back,
-                        //     //fill: CircleAvatar._defaultRadius,
-                        //     color: Colors.black,
-                        //   ),
-                        //   onPressed: () {
-                        //     Navigator.pushNamed(context, MyRoutes.signinRoutes);
-                        //   },
-                        // ),
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, MyRoutes.signinRoutes);
@@ -220,12 +239,12 @@ class _signuppageState extends State<signuppage> {
                     ),
                     controller: _addressController,
                     validator: (value) => _validateNotEmpty(value, "Address"),
-                    onChanged: (value) {},
+                    onChanged: (value) {
+                      address = value;
+                    },
                     decoration: const InputDecoration(
                       labelText: "Address",
                       prefixIcon: Icon(CupertinoIcons.location_fill),
-                      //fillColor: Color.fromRGBO(0, 0, 0, 0.5),
-                      //filled: true,
                       border: UnderlineInputBorder(
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(12),
@@ -242,6 +261,7 @@ class _signuppageState extends State<signuppage> {
                         validator: _validatePassword,
                         onChanged: (value) {
                           password = value;
+                          password = BCrypt.hashpw(password, BCrypt.gensalt());
                         },
                         obscureText: true,
                         decoration: const InputDecoration(
@@ -254,44 +274,15 @@ class _signuppageState extends State<signuppage> {
                   TextFormField(
                     controller: _phoneController,
                     validator: _validatePhone,
-                    // onChanged: (value) {
-                    //   email = value;
-                    // },
+                    onChanged: (value) {
+                      phone = value;
+                    },
                     decoration: const InputDecoration(
                       labelText: "Phone",
                       prefixIcon: Icon(CupertinoIcons.phone_fill),
                     ),
                   ),
                   const SizedBox(height: 10),
-                  // RichText(
-                  //   text: TextSpan(
-                  //     style: DefaultTextStyle.of(context).style,
-                  //     children: const [
-                  //       TextSpan(
-                  //         text: "By creating an account you agree to our ",
-                  //         style: TextStyle(color: Colors.black, fontSize: 12),
-                  //       ),
-                  //       TextSpan(
-                  //         text: "terms and conditions",
-                  //         style: TextStyle(
-                  //             color: Colors.blue,
-                  //             fontSize: 12,
-                  //             decoration: TextDecoration.underline),
-                  //       ),
-                  //       TextSpan(
-                  //         text: " and ",
-                  //         style: TextStyle(color: Colors.black, fontSize: 12),
-                  //       ),
-                  //       TextSpan(
-                  //         text: "privacy policy",
-                  //         style: TextStyle(
-                  //             color: Colors.blue,
-                  //             fontSize: 12,
-                  //             decoration: TextDecoration.underline),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                   const Column(
                     children: [
                       Text(
@@ -325,39 +316,32 @@ class _signuppageState extends State<signuppage> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 15),
-                  // AnimatedContainer(
-                  //   duration: const Duration(milliseconds: 1000),
-                  //   width: 400,
-                  //   height: 50,
-                  //   alignment: Alignment.center,
-                  //   child: ElevatedButton(
-                  //     onPressed: () {
-                  //       if (_formKey.currentState!.validate()) {
-                  //         Navigator.pushNamed(context, MyRoutes.homeRoutes);
-                  //       }
-                  //     },
-                  //     child: const Text("Register"),
-                  //   ),
-                  // ),
                   GestureDetector(
                     onTap: () async {
-                      await sendDataToApi1(name, password, email, coordinates,
-                          state, city, role, address);
+                      await sendDataToApi1(email);
+                      print("ho gaya");
                       if (_formKey.currentState!.validate()) {
-                        // Navigator.pushNamed(context, MyRoutes.otpRoute,
-                        //     arguments: email);
-                        // Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                        print("true");
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                               builder: (context) => OTPScreen(
                                     email: email,
+                                    username: name,
+                                    password: password,
+                                    coordinates: coordinates,
+                                    state: state,
+                                    role: role,
+                                    isAvailable: true,
+                                    city: city,
+                                    fcmToken:
+                                        "cmAVfV4HTsyDr-Yh6-0-WU:APA91bFdUUMlt30VLlYuCNksQOXezZrLocdw4ag4qP89ZyyEyxNQTA0jKTsJbO_ogVTC64vBNeH6QMXoEK4JdJUpM1rjuIV4tJsPfSAIoJr_CBUjFI4lbUo0bvIU_kpmsaiODZZ_YxfC", //add the fcmtoken here
                                   )),
                           (Route<dynamic> route) => false,
                         );
                       } else {
+                        print("false");
                         Navigator.pushNamed(context, MyRoutes.signinRoutes);
                       }
                     },

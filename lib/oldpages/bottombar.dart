@@ -1,5 +1,3 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
@@ -53,6 +51,7 @@ class MyNavibar extends StatelessWidget {
                   child: Center(
                     child: GestureDetector(
                       onTap: () {
+                        sendSOS();
                         Navigator.pushNamed(context, MyRoutes.sosRoute);
                       },
                       child: const Text(

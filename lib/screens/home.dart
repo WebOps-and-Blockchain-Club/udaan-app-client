@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
-// import 'package:mapbox_turn_by_turn/helpers/mapbox_handler.dart';
 import 'package:mapbox_turn_by_turn/helpers/shared_prefs.dart';
 import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
-//import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
-// import 'package:mapbox_turn_by_turn/screens/review_ride.dart';
 
-//import 'package:camera_android/camera_android.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -68,28 +64,6 @@ class _HomeState extends State<Home> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => const PrepareRide())),
-                        // style: ElevatedButton.styleFrom(
-                        //     padding: const EdgeInsets.all(20)),
-                        // child: const Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [
-                        //       Text('Start Your Help'),
-                        //     ])
-                        // onPressed: () async {
-                        //   // LatLng fixedSource =
-                        //   //     const LatLng(13.054976, 80.278294);
-                        //   // LatLng fixedDestination =
-                        //   //     const LatLng(12.991989, 80.230965);
-                        //   Map modifiedResponse = await getDirectionsAPIResponse(
-                        //       fixedSource, fixedDestination);
-                        //   Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (_) => ReviewRide(
-                        //           modifiedResponse: modifiedResponse),
-                        //     ),
-                        //   );
-                        // },
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(20),
                         ),

@@ -61,6 +61,7 @@ class DefaultFirebaseOptions {
     appId: '1:441073967185:android:1355677176719827df1870',
     messagingSenderId: '441073967185',
     projectId: 'ncc-udaan',
+
     databaseURL: 'https://ncc-udaan-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'ncc-udaan.appspot.com',
   );
@@ -71,6 +72,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '441073967185',
     projectId: 'ncc-udaan',
     databaseURL: 'https://ncc-udaan-default-rtdb.asia-southeast1.firebasedatabase.app',
+
     storageBucket: 'ncc-udaan.appspot.com',
     iosBundleId: 'com.example.mapboxTurnByTurn',
   );

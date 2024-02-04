@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -8,17 +8,16 @@ import 'package:mapbox_turn_by_turn/oldpages/SOSpage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/askperson.dart';
 import 'package:mapbox_turn_by_turn/oldpages/cancel_request.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
-import 'package:mapbox_turn_by_turn/oldpages/otppage.dart';
 import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
 import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
-import 'package:mapbox_turn_by_turn/oldpages/eventDetails.dart';
+import 'oldpages/accept_decline.dart';
 import 'oldpages/signinpage.dart';
 import 'oldpages/signuppage.dart';
 import 'ui/splash.dart';
-import 'package:mapbox_turn_by_turn/widgets/api.dart';
+import 'package:mapbox_turn_by_turn/widgets/dotenv.dart';
 
 // firebase imports
 import 'package:firebase_core/firebase_core.dart';
@@ -29,6 +28,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print("Handling a background Message : ${message.messageId}");
 }
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,9 +48,11 @@ void main() async {
   ////////////////////////////////////////
   sharedPreferences = await SharedPreferences.getInstance();
   await dotenv.load(fileName: "assets/config/.env");
+  loadDotenv();
   runApp(const MyApp());
 }
 
+String ngroklink = dotenv.env['NGROK_LINK'] ?? '';
 // Define your custom text styles here
 TextTheme customTextTheme = TextTheme(
   bodyLarge: TextStyle(
@@ -76,14 +78,16 @@ class MyApp extends StatelessWidget {
       //title: 'UDAAN NCC',
       debugShowCheckedModeBanner: false,
       //theme: customTheme, // Use the custom theme here
-      // home: const askperson(),
-      // home: const homepage(),
+
+      // home: AcceptDecline(),
+      // home: askperson(),
+      //home: const homepage(),
       routes: {
         MyRoutes.signinRoutes: (context) => const signinpage(),
         MyRoutes.signupRoutes: (context) => const signuppage(),
         MyRoutes.eventsRoutes: (context) => const EventsPage(),
         MyRoutes.homeRoutes: (context) => const homepage(),
-        MyRoutes.drawerRoute: (context) => const MyDrawer(),
+        MyRoutes.drawerRoute: (context) => MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
         MyRoutes.splashRoute: (context) => const Splash(),
         MyRoutes.cancelRoutes: (context) => const TimeGiven(),
@@ -91,6 +95,8 @@ class MyApp extends StatelessWidget {
         // MyRoutes.otpRoute: (context) => OTPScreen(email: ,),
         MyRoutes.profileRoute: (context) => const Profile(),
         MyRoutes.previewride: (context) => const PrepareRide(),
+        // MyRoutes.accdecRoutes: (context) => AcceptDecline(),
+        // MyRoutes.MessageRoute: (context) => MessagePage(),
         //MyRoutes.mapRoute: (context) => MyMapapi(),
       },
     );
