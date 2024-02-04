@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mapbox_turn_by_turn/oldpages/signinpage.dart';
+// import 'package:mapbox_turn_by_turn/oldpages/signinpage.dart';
 
 //import 'package:flutter/services.dart';
 class Profile extends StatelessWidget {
@@ -10,9 +10,8 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
+        primarySwatch: Colors.blue,
       ),
       home: const ProfileScreen(username: ''),
     );
@@ -22,9 +21,6 @@ class Profile extends StatelessWidget {
 class ProfileScreen extends StatelessWidget {
   // ProfileScreen(this.username);
   final String username;
-  //const ProfileScreen({Key? key}) : super(key: key);
-  //final String username;
-  //ProfileScreen(this.username);
   const ProfileScreen({Key? key, required this.username}) : super(key: key);
 
   @override
@@ -40,15 +36,16 @@ class ProfileScreen extends StatelessWidget {
               backgroundImage: AssetImage('assets/image/Events1.jpg'),
             ),
             const SizedBox(height: 20),
+            //username = "Abhishek";
             itemProfile('Name', username, CupertinoIcons.person),
             const SizedBox(height: 10),
-            itemProfile('Phone', '1234567890', CupertinoIcons.phone),
+            itemProfile('Phone', '9646071964', CupertinoIcons.phone),
+            const SizedBox(height: 10),
+            itemProfile('Address', 'Rich Palace,Bhatinda,Punjab',
+                CupertinoIcons.location),
             const SizedBox(height: 10),
             itemProfile(
-                'Address', 'abc address, xyz city', CupertinoIcons.location),
-            const SizedBox(height: 10),
-            itemProfile(
-                'Email', 'ahadhashmideveloper@gmail.com', CupertinoIcons.mail),
+                'Email', 'developerdikshant@gmail.com', CupertinoIcons.mail),
             const SizedBox(
               height: 20,
             ),
@@ -57,8 +54,10 @@ class ProfileScreen extends StatelessWidget {
               child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(15),
-                  ),
+                      padding: const EdgeInsets.all(15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      )),
                   child: const Text('Edit Profile')),
             )
           ],
@@ -74,8 +73,8 @@ class ProfileScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 5),
-                color: Colors.deepOrange.withOpacity(.2),
+                offset: const Offset(0, 5),
+                color: Colors.blue.withOpacity(.2),
                 spreadRadius: 2,
                 blurRadius: 10)
           ]),
@@ -89,3 +88,11 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+// style: ElevatedButton.styleFrom(
+//                         backgroundColor: Colors.blue,
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(40),
+//                         )
+
+//                         //foregroundColor: Colors.black,
+//                         ),

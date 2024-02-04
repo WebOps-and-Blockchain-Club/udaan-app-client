@@ -52,20 +52,22 @@ class _TurnByTurnState extends State<TurnByTurn> {
     if (!mounted) return;
 
     // Setup directions and options
-    //directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
+    directions = MapBoxNavigation(onRouteEvent: _onRouteEvent);
     //directions = MapBoxNavigation();
     _options = MapBoxOptions(
-        zoom: 5.0,
-        voiceInstructionsEnabled: true,
-        bannerInstructionsEnabled: true,
-        mode: MapBoxNavigationMode.drivingWithTraffic,
-        isOptimized: true,
-        units: VoiceUnits.metric,
-        simulateRoute: true,
-        // enableRefresh: true,
-        // animateBuildRoute: true,
-        alternatives: true,
-        language: "en");
+
+      zoom: 5.0,
+      voiceInstructionsEnabled: true,
+      bannerInstructionsEnabled: true,
+      mode: MapBoxNavigationMode.drivingWithTraffic,
+      isOptimized: true,
+      units: VoiceUnits.metric,
+      simulateRoute: true,
+      // enableRefresh: true,
+      // animateBuildRoute: true,
+      alternatives: true,
+      language: "en",
+    );
 
     // Configure waypoints
     sourceWaypoint = WayPoint(name: "Source", latitude: a, longitude: b);
@@ -78,7 +80,6 @@ class _TurnByTurnState extends State<TurnByTurn> {
     // Start the trip
     await directions.startNavigation(wayPoints: wayPoints, options: _options);
     try {
-      //await directions.startNavigation(wayPoints: wayPoints, options: _options);
       await directions.startNavigation(wayPoints: wayPoints, options: _options);
     } catch (e) {
       //print("Error initializing navigation: $e");
@@ -149,6 +150,6 @@ class _TurnByTurnState extends State<TurnByTurn> {
         break;
     }
     //refresh UI
-    //setState(() {});
+    // setState(() {});
   }
 }

@@ -1,8 +1,3 @@
-//import 'dart:convert';
-
-//import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
@@ -49,7 +44,7 @@ class _SplashState extends State<Splash> {
     // Get the current user address
     String currentAddress =
         (await getParsedReverseGeocoding(currentLocation))['place'];
-    //currentAddress = jsonEncode(currentAddress);
+    // currentAddress = jsonEncode(currentAddress);
 
     // Store the user location in sharedPreferences
     sharedPreferences.setDouble('latitude', _locationData.latitude!);

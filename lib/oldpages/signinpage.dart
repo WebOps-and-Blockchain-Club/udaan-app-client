@@ -1,18 +1,11 @@
-// ignore_for_file: unused_import, unnecessary_import
-
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_application_udaantfr/utils/MyRoutes.dart';
-import 'package:http/http.dart' as http;
-import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
-//import 'package:flutter_application_udaantfr/widgets/api.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
-//export 'username';
-//import 'package:flutter/src/painting/border_radius.dart';
+import 'package:location/location.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
+import '../helpers/mapbox_handler.dart';
+import '../main.dart';
 
 class signinpage extends StatefulWidget {
   const signinpage({Key? key}) : super(key: key);
@@ -22,17 +15,48 @@ class signinpage extends StatefulWidget {
 }
 
 class _signinpageState extends State<signinpage> {
-  String username = "";
+  String email = "";
   String password = "";
   String type = "User";
   String abc = "";
-  // String address = "";
-  // String coordinates = "hi";
-  // String state = "Punjab";
-  // String city = "Bhatinda";
+  Object coordinates = {"latitude": 12.993006, "longitude": 80.232651};
   bool onChange = false;
   List<String> typeUser = ['Cadet', 'User'];
   String selectedType = 'Cadet';
+  void initializeLocationAndSave() async {
+    // Ensure all permissions are collected for Locations
+    Location _location = Location();
+    bool? _serviceEnabled;
+    PermissionStatus? _permissionGranted;
+
+    _serviceEnabled = await _location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await _location.requestService();
+    }
+
+    _permissionGranted = await _location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await _location.requestPermission();
+    }
+
+    // Get the current user location
+    LocationData _locationData = await _location.getLocation();
+    LatLng currentLocation =
+        LatLng(_locationData.latitude!, _locationData.longitude!);
+
+    // Get the current user address
+    String currentAddress =
+        (await getParsedReverseGeocoding(currentLocation))['place'];
+    postDataToApiAddress(currentLocation,
+        currentAddress); //    --------------->>>>>>>>>>>>>>>    //uncomment thiss for passing lat lng
+    //currentAddress = jsonEncode(currentAddress);
+    coordinates = currentLocation;
+
+    // Store the user location in sharedPreferences
+    sharedPreferences.setDouble('latitude', _locationData.latitude!);
+    sharedPreferences.setDouble('longitude', _locationData.longitude!);
+    sharedPreferences.setString('current-address', currentAddress);
+  }
 
   final _formKey = GlobalKey<FormState>();
   moveToHome(BuildContext context) async {
@@ -54,15 +78,14 @@ class _signinpageState extends State<signinpage> {
       children: [
         ColorFiltered(
             colorFilter: ColorFilter.mode(
-                Color.fromARGB(1, 36, 107, 8).withOpacity(0.5),
+                const Color.fromARGB(1, 36, 107, 8).withOpacity(0.5),
                 BlendMode.luminosity),
             child: Image.asset(
               "assets/image/flag2.jpeg",
+              alignment: Alignment.center,
               width: double.infinity,
               height: double.infinity,
               fit: BoxFit.cover,
-              //color: Color.fromARGB(186, 59, 59, 59),
-              //colorBlendMode: BlendMode.luminosity,
             )),
         Material(
           color: Colors.transparent,
@@ -82,16 +105,6 @@ class _signinpageState extends State<signinpage> {
                         height: 200,
                       ),
                     ),
-
-                    // Text(
-                    //   "WELCOME $abc",
-                    //   style: const TextStyle(
-                    //       color: Colors.black,
-                    //       fontSize: 25,
-                    //       height: 2,
-                    //       fontWeight: FontWeight.w200),
-                    // ),
-
                     const SizedBox(
                       height: 15,
                     ),
@@ -104,15 +117,10 @@ class _signinpageState extends State<signinpage> {
                           children: [
                             Container(
                               height: 50,
-
-                              //width: 40,
-                              //color: Color.fromARGB(126, 182, 132, 5),
                               width: double.infinity,
-
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   color: Colors.black.withOpacity(0.5)),
-                              //width: 20,
                               child: Row(
                                 children: [
                                   const Padding(
@@ -122,9 +130,7 @@ class _signinpageState extends State<signinpage> {
                                   ),
                                   //Spacer(),
                                   DropdownButton<String>(
-                                    // itemHeight: 20,
                                     iconSize: 40,
-
                                     focusColor: Colors.grey,
                                     dropdownColor: Colors.blue,
                                     iconEnabledColor: Colors.lightBlue,
@@ -163,11 +169,8 @@ class _signinpageState extends State<signinpage> {
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
-                              //keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
-                                //icon: Icon(CupertinoIcons.person_solid),
                                 hintText: "User Name",
-
                                 hintStyle: const TextStyle(
                                   color: Colors.white,
                                 ),
@@ -176,14 +179,12 @@ class _signinpageState extends State<signinpage> {
                                     scale: 1.5,
                                     child:
                                         const Icon(CupertinoIcons.person_fill)),
-
                                 labelText: "username",
                                 labelStyle: const TextStyle(
                                   color: Colors.white,
                                 ),
                                 fillColor: const Color.fromRGBO(0, 0, 0, 0.5),
                                 filled: true,
-                                //border: Border.fromBorderSide(10),
                               ),
                               validator: (value) {
                                 if (value?.isEmpty == true) {
@@ -193,7 +194,7 @@ class _signinpageState extends State<signinpage> {
                               },
                               onChanged: (value) {
                                 abc = value;
-                                username = value;
+                                email = value;
                                 //build(context);
 
                                 setState(() {
@@ -219,7 +220,6 @@ class _signinpageState extends State<signinpage> {
                                     scale: 1.5,
                                     child: const Icon(
                                         CupertinoIcons.lock_shield_fill)),
-                                //icon: Icon(CupertinoIcons.lock_fill),
                                 labelText: "Password",
                                 labelStyle: const TextStyle(
                                   color: Colors.white,
@@ -250,14 +250,10 @@ class _signinpageState extends State<signinpage> {
                       color: const Color.fromARGB(255, 3, 51, 103),
                       child: InkWell(
                         onTap: () async => {
-                          await sendDataToApi(username, password),
+                          // await sendDataToApi(
+                          //     email, password, "123456 0987654"),
                           Navigator.pushNamed(context, MyRoutes.homeRoutes,
-                              arguments: username),
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             ProfileScreen(username: username))),
+                              arguments: email),
                         },
                         child: AnimatedContainer(
                           width: onChange ? 50 : 150,
@@ -307,7 +303,7 @@ class _signinpageState extends State<signinpage> {
   }
 }
 
-// const Divider(
+                    // const Divider(
                     //   color: Colors.white,
                     //   thickness: 3,
                     //   indent: 10,

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
-import 'package:mapbox_turn_by_turn/helpers/mapbox_handler.dart';
 import 'package:mapbox_turn_by_turn/helpers/shared_prefs.dart';
 import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
-import 'package:mapbox_turn_by_turn/screens/review_ride.dart';
 
-//import 'package:camera_android/camera_android.dart';
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
+
+LatLng fixedSource = const LatLng(13.054976, 80.278294);
+LatLng fixedDestination = const LatLng(12.991989, 80.230965);
 
 class _HomeState extends State<Home> {
   LatLng currentLocation = getCurrentLatLngFromSharedPrefs();
@@ -60,21 +60,10 @@ class _HomeState extends State<Home> {
                           style: const TextStyle(color: Colors.indigo)),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: () async {
-                          LatLng fixedSource =
-                              const LatLng(13.054976, 80.278294);
-                          LatLng fixedDestination =
-                              const LatLng(12.991989, 80.230965);
-                          Map modifiedResponse = await getDirectionsAPIResponse(
-                              fixedSource, fixedDestination);
-                          Navigator.push(
+                        onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => ReviewRide(
-                                  modifiedResponse: modifiedResponse),
-                            ),
-                          );
-                        },
+                                builder: (_) => const PrepareRide())),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(20),
                         ),

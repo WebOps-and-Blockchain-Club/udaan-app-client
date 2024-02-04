@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 
 class TimeGiven extends StatelessWidget {
+  const TimeGiven({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       color: Colors.lightBlue,
       home: TimerScreen(),
@@ -14,6 +15,7 @@ class TimeGiven extends StatelessWidget {
 }
 
 class TimerScreen extends StatefulWidget {
+  const TimerScreen({super.key});
   @override
   _TimerScreenState createState() => _TimerScreenState();
 }
@@ -29,7 +31,7 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_secondsRemaining == 0) {
         timer.cancel();
         // Navigate to the homepage when the timer is done.
@@ -73,80 +75,3 @@ class _TimerScreenState extends State<TimerScreen> {
     );
   }
 }
-// import 'package:flutter/material.dart';
-// //import 'package:flutter_startup/home_page.dart';
-// import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
-
-// class TimeGiven extends StatefulWidget {
-//   const TimeGiven({Key? key}) : super(key: key);
-
-//   @override
-//   State<TimeGiven> createState() => _TimeGivenState();
-// }
-
-// //765EFC
-// class _TimeGivenState extends State<TimeGiven> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     goToHome();
-//   }
-
-//   void goToHome() async {
-//     await Future.delayed(const Duration(seconds: 2), () {
-//       Navigator.pushAndRemoveUntil(
-//         context,
-//         MaterialPageRoute(builder: (context) => homepage()),
-//         (Route<dynamic> route) => false,
-//       );
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Container(
-//         alignment: Alignment.center,
-//         color: const Color(0xFF765EFC),
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           children: [
-//             Image.asset(
-//               "assets/image/person.jpg",
-//               width: 48,
-//             ),
-//             Container(
-//               margin: const EdgeInsets.only(top: 10),
-//               child: Row(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   const SizedBox(
-//                     child: CircularProgressIndicator(
-//                       color: Colors.green,
-//                       backgroundColor: Colors.amberAccent,
-//                       strokeWidth: 2.0,
-//                     ),
-//                     width: 24,
-//                     height: 24,
-//                   ),
-//                   Container(
-//                     margin: const EdgeInsets.only(left: 10),
-//                     child: const Text(
-//                       'Loading...',
-//                       style: TextStyle(
-//                         color: Colors.white,
-//                         fontSize: 18,
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

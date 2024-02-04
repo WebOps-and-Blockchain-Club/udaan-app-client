@@ -1,4 +1,4 @@
-def localProperties = new Properties()
+def localProperties =new  Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
@@ -8,7 +8,7 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw new FileNotFoundException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -22,8 +22,13 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+// apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+// plugins {
+//     id 'com.google.gms.google-services'
+// }
 
 android {
     compileSdkVersion flutter.compileSdkVersion
@@ -52,10 +57,14 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders = [consumerAppId: "com.rsp.liftprojectsipclient"]
+        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+            manifestPlaceholders = [consumerAppId:"com.rsp.liftprojectsipclient"]
         }
     }
 }
@@ -67,6 +76,7 @@ flutter {
 dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.firebase:firebase-bom:32.7.1'
 }
 
 configurations {
