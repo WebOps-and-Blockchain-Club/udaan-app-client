@@ -265,7 +265,7 @@ import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
-String ngroklink = 'https://ee8f-103-158-43-46.ngrok-free.app';
+String ngroklink = 'https://7f6a-103-158-43-46.ngrok-free.app';
 Future<void> sendDataToApi(String email, String password) async {
   print("Sending data to API: username=$email, password=$password");
 

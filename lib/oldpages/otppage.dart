@@ -161,7 +161,7 @@ Future<String?> getDataFromLocalStorage(String key) async {
 }
 
 // String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
-String ngroklink = 'https://ee8f-103-158-43-46.ngrok-free.app';
+String ngroklink = 'https://7f6a-103-158-43-46.ngrok-free.app';
 
 Future<void> sendDataToApiotp(String email, String otp) async {
   print("Sending data to API: $otp");
