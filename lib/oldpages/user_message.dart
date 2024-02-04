@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class MessagePage extends StatefulWidget {
@@ -86,4 +87,5 @@ class _MessagePageState extends State<MessagePage> {
       ),
     );
   }
+
 }

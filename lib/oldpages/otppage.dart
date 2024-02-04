@@ -109,7 +109,6 @@ class _OTPScreenState extends State<OTPScreen> {
                     onPressed: () async {
                       print(
                           "its working------------------------------------------------------------");
-
                       await sendDataToApiotp(
                           email,
                           otp,
@@ -162,6 +161,8 @@ Future<void> sendDataToApiotp(
   final prefs = await SharedPreferences.getInstance();
 
   try {
+    final prefs = await SharedPreferences.getInstance();
+    var user = prefs.getString('user');
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {

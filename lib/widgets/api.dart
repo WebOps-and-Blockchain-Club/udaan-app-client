@@ -1,4 +1,6 @@
+
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,7 +67,6 @@ Future<void> sendDataToApi1(
       final data = response.body;
       print(data.runtimeType);
       data.toString;
-
       print("Response dagfhngfhngfta: $data");
       print('Successfully done');
     } else {
