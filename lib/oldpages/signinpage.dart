@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:mapbox_turn_by_turn/widgets/api.dart';
 import 'package:location/location.dart';
-import 'package:mapbox_gl/mapbox_gl.dart';
-import '../helpers/mapbox_handler.dart';
 import '../main.dart';
 
 class signinpage extends StatefulWidget {
@@ -24,40 +22,6 @@ class _signinpageState extends State<signinpage> {
   bool onChange = false;
   List<String> typeUser = ['Cadet', 'User'];
   String selectedType = 'Cadet';
-  void initializeLocationAndSave() async {
-    // Ensure all permissions are collected for Locations
-    Location _location = Location();
-    bool? _serviceEnabled;
-    PermissionStatus? _permissionGranted;
-
-    _serviceEnabled = await _location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await _location.requestService();
-    }
-
-    _permissionGranted = await _location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await _location.requestPermission();
-    }
-
-    // Get the current user location
-    LocationData _locationData = await _location.getLocation();
-    LatLng currentLocation =
-        LatLng(_locationData.latitude!, _locationData.longitude!);
-
-    // Get the current user address
-    String currentAddress =
-        (await getParsedReverseGeocoding(currentLocation))['place'];
-    postDataToApiAddress(currentLocation,
-        currentAddress); //    --------------->>>>>>>>>>>>>>>    //uncomment thiss for passing lat lng
-    //currentAddress = jsonEncode(currentAddress);
-    coordinates = currentLocation;
-
-    // Store the user location in sharedPreferences
-    sharedPreferences.setDouble('latitude', _locationData.latitude!);
-    sharedPreferences.setDouble('longitude', _locationData.longitude!);
-    sharedPreferences.setString('current-address', currentAddress);
-  }
 
   final _formKey = GlobalKey<FormState>();
   moveToHome(BuildContext context) async {

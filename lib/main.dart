@@ -8,7 +8,7 @@ import 'package:mapbox_turn_by_turn/oldpages/SOSpage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/askperson.dart';
 import 'package:mapbox_turn_by_turn/oldpages/cancel_request.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
-import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
+// import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
 import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +16,7 @@ import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'oldpages/accept_decline.dart';
 import 'oldpages/signinpage.dart';
 import 'oldpages/signuppage.dart';
-import 'ui/splash.dart';
+// import 'ui/splash.dart';
 import 'package:mapbox_turn_by_turn/widgets/dotenv.dart';
 
 // firebase imports
@@ -47,7 +47,6 @@ void main() async {
 
   ////////////////////////////////////////
   sharedPreferences = await SharedPreferences.getInstance();
-  await dotenv.load(fileName: "assets/config/.env");
   loadDotenv();
   runApp(const MyApp());
 }
@@ -79,7 +78,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       //theme: customTheme, // Use the custom theme here
 
-      // home: AcceptDecline(),
+      // home: askperson(),
       // home: askperson(),
       //home: const homepage(),
       routes: {
@@ -89,12 +88,12 @@ class MyApp extends StatelessWidget {
         MyRoutes.homeRoutes: (context) => const homepage(),
         MyRoutes.drawerRoute: (context) => MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
-        MyRoutes.splashRoute: (context) => const Splash(),
+        // MyRoutes.splashRoute: (context) => const Splash(),
         MyRoutes.cancelRoutes: (context) => const TimeGiven(),
         MyRoutes.askthem: (context) => const askperson(),
         // MyRoutes.otpRoute: (context) => OTPScreen(email: ,),
         MyRoutes.profileRoute: (context) => const Profile(),
-        MyRoutes.previewride: (context) => const PrepareRide(),
+        // MyRoutes.previewride: (context) => const PrepareRide(),
         // MyRoutes.accdecRoutes: (context) => AcceptDecline(),
         // MyRoutes.MessageRoute: (context) => MessagePage(),
         //MyRoutes.mapRoute: (context) => MyMapapi(),

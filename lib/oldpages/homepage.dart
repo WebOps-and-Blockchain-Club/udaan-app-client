@@ -223,13 +223,14 @@ class EventCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, MyRoutes.eventsRoutes);
       },
       child: Container(
         // margin: const EdgeInsets.only(left: 4.0, right: 4.0),
-        height: 340,
+        height: screenHeight*0.36,
         width: double.infinity,
         // width: screenWidth * 1.1,
         decoration: BoxDecoration(

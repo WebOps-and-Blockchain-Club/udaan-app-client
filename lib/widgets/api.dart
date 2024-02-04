@@ -2,7 +2,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
-import 'package:mapbox_gl/mapbox_gl.dart';
+// import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 String ngroklink = 'http://43.204.145.3:8000';
@@ -80,55 +80,7 @@ Future<void> sendDataToApi1(
   }
 }
 
-void postDataToApiAddress(LatLng currentLocation, String currentAddress) async {
-  final apiUrl = '$ngroklink/api/v1/getCadet/:userId';
 
-  Map<String, dynamic> requestData = {
-    'latitude': currentLocation.latitude,
-    'longitude': currentLocation.longitude,
-    'address': currentAddress,
-  };
-
-  try {
-    var response = await http.post(
-      Uri.parse(apiUrl),
-      body: requestData,
-    );
-
-    if (response.statusCode == 200) {
-      // Request successful, do something with the response
-      print('Data posted successfully');
-    } else {
-      // Request failed, handle the error
-      print('Failed to post data. Status code: ${response.statusCode}');
-    }
-  } catch (error) {
-    // Handle any error that might occur during the HTTP request
-    print('Error: $error');
-  }
-}
-
-void getDataFromApiAddress(LatLng cadetLocation) async {
-  String apiUrl = '$ngroklink/api/v1/getCadet/:userId';
-
-  try {
-    var response = await http.get(
-      Uri.parse(apiUrl),
-      //body: requestData,
-    );
-
-    if (response.statusCode == 200) {
-      // Request successful, do something with the response
-      print('Data posted successfully');
-    } else {
-      // Request failed, handle the error
-      print('Failed to post data. Status code: ${response.statusCode}');
-    }
-  } catch (error) {
-    // Handle any error that might occur during the HTTP request
-    print('Error: $error');
-  }
-}
 
 Future<void> _storing() async {
   print("sos");
