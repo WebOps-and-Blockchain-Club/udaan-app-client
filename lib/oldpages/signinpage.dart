@@ -643,8 +643,8 @@ class _signinpageState extends State<signinpage> {
                       color: const Color.fromARGB(255, 3, 51, 103),
                       child: InkWell(
                         onTap: () async => {
-                          await sendDataToApi(
-                              email, password, "123456 0987654"),
+                          // await sendDataToApi(
+                          //     email, password, "123456 0987654"),
                           Navigator.pushNamed(context, MyRoutes.homeRoutes,
                               arguments: email),
                         },

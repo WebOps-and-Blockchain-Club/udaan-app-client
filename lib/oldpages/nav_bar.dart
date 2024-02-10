@@ -15,18 +15,20 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.only(
-        left: 8,
-        right: 8,
-        bottom: Platform.isAndroid ? 8 : 0,
+        left: 4,
+        right: 4,
+        bottom: Platform.isAndroid ? 4 : 0,
       ),
       child: BottomAppBar(
         elevation: 0.0,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(30),
           child: Container(
             height: 60,
+            width: screenWidth * 0.5,
             color: Colors.blue,
             child: Row(
               children: [

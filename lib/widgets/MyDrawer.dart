@@ -226,11 +226,13 @@ class _MyDrawerState extends State<MyDrawer> {
               padding: EdgeInsets.zero,
               margin: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(
-                accountName: Text("Abhishek D"),
+                // accountName: Text("Abhishek D"),
+                accountName: Text("UDAAN"),
                 decoration: BoxDecoration(
                   color: Colors.blue,
                 ),
-                accountEmail: Text("abhi@gmail.com"),
+                // accountEmail: Text("abhi@gmail.com"),
+                accountEmail: Text("The First Responder"),
                 margin: EdgeInsets.zero,
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: AssetImage(
@@ -240,59 +242,26 @@ class _MyDrawerState extends State<MyDrawer> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
-            _buildExpansionTile(
+            _buildExpansionTileWithoutTrailingIcon(
               icon: CupertinoIcons.home,
               title: "Home",
-              children: [
-                _buildDrawerItem(
-                  icon: CupertinoIcons.ellipsis_vertical_circle,
-                  title: "Home Events",
-                  route: MyRoutes.homeRoutes,
-                ),
-              ],
-            ),
-            SizedBox(height: 0), // Add spacing
-            _buildExpansionTile(
-              icon: CupertinoIcons.mail,
-              title: "Mail",
-              children: [
-                _buildDrawerItem(
-                  icon: CupertinoIcons.ellipsis_vertical_circle,
-                  title: "Mail Events",
-                  route: MyRoutes.homeRoutes,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 0,
-            ),
-            _buildExpansionTile(
-              icon: CupertinoIcons.profile_circled,
-              title: "PROFILE",
-              children: [
-                // _buildDrawerItem(
-                //   icon: CupertinoIcons.ellipsis_vertical_circle,
-                //   title: "Home Events",
-                //   route: MyRoutes.homeRoutes,
-                // ),
-              ],
-            ),
-            SizedBox(height: 0), // Add spacing
-            _buildExpansionTile(
-              icon: CupertinoIcons.settings_solid,
-              title: "Settings",
-              children: [
-                // _buildDrawerItem(
-                //   icon: CupertinoIcons.ellipsis_vertical_circle,
-                //   title: "Mail Events",
-                //   route: MyRoutes.homeRoutes,
-                // ),
-              ],
-            ),
-            SizedBox(height: 0), // Add spacing
+              Routes: MyRoutes.profileRoute,
+            ), // Add spacing
+            _buildExpansionTileWithoutTrailingIcon(
+                icon: CupertinoIcons.mail,
+                title: "Mail",
+                Routes: MyRoutes.profileRoute),
+            _buildExpansionTileWithoutTrailingIcon(
+                icon: CupertinoIcons.profile_circled,
+                title: "PROFILE",
+                Routes: MyRoutes.profileRoute),
+            _buildExpansionTileWithoutTrailingIcon(
+                icon: CupertinoIcons.settings_solid,
+                title: "Settings",
+                Routes: MyRoutes.profileRoute), 
             _buildExpansionTile(
               icon: Icons.event,
               title: "Events",
@@ -300,7 +269,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 _buildDrawerItem(
                   icon: CupertinoIcons.ellipsis_vertical_circle,
                   title: "Current Events",
-                  route: MyRoutes.homeRoutes,
+                  route: MyRoutes.eventsRoutes,
                 ),
                 _buildDrawerItem(
                   icon: CupertinoIcons.ellipsis_vertical_circle,
@@ -352,6 +321,7 @@ class _MyDrawerState extends State<MyDrawer> {
     required String title,
     required List<Widget> children,
   }) {
+    bool hasTrailingIcon = title == "Home" || title == "Events";
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       shape: RoundedRectangleBorder(
@@ -373,8 +343,41 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
         ),
         children: children,
-        trailing:
-            const Icon(Icons.keyboard_arrow_down, color: Colors.blue, size: 24),
+        trailing: hasTrailingIcon
+            ? const Icon(Icons.keyboard_arrow_down,
+                color: Colors.blue, size: 24)
+            : null,
+      ),
+    );
+  }
+  Widget _buildExpansionTileWithoutTrailingIcon({
+    required IconData icon,
+    required String title,
+    required String Routes,
+  }) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+        side: BorderSide(color: Colors.blue, width: 2.0),
+      ),
+      color: Colors.white,
+      child: ListTile(
+        onTap: () {
+          Navigator.pushNamed(context, Routes);
+        },
+        leading: Icon(
+          icon,
+          color: Colors.blue,
+          size: 30,
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.blue,
+            fontSize: 18,
+          ),
+        ),
       ),
     );
   }

@@ -8,12 +8,16 @@ import 'package:mapbox_gl/mapbox_gl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
 String ngroklink = 'https://ee8f-103-158-43-46.ngrok-free.app';
 Future<void> sendDataToApi(
     String email, String password, Object coordinates) async {
 =======
 String ngroklink = 'https://0173-103-158-43-16.ngrok-free.app';
+=======
+String ngroklink = 'http://43.204.145.3:8000';
+>>>>>>> 12dd9ea29e0db7b5ef3396b7405d9688af3d7c70
 
 //  final prefs = await SharedPreferences.getInstance();
 Future<void> sendDataToApi(

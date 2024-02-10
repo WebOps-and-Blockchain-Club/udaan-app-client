@@ -142,11 +142,15 @@ Future<String?> getDataFromLocalStorage(String key) async {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // String ngroklink = 'http://ec2-15-206-81-114.ap-south-1.compute.amazonaws.com';
 String ngroklink = 'https://ee8f-103-158-43-46.ngrok-free.app';
 =======
 // String ngroklink = 'https://e8f1-103-158-43-46.ngrok-free.app';
 >>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
+=======
+String ngroklink = 'http://43.204.145.3:8000';
+>>>>>>> 12dd9ea29e0db7b5ef3396b7405d9688af3d7c70
 
 Future<void> sendDataToApiotp(
     String email,

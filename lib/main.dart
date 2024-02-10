@@ -16,6 +16,7 @@ import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
+import 'oldpages/accept_decline.dart';
 import 'oldpages/signinpage.dart';
 import 'oldpages/signuppage.dart';
 import 'ui/splash.dart';
@@ -56,7 +57,7 @@ void main() async {
   await dotenv.load(fileName: "assets/config/.env");
 =======
   // sharedPreferences = await SharedPreferences.getInstance();
-  // await dotenv.load(fileName: "assets/config/.env");
+  await dotenv.load(fileName: "assets/config/.env");
   loadDotenv();
 >>>>>>> ea90dc992d23954e3eac274e6f890a38c2bde6a5
   runApp(const MyApp());

@@ -6,9 +6,11 @@ import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
 import 'package:mapbox_turn_by_turn/oldpages/eventDetails.dart';
 import 'package:http/http.dart ' as http;
+import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'event_box.dart';
 import '../main.dart';
 
+String ngroklink = 'http://43.204.145.3:8000';
 Future<void> fetchData() async {
 <<<<<<< HEAD
   final response = await http
@@ -65,6 +67,51 @@ class _EventsPageState extends State<EventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const MyDrawer(),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+          // color: Color.fromARGB(96, 50, 10, 134),
+          weight: 14,
+          opacity: 10,
+        ),
+        backgroundColor: Colors.blue,
+        elevation: 0, // Remove elevation for a flat design
+        title: const Row(
+          children: [
+            Text(
+              'EVENTS',
+              style: TextStyle(
+                color: Colors.white, // Set the title color
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, MyRoutes.profileRoute);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Container(
+                alignment: Alignment.centerRight,
+                child: const CircleAvatar(
+                  radius: 18,
+                  backgroundColor: Colors.white,
+                  child: CircleAvatar(
+                    radius: 16,
+                    backgroundImage: AssetImage(
+                        'assets/image/person.jpg'), // Add your profile image path
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Container(
         decoration: const BoxDecoration(
             // gradient: LinearGradient(
@@ -107,17 +154,18 @@ class _EventsPageState extends State<EventsPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const SizedBox(height: 80),
-                    Container(
-                      padding: const EdgeInsets.only(left: 10),
-                      alignment: Alignment.topLeft,
-                      child: const Text(
-                        "Past Events",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                    // const SizedBox(height: 80),
+                    const SizedBox(height: 10),
+                    // Container(
+                    //   padding: const EdgeInsets.only(left: 10),
+                    //   alignment: Alignment.topLeft,
+                    //   child: const Text(
+                    //     "Past Events",
+                    //     textAlign: TextAlign.left,
+                    //     style: TextStyle(
+                    //         fontSize: 24, fontWeight: FontWeight.bold),
+                    //   ),
+                    // ),
                     CarouselSlider(
                       items: [
                         EventCard(
@@ -128,7 +176,7 @@ class _EventsPageState extends State<EventsPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const EventDetailsPage(
-                                  imageAsset: 'assets/image/Events1.jpg',
+                                  imageAsset: 'assets/image/leadership.jpg',
                                   title: 'Leadership Workshop',
                                   location: 'NCC Training Grounds',
                                   date: '2023-11-15',
@@ -149,7 +197,7 @@ class _EventsPageState extends State<EventsPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const EventDetailsPage(
-                                  imageAsset: 'assets/image/Events2.jpg',
+                                  imageAsset: 'assets/image/adventurecamp.jpeg',
                                   title: 'Adventure Camp',
                                   location: 'Mount Adventure Base',
                                   date: '2023-12-02',
@@ -171,7 +219,7 @@ class _EventsPageState extends State<EventsPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const EventDetailsPage(
-                                  imageAsset: 'assets/image/Events3.jpeg',
+                                  imageAsset: 'assets/image/drill.jpg',
                                   title: 'Drill Competition',
                                   location: 'Parade Ground',
                                   date: '2023-11-30',
@@ -193,8 +241,8 @@ class _EventsPageState extends State<EventsPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const EventDetailsPage(
-                                  imageAsset: 'assets/image/Events3.jpeg',
-                                  title: 'Drill Competition',
+                                  imageAsset: 'assets/image/blood_donation.png',
+                                  title: 'Blood donation',
                                   location: 'Parade Ground',
                                   date: '2023-11-30',
                                   description:
@@ -215,8 +263,8 @@ class _EventsPageState extends State<EventsPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const EventDetailsPage(
-                                  imageAsset: 'assets/image/Events3.jpeg',
-                                  title: 'Drill Competition',
+                                  imageAsset: 'assets/image/award_dist.jpeg',
+                                  title: 'Award Distribution',
                                   location: 'Parade Ground',
                                   date: '2023-11-30',
                                   description:
@@ -236,8 +284,9 @@ class _EventsPageState extends State<EventsPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const EventDetailsPage(
-                                  imageAsset: 'assets/image/Events3.jpeg',
-                                  title: 'Drill Competition',
+                                  imageAsset:
+                                      'assets/image/environmentcleanup.jpg',
+                                  title: 'Environmental Cleanup',
                                   location: 'Parade Ground',
                                   date: '2023-11-30',
                                   description:
@@ -257,8 +306,8 @@ class _EventsPageState extends State<EventsPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const EventDetailsPage(
-                                  imageAsset: 'assets/image/Events3.jpeg',
-                                  title: 'Drill Competition',
+                                  imageAsset: 'assets/image/sports_day.jpeg',
+                                  title: 'Sports Day',
                                   location: 'Parade Ground',
                                   date: '2023-11-30',
                                   description:
@@ -272,14 +321,14 @@ class _EventsPageState extends State<EventsPage> {
                         ),
                         EventCard(
                           imageAsset: 'assets/image/Flag1.webp',
-                          title: 'Drill Competition',
+                          title: 'National Integration Camp',
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (_) => const EventDetailsPage(
-                                  imageAsset: 'assets/image/Events3.jpeg',
-                                  title: 'Drill Competition',
+                                  imageAsset: 'assets/image/Flag1.webp',
+                                  title: 'National Integration Camp',
                                   location: 'Parade Ground',
                                   date: '2023-11-30',
                                   description:
@@ -293,7 +342,7 @@ class _EventsPageState extends State<EventsPage> {
                         ),
                         EventCard(
                           imageAsset: 'assets/image/Events3.jpeg',
-                          title: 'Drill Competition',
+                          title: 'International Yoga Drive',
                           onTap: () {
                             Navigator.push(
                               context,
@@ -320,6 +369,7 @@ class _EventsPageState extends State<EventsPage> {
                         enlargeCenterPage: true,
                         enableInfiniteScroll: false,
                         viewportFraction: 0.4,
+                        initialPage: 2,
                         pageSnapping: false,
                       ),
                     ),
@@ -342,15 +392,15 @@ class _EventsPageState extends State<EventsPage> {
                         height: 417,
                         child: ListView(
                           padding: const EdgeInsets.only(
-                            left: 15,
-                            right: 15,
-                            bottom: 20,
+                            left: 8,
+                            right: 8,
+                            // bottom: 20,
                           ),
                           scrollDirection: Axis.vertical,
                           //physics: AlwaysScrollableScrollPhysics(),
                           addRepaintBoundaries: true,
-                          //clipBehavior: Clip.hardEdge,
-                          shrinkWrap: true,
+                          clipBehavior: Clip.hardEdge,
+                          // shrinkWrap: true,
                           children: [
                             EventCardBox(
                               imageAsset: 'assets/image/environmentcleanup.jpg',
@@ -366,8 +416,9 @@ class _EventsPageState extends State<EventsPage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) => const EventDetailsPage(
-                                      imageAsset: 'assets/image/Events1.jpg',
-                                      title: 'Leadership Workshop',
+                                      imageAsset:
+                                          'assets/image/environmentcleanup.jpg',
+                                      title: 'Environment Cleanup',
                                       location: 'NCC Training Grounds',
                                       date: '2023-11-15',
                                       description:
@@ -393,8 +444,9 @@ class _EventsPageState extends State<EventsPage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) => const EventDetailsPage(
-                                      imageAsset: 'assets/image/Events4.jpeg',
-                                      title: 'Blood Donation Drive',
+                                      imageAsset:
+                                          'assets/image/sports_day.jpeg',
+                                      title: 'Sports Day',
                                       location: 'NCC Community Center',
                                       date: '2023-12-18',
                                       description:
@@ -421,8 +473,8 @@ class _EventsPageState extends State<EventsPage> {
                                   MaterialPageRoute(
                                     builder: (_) => const EventDetailsPage(
                                       imageAsset:
-                                          'assets/image/indian-flag-2644512_1280.jpeg',
-                                      title: 'Environmental Cleanup Campaign',
+                                          'assets/image/blood_donation.png',
+                                      title: 'Blood Donation Drive',
                                       location: 'City Park',
                                       date: '2023-11-25',
                                       description:
@@ -449,8 +501,8 @@ class _EventsPageState extends State<EventsPage> {
                                   MaterialPageRoute(
                                     builder: (_) => const EventDetailsPage(
                                       imageAsset:
-                                          'assets/image/indian-flag-2644512_1280.jpeg',
-                                      title: 'Environmental Cleanup Campaign',
+                                          'assets/image/adventurecamp.jpeg',
+                                      title: 'Adventure Camp',
                                       location: 'City Park',
                                       date: '2023-11-25',
                                       description:
@@ -477,8 +529,8 @@ class _EventsPageState extends State<EventsPage> {
                                   MaterialPageRoute(
                                     builder: (_) => const EventDetailsPage(
                                       imageAsset:
-                                          'assets/image/indian-flag-2644512_1280.jpeg',
-                                      title: 'Environmental Cleanup Campaign',
+                                          'assets/image/award_dist.jpeg',
+                                      title: 'Award Distribution',
                                       location: 'City Park',
                                       date: '2023-11-25',
                                       description:
@@ -504,9 +556,8 @@ class _EventsPageState extends State<EventsPage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) => const EventDetailsPage(
-                                      imageAsset:
-                                          'assets/image/indian-flag-2644512_1280.jpeg',
-                                      title: 'Environmental Cleanup Campaign',
+                                      imageAsset: 'assets/image/drill.jpg',
+                                      title: 'Drill Undertaking',
                                       location: 'City Park',
                                       date: '2023-11-25',
                                       description:
@@ -534,8 +585,8 @@ class _EventsPageState extends State<EventsPage> {
                                   MaterialPageRoute(
                                     builder: (_) => const EventDetailsPage(
                                       imageAsset:
-                                          'assets/image/indian-flag-2644512_1280.jpeg',
-                                      title: 'Environmental Cleanup Campaign',
+                                          'assets/image/First_Aid_Training.jpeg',
+                                      title: 'First Aid Training',
                                       location: 'City Park',
                                       date: '2023-11-25',
                                       description:
@@ -561,9 +612,8 @@ class _EventsPageState extends State<EventsPage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (_) => const EventDetailsPage(
-                                      imageAsset:
-                                          'assets/image/indian-flag-2644512_1280.jpeg',
-                                      title: 'Environmental Cleanup Campaign',
+                                      imageAsset: 'assets/image/Events1.jpg',
+                                      title: 'Sports Meet',
                                       location: 'City Park',
                                       date: '2023-11-25',
                                       description:
