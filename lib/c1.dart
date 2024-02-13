@@ -44,7 +44,7 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
         googleMapController.animateCamera(
           CameraUpdate.newCameraPosition(
             CameraPosition(
-              zoom: 13.5,
+              zoom: 17.5,
               target: LatLng(
                 newLoc.latitude!,
                 newLoc.longitude!,
@@ -125,7 +125,7 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
           initialCameraPosition: CameraPosition(
             target:
                 LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-            zoom: 13.5,
+            zoom: 17.5,
           ),
           polylines: {
             Polyline(
