@@ -123,7 +123,7 @@ class _homepageState extends State<homepage> {
                             ? 'UDAAN AIMS TO HELP PEOPLE IN NEED. YOU CAN CALL FOR HELP USING SOS BUTTON'
                             : 'उदान किसी की मदद करने का उद्देश्य रखता है। आप सोस बटन का उपयोग करके मदद के लिए कॉल कर सकते हैं',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue,
                           letterSpacing: 1.1,
