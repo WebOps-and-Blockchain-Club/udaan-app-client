@@ -168,7 +168,7 @@ class _homepageState extends State<homepage> {
         width: 64,
         child: FloatingActionButton(
           backgroundColor: Colors.red,
-          elevation: 40,
+          elevation: 0,
           onPressed: () {
             Navigator.pushNamed(context, MyRoutes.sosRoute);
           },

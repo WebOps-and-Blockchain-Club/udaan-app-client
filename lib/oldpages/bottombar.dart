@@ -17,10 +17,10 @@ class MyNavibar extends StatelessWidget {
         right: 5,
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(12.5),
-            topRight: Radius.circular(12.5),
-            bottomLeft: Radius.circular(12.5),
-            bottomRight: Radius.circular(12.5),
+            topLeft: Radius.circular(2),
+            topRight: Radius.circular(2),
+            bottomLeft: Radius.circular(2),
+            bottomRight: Radius.circular(2),
           ),
           child: Container(
             //color: Colors.amber,
@@ -72,7 +72,7 @@ class MyNavibar extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.home,
-                        color: Colors.white,
+                        color: Colors.grey,
                       ),
                       Text("HOME"),
                     ],
@@ -87,7 +87,7 @@ class MyNavibar extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.notifications,
-                        color: Colors.white,
+                        color: Colors.grey,
                       ),
                       Text("Notifications"),
                     ],
@@ -102,7 +102,7 @@ class MyNavibar extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.settings,
-                        color: Colors.white,
+                        color: Colors.grey,
                       ),
                       Text("Settings"),
                     ],
