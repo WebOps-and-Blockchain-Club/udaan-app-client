@@ -96,3 +96,4 @@ class ProfileScreen extends StatelessWidget {
 
 //                         //foregroundColor: Colors.black,
 //                         ),
+// tujh jaisa rand maa ka loda

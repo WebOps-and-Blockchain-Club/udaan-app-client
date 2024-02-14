@@ -57,11 +57,11 @@ class MyApp extends StatelessWidget {
       //theme: customTheme, // Use the custom theme here
       // home: AcceptDecline(),
       // home: askperson(),
-      //home: const homepage(),
+      // home: const EventsPage(),
       routes: {
         MyRoutes.signinRoutes: (context) => const signinpage(),
         MyRoutes.signupRoutes: (context) => const signuppage(),
-        MyRoutes.eventsRoutes: (context) => const EventsPage(),
+        MyRoutes.eventsRoutes: (context) => EventsPage(),
         MyRoutes.homeRoutes: (context) => const homepage(),
         MyRoutes.drawerRoute: (context) => MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
