@@ -29,21 +29,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      bottomNavigationBar: NavBar(
-        pageIndex: selectedTab,
-        onTap: (index) {
-          if (index == selectedTab) {
-            items[index]
-                .navKey
-                .currentState
-                ?.popUntil((route) => route.isFirst);
-          } else {
-            setState(() {
-              selectedTab = index;
-            });
-          }
-        },
-      ),
       body: Column(
         children: [
           Container(
