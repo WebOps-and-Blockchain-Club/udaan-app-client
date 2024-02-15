@@ -5,6 +5,7 @@ import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
 
 class homepage extends StatefulWidget {
   const homepage({super.key});
@@ -163,12 +164,12 @@ class _homepageState extends State<homepage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(top: 0),
-        height: 64,
-        width: 64,
+        margin: const EdgeInsets.only(bottom: 30),
+        height: 80,
+        width: 80,
         child: FloatingActionButton(
           backgroundColor: Colors.red,
-          elevation: 0,
+          elevation: 5,
           onPressed: () {
             Navigator.pushNamed(context, MyRoutes.sosRoute);
           },
@@ -176,9 +177,11 @@ class _homepageState extends State<homepage> {
             side: const BorderSide(width: 3, color: Colors.white),
             borderRadius: BorderRadius.circular(100),
           ),
-          child: const Text(
-            "SOS",
-            style: TextStyle(color: Colors.white),
+          child: const Text("SOS",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18
+            ),
           ),
         ),
       ),
