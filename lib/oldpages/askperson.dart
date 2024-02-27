@@ -1,52 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 
-class askperson extends StatefulWidget {
-  const askperson({super.key});
+class askperson extends StatelessWidget {
+  const askperson({Key? key}) : super(key: key);
 
-  @override
-  State<askperson> createState() => _askpersonState();
-}
-
-class _askpersonState extends State<askperson> {
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 0,
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return SafeArea(
       child: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage(
-              "assets/image/WhatsApp Image 2023-11-03 at 9.53.36 PM.jpeg",
-            ),
-            fit: BoxFit.contain,
-          )),
-          child: Center(
-            child: Positioned(
-              top: 100,
-              left: 0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 380,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 200,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      "assets/image/WhatsApp Image 2023-11-03 at 9.53.36 PM.jpeg",
+                    ),
+                    fit: BoxFit.contain,
                   ),
+                ),
+              ),
+            ),
+            Column(
+                children: [
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, MyRoutes.signupRoutes);
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 500),
-                      width: 200,
+                      width: screenWidth*0.6,
                       height: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(
-                          color: Colors
-                              .blue, // Change the color to your desired border color
+                          color: Colors.blue, // Change the color to your desired border color
                           width: 2, // Adjust the width of the border
                         ),
                       ),
@@ -59,7 +55,7 @@ class _askpersonState extends State<askperson> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 10),
                   GestureDetector(
                     onTap: () {
                       //navigate
@@ -67,7 +63,7 @@ class _askpersonState extends State<askperson> {
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 500),
-                      width: 200,
+                      width: screenWidth*0.6,
                       height: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -83,10 +79,9 @@ class _askpersonState extends State<askperson> {
                       ),
                     ),
                   ),
-                ],
-              ),
+                ]
             ),
-          ),
+          ],
         ),
       ),
     );
