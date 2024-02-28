@@ -145,7 +145,7 @@ class _homepageState extends State<homepage> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.1,
+                  height: screenHeight * 0.2,
                   width: screenWidth * 0.5,
                   child: Image.asset(
                     "assets/image/logo_ncc.png",

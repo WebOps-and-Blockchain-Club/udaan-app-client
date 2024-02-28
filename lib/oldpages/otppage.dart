@@ -29,7 +29,7 @@ class OTPScreen extends StatefulWidget {
   final String city;
   final String fcmToken;
   final bool isAvailable;
-  final Object coordinates;
+  final String coordinates;
   @override
   State<OTPScreen> createState() => _OTPScreenState();
 }

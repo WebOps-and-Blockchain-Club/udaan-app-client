@@ -92,8 +92,8 @@ class _signinpageState extends State<signinpage> {
               height: totalHeight * 0.35,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
+                  bottomLeft: Radius.circular(50),
+                  bottomRight: Radius.circular(50),
                 ),
                 image: DecorationImage(
                   image: AssetImage("assets/image/login_new_1.jpg"),
@@ -125,8 +125,8 @@ class _signinpageState extends State<signinpage> {
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 34,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                       const SizedBox(height: 30),
@@ -135,7 +135,9 @@ class _signinpageState extends State<signinpage> {
                         "Email Address",
                         textAlign: TextAlign.left,
                         style: TextStyle(
+                          // color: Color.fromARGB(67, 0, 0, 0),
                           color: Colors.black,
+                          fontWeight: FontWeight.w600,
                           fontSize: 18,
                         ),
                       ),
@@ -151,9 +153,9 @@ class _signinpageState extends State<signinpage> {
                           hintStyle: const TextStyle(
                             color: Colors.grey,
                           ),
-                          prefixIconColor: Colors.blueAccent,
+                          prefixIconColor: Colors.lightGreen,
                           prefixIcon: Transform.scale(
-                            scale: 1.5,
+                            scale: 1.2,
                             child: const Icon(CupertinoIcons.person_fill),
                           ),
                           // labelText: "Email",
@@ -184,6 +186,8 @@ class _signinpageState extends State<signinpage> {
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
+                          // color: Colors.lightGreen,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       TextFormField(
@@ -196,9 +200,9 @@ class _signinpageState extends State<signinpage> {
                           hintStyle: const TextStyle(
                             color: Colors.grey,
                           ),
-                          prefixIconColor: Colors.blue,
+                          prefixIconColor: Colors.lightGreen,
                           prefixIcon: Transform.scale(
-                            scale: 1.5,
+                            scale: 1.3,
                             child: const Icon(CupertinoIcons.lock_shield_fill),
                           ),
                           suffixIcon: IconButton(
@@ -259,8 +263,8 @@ class _signinpageState extends State<signinpage> {
 
                                 focusColor: Colors.grey,
                                 dropdownColor: Colors.white,
-                                iconEnabledColor: Colors.lightBlue,
-                                iconDisabledColor: Colors.blueAccent,
+                                iconEnabledColor: Colors.lightGreen,
+                                iconDisabledColor: Colors.lightGreen,
                                 value: selectedType,
                                 onChanged: (String? newValue) {
                                   setState(() {
@@ -303,7 +307,7 @@ class _signinpageState extends State<signinpage> {
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 19,
-                            decoration: TextDecoration.underline,
+                            // decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
@@ -314,7 +318,7 @@ class _signinpageState extends State<signinpage> {
                         child: Material(
                           borderRadius: BorderRadius.circular(25),
                           // color: const Color.fromARGB(255, 3, 51, 103),
-                          color: Colors.blue,
+                          color: Colors.lightGreen,
                           child: InkWell(
                             onTap: () async {
                               // await sendDataToApi(
@@ -329,9 +333,14 @@ class _signinpageState extends State<signinpage> {
                               );
                             },
                             child: AnimatedContainer(
-                              width: onChange ? 50 : 200,
+                              width: onChange ? 150 : 220,
                               height: 50,
                               duration: const Duration(seconds: 1),
+                              // color: Colors.lightGreen,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.lightGreen,
+                              ),
                               alignment: Alignment.center,
                               child: onChange
                                   ? const Icon(
@@ -371,8 +380,9 @@ class _signinpageState extends State<signinpage> {
                               "Create one",
                               textScaleFactor: 1.2,
                               style: TextStyle(
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
+                                color: Colors.lightGreen,
+                                // decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.bold
                               ),
                             ),
                           ],
