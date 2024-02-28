@@ -27,17 +27,17 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       default:
         throw UnsupportedError(
@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '441073967185',
     projectId: 'ncc-udaan',
     authDomain: 'ncc-udaan.firebaseapp.com',
+    databaseURL: 'https://ncc-udaan-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'ncc-udaan.appspot.com',
   );
 
@@ -60,6 +61,8 @@ class DefaultFirebaseOptions {
     appId: '1:441073967185:android:1355677176719827df1870',
     messagingSenderId: '441073967185',
     projectId: 'ncc-udaan',
+
+    databaseURL: 'https://ncc-udaan-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'ncc-udaan.appspot.com',
   );
 
@@ -68,6 +71,8 @@ class DefaultFirebaseOptions {
     appId: '1:441073967185:ios:72739dda61ce977adf1870',
     messagingSenderId: '441073967185',
     projectId: 'ncc-udaan',
+    databaseURL: 'https://ncc-udaan-default-rtdb.asia-southeast1.firebasedatabase.app',
+
     storageBucket: 'ncc-udaan.appspot.com',
     iosBundleId: 'com.example.mapboxTurnByTurn',
   );

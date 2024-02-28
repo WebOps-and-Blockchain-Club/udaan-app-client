@@ -29,14 +29,12 @@ class _AcceptDeclineState extends State<AcceptDecline> {
     }
     LocationData _locationData = await _location.getLocation();
     LatLng currentLocation =
-        LatLng(_locationData.latitude!, _locationData.longitude!);
+    LatLng(_locationData.latitude!, _locationData.longitude!);
 
     // Get the current user address
     String currentAddress =
-        (await getParsedReverseGeocoding(currentLocation))['place'];
-    postDataToApiAddress(currentLocation,
-        currentAddress); //    --------------->>>>>>>>>>>>>>>    //uncomment thiss for passing lat lng
-    //currentAddress = jsonEncode(currentAddress);
+    (await getParsedReverseGeocoding(currentLocation))['place'];
+    postDataToApiAddress(currentLocation, currentAddress);
 
     // Store the user location in sharedPreferences
     sharedPreferences.setDouble('latitude', _locationData.latitude!);
@@ -46,6 +44,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
 
   @override
   Widget build(BuildContext context) {
+    final message = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -60,6 +59,8 @@ class _AcceptDeclineState extends State<AcceptDecline> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Central Box
+              Text('${message}'),
+
               Container(
                 width: 500,
                 height: 100,
@@ -71,7 +72,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
@@ -108,7 +109,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 5,
-                            offset: Offset(0, 2),
+                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),
@@ -139,7 +140,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 5,
-                            offset:const Offset(0, 2),
+                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),

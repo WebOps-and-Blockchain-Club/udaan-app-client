@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
+
+import 'nav_model.dart';
 
 class EventsPage extends StatefulWidget {
   const EventsPage({super.key});
@@ -17,6 +20,8 @@ class _EventsPageState extends State<EventsPage> {
 
   @override
   Widget build(BuildContext context) {
+    int selectedTab = 0;
+    List<NavModel> items = [];
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
@@ -68,7 +73,7 @@ class _EventsPageState extends State<EventsPage> {
                 Column(
                   children: [
                     Container(
-                      height: 170,
+                      height: 190,
                       width: screenWidth * 0.9,
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
@@ -203,7 +208,7 @@ class _EventsPageState extends State<EventsPage> {
                         children: [
                           Container(
                             width: screenWidth * 0.4,
-                            height: 90,
+                            height: 110,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(Radius.circular(12)),
                               image: DecorationImage(
@@ -233,6 +238,21 @@ class _EventsPageState extends State<EventsPage> {
             ],
           ),
         )
+      ),
+      bottomNavigationBar: NavBar(
+        pageIndex: selectedTab,
+        onTap: (index) {
+          if (index == selectedTab) {
+            items[index]
+                .navKey
+                .currentState
+                ?.popUntil((route) => route.isFirst);
+          } else {
+            setState(() {
+              selectedTab = index;
+            });
+          }
+        },
       ),
     );
   }

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../oldpages/nav_bar.dart';
 
+import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
+// int selectedTab = 0;
+// List<NavModel> items = [];
 class Profile extends StatelessWidget {
   const Profile({Key? key});
 
@@ -23,12 +26,15 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  // int selectedTab = 0;
+  // List<NavModel> items = [];
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+
       body: Column(
         children: [
           Container(
@@ -99,6 +105,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
           )
         ],
       ),
+      // bottomNavigationBar: NavBar(
+      //   pageIndex: selectedTab,
+      //   onTap: (index) {
+      //     if (index == selectedTab) {
+      //       items[index]
+      //           .navKey
+      //           .currentState
+      //           ?.popUntil((route) => route.isFirst);
+      //     } else {
+      //       setState(() {
+      //         selectedTab = index;
+      //       });
+      //     }
+      //   },
+      // ),
     );
   }
 }

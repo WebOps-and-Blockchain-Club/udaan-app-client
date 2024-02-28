@@ -73,18 +73,6 @@ class _HomeState extends State<Home> {
                             Text('Track Your Help'),
                           ],
                         ),
-
-                        // onPressed: () => Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (_) => const PrepareRide())),
-                        // style: ElevatedButton.styleFrom(
-                        //     padding: const EdgeInsets.all(20)),
-                        // child: const Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [
-                        //       Text('Start Your Help'),
-                        //     ])
                       ),
                     ]),
               ),

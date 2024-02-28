@@ -17,6 +17,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Container(
+      // height: 20,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -27,10 +28,12 @@ class NavBar extends StatelessWidget {
         ],
       ),
       child: BottomAppBar(
+        // height: 18,
         elevation: 0.0,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(0),
           child: Container(
+            // height: 18,
             child: Row(
               children: [
                 navItem(
@@ -79,7 +82,7 @@ class NavBar extends StatelessWidget {
             Icon(
               icon,
               color: selected ? Colors.green : Colors.grey.shade600,
-              size: 34,
+              size: 24,
             ),
             Text(title)
           ],

@@ -8,7 +8,7 @@ class MyNavibar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 10,
       width: 400,
       padding: const EdgeInsets.only(left: 5, right: 5),
       child: Positioned(
@@ -24,7 +24,7 @@ class MyNavibar extends StatelessWidget {
           ),
           child: Container(
             //color: Colors.amber,
-            height: 30,
+            height: 20,
             //width: 100,
             padding: const EdgeInsets.only(
               left: 2,
@@ -42,7 +42,7 @@ class MyNavibar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                  height: 40,
+                  height: 30,
                   width: 40,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
