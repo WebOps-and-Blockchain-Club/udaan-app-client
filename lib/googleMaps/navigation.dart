@@ -9,13 +9,15 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 // import 'package:sr]]';
 import 'package:mapbox_turn_by_turn/googleMaps/constants.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+
 class OrderTrackingPage extends StatefulWidget {
   // print('fffff');
   const OrderTrackingPage({Key? key}) : super(key: key);
 
   @override
   State<OrderTrackingPage> createState() => OrderTrackingPageState();
-  
+
 }
 
 class OrderTrackingPageState extends State<OrderTrackingPage> {
@@ -64,52 +66,86 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
   //   );
   // }
 
+  //////////////////////////////////////////////////////////
+  late IO.Socket socket;
+  var _isConnected = false;
+
+  void _connect() async {
+    socket = IO.io(
+        "https://7114-103-158-43-46.ngrok-free.app",
+        IO.OptionBuilder()
+            .setTransports(['websocket']) // for Flutter or Dart VM
+            .disableAutoConnect() // disable auto-connection
+            .build());
+    socket.connect();
+
+    print(socket.connected);
+
+    socket.onConnect((_) {
+      print("connect");
+      _isConnected = true;
+    });
+    socket.onConnectError((data) {
+      print("Connection Error ${data}");
+    });
+  }
+
+  void disconnect() {
+    if (_isConnected) {
+      socket.disconnect();
+      socket.onDisconnect((data) {
+        _isConnected = false;
+        print("Disconnected");
+      });
+    }
+  }
+////////////////////////////////////////////////////////
+
   void getCurrentLocation() async {
     // print("lauda bc");
-  Location location = Location();
+    Location location = Location();
 
-  try {
-    LocationData locData = await location.getLocation();
-    setState(() {
-      currentLocation = locData;
-    });
+    try {
+      LocationData locData = await location.getLocation();
+      setState(() {
+        currentLocation = locData;
+      });
 
-    GoogleMapController googleMapController = await _controller.future;
-    googleMapController.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          zoom: 13.5,
-          target: LatLng(
-            locData.latitude!,
-            locData.longitude!,
-          ),
-        ),
-      ),
-    );
-
-    location.onLocationChanged.listen(
-      (LocationData newLoc) {
-        setState(() {
-          currentLocation = newLoc;
-        });
-        googleMapController.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(
-              zoom: 13.5,
-              target: LatLng(
-                newLoc.latitude!,
-                newLoc.longitude!,
-              ),
+      GoogleMapController googleMapController = await _controller.future;
+      googleMapController.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            zoom: 13.5,
+            target: LatLng(
+              locData.latitude!,
+              locData.longitude!,
             ),
           ),
-        );
-      },
-    );
-  } catch (e) {
-    print("Error getting location: $e");
-  }
-}
+        ),
+      );
 
+      location.onLocationChanged.listen(
+        (LocationData newLoc) {
+          setState(() {
+            currentLocation = newLoc;
+          });
+          googleMapController.animateCamera(
+            CameraUpdate.newCameraPosition(
+              CameraPosition(
+                zoom: 13.5,
+                target: LatLng(
+                  newLoc.latitude!,
+                  newLoc.longitude!,
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      print("Error getting location: $e");
+    }
+  }
 
   void getPolyPoints() async {
     PolylinePoints polylinePoints = PolylinePoints();
@@ -161,11 +197,14 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
     setCustomMarekerIcon();
     getPolyPoints();
     super.initState();
+    _connect();
   }
 
   @override
   Widget build(BuildContext context) {
-    for(int i=0;i<10;i++){print('bbbbbbbbbbbbcccccccccccccccccccccccccccccc');}
+    for (int i = 0; i < 10; i++) {
+      print('bbbbbbbbbbbbcccccccccccccccccccccccccccccc');
+    }
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -173,44 +212,43 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
             style: TextStyle(color: Colors.black, fontSize: 16),
           ),
         ),
-        body
-            : currentLocation == null
-                ? const Center(child: Text("Location"))
+        body: currentLocation == null
+            ? const Center(child: Text("Location"))
             : GoogleMap(
-          initialCameraPosition: CameraPosition(
-            target:
-                LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-            zoom: 13.5,
-          ),
-          polylines: {
-            Polyline(
-              polylineId: PolylineId("route"),
-              points: polylineCoordinates,
-              color: primaryColor,
-              width: 6,
-            ),
-          },
-          markers: {
-            Marker(
-              markerId: const MarkerId("currentLocation"),
-              icon:currentLocationIcon,
-              position: LatLng(
-                  currentLocation!.latitude!, currentLocation!.longitude!),
-            ),
-            Marker(
-              markerId: MarkerId("source"),
-              icon:sourceIcon,
-              position: sourceLocation,
-            ),
-            Marker(
-              markerId: MarkerId("destination"),
-              icon:destinationIcon,
-              position: destination,
-            ),
-          },
-          onMapCreated: (mapController) {
-            _controller.complete(mapController);
-          },
-        ));
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(
+                      currentLocation!.latitude!, currentLocation!.longitude!),
+                  zoom: 13.5,
+                ),
+                polylines: {
+                  Polyline(
+                    polylineId: PolylineId("route"),
+                    points: polylineCoordinates,
+                    color: primaryColor,
+                    width: 6,
+                  ),
+                },
+                markers: {
+                  Marker(
+                    markerId: const MarkerId("currentLocation"),
+                    icon: currentLocationIcon,
+                    position: LatLng(currentLocation!.latitude!,
+                        currentLocation!.longitude!),
+                  ),
+                  Marker(
+                    markerId: MarkerId("source"),
+                    icon: sourceIcon,
+                    position: sourceLocation,
+                  ),
+                  Marker(
+                    markerId: MarkerId("destination"),
+                    icon: destinationIcon,
+                    position: destination,
+                  ),
+                },
+                onMapCreated: (mapController) {
+                  _controller.complete(mapController);
+                },
+              ));
   }
 }
