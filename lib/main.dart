@@ -26,9 +26,36 @@ import 'firebase_options.dart';
 late SharedPreferences sharedPreferences;
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print("Handling a background Message : ${message.messageId}");
+  print("Handling a background Message : ${message.notification?.title}");
+  print("Handling a background Message : ${message.notification?.body}");
+  print("Handling a background Message : ${message.data}");
 }
 
+
+Future<void> initPushNotifications(BuildContext context) async {
+  print('Initialized AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+
+  FirebaseMessaging.instance.getInitialMessage().then((message) => handleMessage(context, message));
+  FirebaseMessaging.onMessageOpenedApp.listen((message) => handleMessage(context, message));
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onMessage.listen((message) {
+    final notification = message.notification;
+    if (notification == null) return;
+  });
+}
+
+void handleMessage(BuildContext context, message) {
+  print('<=========== $message ============>');
+  if (message == null) return;
+  print("navigating to events page");
+  // Navigator.push(context, MaterialPageRoute(builder: (context) => EventsPage()));
+  Navigator.pushNamed(context, MyRoutes.eventsRoutes, arguments: message.data);
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +65,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+
+
+
+
   final notificationSettings =
       await FirebaseMessaging.instance.requestPermission(provisional: true);
   final fcmToken = await FirebaseMessaging.instance.getToken();
@@ -74,6 +106,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    initPushNotifications(context);
+
     return MaterialApp(
       //title: 'UDAAN NCC',
       debugShowCheckedModeBanner: false,

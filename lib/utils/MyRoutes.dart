@@ -1,5 +1,5 @@
 class MyRoutes {
-  // static String accdecRoutes = "/";
+  static String accdecRoutes = "/cadet";
   static String signinRoutes = "/sigin";
   static String signupRoutes = "/signup";
   static String eventsRoutes = "/event";

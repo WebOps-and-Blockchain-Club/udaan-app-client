@@ -15,9 +15,11 @@ class _EventsPageState extends State<EventsPage> {
     'assets/image/drill.jpg'
   ];
 
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    print("In Events page");
     return Scaffold(
       body: SafeArea(
         child: Padding(
