@@ -61,7 +61,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
             children: [
               // Central Box
               Container(
-                width: 500,
+                width: 200,
                 height: 100,
                 decoration: BoxDecoration(
                   color: Colors.blue,
@@ -98,7 +98,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                       print('Accept Request');
                     },
                     child: Container(
-                      width: 200,
+                      width: 100,
                       height: 80,
                       decoration: BoxDecoration(
                         color: Colors.green,
@@ -129,7 +129,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                       print('Decline Request');
                     },
                     child: Container(
-                      width: 200,
+                      width: 100,
                       height: 80,
                       decoration: BoxDecoration(
                         color: Colors.red,

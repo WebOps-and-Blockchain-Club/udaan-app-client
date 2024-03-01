@@ -96,7 +96,7 @@ class MyApp extends StatelessWidget {
         // MyRoutes.otpRoute: (context) => OTPScreen(email: ,),
         MyRoutes.profileRoute: (context) => const Profile(),
         MyRoutes.previewride: (context) => const PrepareRide(),
-        // MyRoutes.accdecRoutes: (context) => AcceptDecline(),
+        MyRoutes.accdecRoutes: (context) => AcceptDecline(),
         // MyRoutes.MessageRoute: (context) => MessagePage(),
         MyRoutes.mapRoute: (context) => OrderTrackingPage(),
       },

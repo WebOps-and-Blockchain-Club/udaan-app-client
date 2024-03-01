@@ -82,7 +82,7 @@ class EventCard extends StatelessWidget {
     Key? key,
     required this.imageAsset,
     required this.title,
-    required this.onTap,
+    required this.onTap, required String imagePath, required String eventName,
   }) : super(key: key);
 
   @override

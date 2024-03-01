@@ -53,6 +53,7 @@ class NavBar extends StatelessWidget {
                   pageIndex == 2,
                   onTap: () {
                     // Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                    Navigator.pushNamed(context, MyRoutes.accdecRoutes);
                   },
                 ),
                 navItem(
