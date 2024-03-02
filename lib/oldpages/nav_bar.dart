@@ -10,71 +10,84 @@ class NavBar extends StatelessWidget {
   const NavBar({
     super.key,
     required this.pageIndex,
-    required this.onTap,
+    required this.onTap
   });
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.only(
-        left: 4,
-        right: 4,
-        bottom: Platform.isAndroid ? 4 : 0,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.4),
+            blurRadius: 3,
+          ),
+        ],
       ),
       child: BottomAppBar(
-        elevation: 0.0,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Container(
-            height: 60,
-            width: screenWidth * 0.5,
-            color: Colors.blue,
-            child: Row(
-              children: [
-                navItem(
-                  Icons.home_outlined,
-                  pageIndex == 0,
-                  // onTap: () => onTap(
-                  //   Navigator.pushNamed(context, MyRoutes.homeRoutes);
-                  //   ),
-                  onTap: () {
-                    Navigator.pushNamed(context, MyRoutes.homeRoutes);
-                  },
-                ),
-                navItem(
-                  Icons.message_outlined,
+        color: Colors.white,
+        height: 65,
+        padding: EdgeInsets.only(
+          top: 7
+        ),
+        // elevation: 0.0,
+        child: Container(
+          // color: Colors.red,
+          child: Row(
+            children: [
+              navItem(
+                Icons.home,
+                pageIndex == 0,
+                "Home",
+                onTap: () {
+                  Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                },
+              ),
+              navItem(
+                  Icons.event,
                   pageIndex == 1,
-                  onTap: () => onTap(1),
-                ),
-                const SizedBox(width: 80),
-                navItem(
-                  Icons.notifications_none_outlined,
-                  pageIndex == 2,
-                  onTap: () {
-                    // Navigator.pushNamed(context, MyRoutes.homeRoutes);
-                  },
-                ),
-                navItem(
-                  Icons.person_outline,
-                  pageIndex == 3,
-                  onTap: () => onTap(3),
-                ),
-              ],
-            ),
+                  "Events",
+                  onTap: () => onTap(1)
+              ),
+              const SizedBox(width: 50),
+              navItem(
+                Icons.settings,
+                pageIndex == 2,
+                "Settings",
+                onTap: () {
+                  // Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                },
+              ),
+              navItem(
+                Icons.person,
+                pageIndex == 3,
+                "Profile",
+                onTap: () => onTap(3),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Widget navItem(IconData icon, bool selected, {Function()? onTap}) {
+  Widget navItem(IconData icon, bool selected, String title, {Function()? onTap}) {
     return Expanded(
       child: InkWell(
         onTap: onTap,
-        child: Icon(
-          icon,
-          color: selected ? Colors.white : Colors.white.withOpacity(0.4),
+        child: Column(
+          children: [
+            Icon(
+              icon,
+              color: selected ? Colors.green : Colors.grey.shade600,
+              size: 36,
+            ),
+            Text(title,
+            style: TextStyle(
+              fontSize: 11
+            ),)
+          ],
         ),
       ),
     );
