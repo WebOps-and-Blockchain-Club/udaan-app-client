@@ -26,7 +26,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 // accountName: Text("Abhishek D"),
                 accountName: Text("UDAAN"),
                 decoration: BoxDecoration(
-                  color: Colors.lightGreen,
+                  color: Color.fromRGBO(89, 158, 133, 1),
                 ),
                 // accountEmail: Text("abhi@gmail.com"),
                 accountEmail: Text("The First Responder"),
@@ -58,7 +58,7 @@ class _MyDrawerState extends State<MyDrawer> {
             _buildExpansionTileWithoutTrailingIcon(
                 icon: CupertinoIcons.settings_solid,
                 title: "Settings",
-                Routes: MyRoutes.profileRoute), 
+                Routes: MyRoutes.profileRoute),
             _buildExpansionTile(
               icon: Icons.event,
               title: "Events",
@@ -90,7 +90,7 @@ class _MyDrawerState extends State<MyDrawer> {
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
-        side: BorderSide(color: Colors.lightGreen, width: 2.0),
+        side: BorderSide(color:  Color.fromRGBO(89, 158, 133, 1), width: 2.0),
       ),
       color: Colors.white,
       child: ListTile(
@@ -99,13 +99,13 @@ class _MyDrawerState extends State<MyDrawer> {
         },
         leading: Icon(
           icon,
-          color: Colors.lightGreen,
+          color: Color.fromRGBO(89, 158, 133, 1),
           size: 30,
         ),
         title: Text(
           title,
           style: const TextStyle(
-            color: Colors.lightGreen,
+            color: Color.fromRGBO(89, 158, 133, 1),
             fontSize: 18,
           ),
         ),
@@ -123,26 +123,26 @@ class _MyDrawerState extends State<MyDrawer> {
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
-        side: BorderSide(color: Colors.lightGreen, width: 2.0),
+        side: BorderSide(color: Color.fromRGBO(89, 158, 133, 1), width: 2.0),
       ),
       color: Colors.white,
       child: ExpansionTile(
         leading: Icon(
           icon,
-          color: Colors.lightGreen,
+          color: Color.fromRGBO(89, 158, 133, 1),
           size: 30,
         ),
         title: Text(
           title,
           style: const TextStyle(
-            color: Colors.lightGreen,
+            color: Color.fromRGBO(89, 158, 133, 1),
             fontSize: 18,
           ),
         ),
         children: children,
         trailing: hasTrailingIcon
             ? const Icon(Icons.keyboard_arrow_down,
-                color: Colors.lightGreen, size: 24)
+            color: Color.fromRGBO(89, 158, 133, 1), size: 24)
             : null,
       ),
     );
@@ -156,7 +156,7 @@ class _MyDrawerState extends State<MyDrawer> {
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
-        side: BorderSide(color: Colors.lightGreen, width: 2.0),
+        side: BorderSide(color: Color.fromRGBO(89, 158, 133, 1), width: 2.0),
       ),
       color: Colors.white,
       child: ListTile(
@@ -165,13 +165,13 @@ class _MyDrawerState extends State<MyDrawer> {
         },
         leading: Icon(
           icon,
-          color: Colors.lightGreen,
+          color: Color.fromRGBO(89, 158, 133, 1),
           size: 30,
         ),
         title: Text(
           title,
           style: const TextStyle(
-            color: Colors.lightGreen,
+            color: Color.fromRGBO(89, 158, 133, 1),
             fontSize: 18,
           ),
         ),

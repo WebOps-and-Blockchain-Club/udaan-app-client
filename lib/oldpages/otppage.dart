@@ -44,7 +44,7 @@ class _OTPScreenState extends State<OTPScreen> {
     final String state = widget.state;
     final String role = widget.role;
     final String city = widget.city;
-    final String fcmToken = widget.fcmToken;
+    final String fcmToken = "";
     final bool isAvailable = widget.isAvailable;
     final Object coordinates = widget.coordinates;
     return Scaffold(

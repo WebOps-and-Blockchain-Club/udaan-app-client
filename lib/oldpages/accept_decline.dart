@@ -1,17 +1,24 @@
+// import 'dart:html';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
+import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 
 import '../helpers/mapbox_handler.dart';
 import '../main.dart';
 import '../widgets/api.dart';
 
 class AcceptDecline extends StatefulWidget {
+  const AcceptDecline({super.key});
+
   @override
   State<AcceptDecline> createState() => _AcceptDeclineState();
 }
 
 class _AcceptDeclineState extends State<AcceptDecline> {
+  late RemoteMessage message;
   void initializeLocationAndSave() async {
     // Ensure all permissions are collected for Locations
     Location _location = Location();
@@ -29,11 +36,11 @@ class _AcceptDeclineState extends State<AcceptDecline> {
     }
     LocationData _locationData = await _location.getLocation();
     LatLng currentLocation =
-        LatLng(_locationData.latitude!, _locationData.longitude!);
+    LatLng(_locationData.latitude!, _locationData.longitude!);
 
     // Get the current user address
     String currentAddress =
-        (await getParsedReverseGeocoding(currentLocation))['place'];
+    (await getParsedReverseGeocoding(currentLocation))['place'];
     postDataToApiAddress(currentLocation,
         currentAddress); //    --------------->>>>>>>>>>>>>>>    //uncomment thiss for passing lat lng
     //currentAddress = jsonEncode(currentAddress);
@@ -46,6 +53,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
 
   @override
   Widget build(BuildContext context) {
+    message = ModalRoute.of(context)!.settings.arguments as RemoteMessage;
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -71,15 +79,15 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
-                    'Message from notification',
+                    "${message.notification?.title}",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     ),
@@ -96,6 +104,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                     onTap: () {
                       initializeLocationAndSave();
                       print('Accept Request');
+                      Navigator.pushNamed(context, MyRoutes.mapRoute,arguments:message.data);
                     },
                     child: Container(
                       width: 100,
@@ -108,7 +117,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 5,
-                            offset: Offset(0, 2),
+                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),
@@ -125,8 +134,9 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Handle decline action
                       print('Decline Request');
+                      Navigator.pop(context, MyRoutes.homeRoutes);
+                      // Handle decline action
                     },
                     child: Container(
                       width: 100,
@@ -139,7 +149,7 @@ class _AcceptDeclineState extends State<AcceptDecline> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 5,
-                            offset:const Offset(0, 2),
+                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),

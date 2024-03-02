@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
@@ -83,6 +85,7 @@ class _signinpageState extends State<signinpage> {
   @override
   Widget build(BuildContext context) {
     double totalHeight = MediaQuery.of(context).size.height;
+    double totalWidth = MediaQuery.of(context).size.width;
 
     return SafeArea(
       child: Scaffold(
@@ -108,8 +111,9 @@ class _signinpageState extends State<signinpage> {
             ),
             // White background below the image
             Container(
+              height: totalHeight*0.64,
               margin: EdgeInsets.only(top: totalHeight * 0.33),
-              padding: EdgeInsets.symmetric(horizontal: 30),
+              padding: EdgeInsets.symmetric(horizontal: 25),
               color: Colors.white,
               child: SingleChildScrollView(
                 child: Form(
@@ -119,7 +123,7 @@ class _signinpageState extends State<signinpage> {
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const SizedBox(height: 20),
+                      SizedBox(height: totalHeight*0.01),
                       // Login text
                       const Text(
                         "Login",
@@ -130,7 +134,7 @@ class _signinpageState extends State<signinpage> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: totalHeight*0.03),
                       // Type dropdown
                       Text(
                         "Email Address",
@@ -147,6 +151,7 @@ class _signinpageState extends State<signinpage> {
                       // const SizedBox(height: 10),
                       // Email text field
                       TextFormField(
+
                         cursorColor: Colors.black,
                         style: const TextStyle(
                           color: Colors.black,
@@ -156,17 +161,9 @@ class _signinpageState extends State<signinpage> {
                           hintStyle: const TextStyle(
                             color: Colors.grey,
                           ),
-                          // prefixIconColor: Colors.lightGreen,
-                          // prefixIcon: Transform.scale(
-                          //   scale: 1.2,
-                          //   child: const Icon(CupertinoIcons.person_fill),
-                          // ),
-                          // labelText: "Email",
                           labelStyle: const TextStyle(
                             color: Colors.grey,
                           ),
-                          // fillColor: const Color.fromRGBO(0, 0, 0, 0.5),
-                          // filled: true,
                         ),
                         validator: (value) {
                           if (value?.isEmpty == true) {
@@ -182,7 +179,7 @@ class _signinpageState extends State<signinpage> {
                           });
                         },
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: totalHeight*0.03),
                       // Password text field
                       Text(
                         "Password",
@@ -241,7 +238,7 @@ class _signinpageState extends State<signinpage> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: totalHeight*0.03),
                       Text(
                         "Role",
                         textAlign: TextAlign.left,
@@ -254,7 +251,7 @@ class _signinpageState extends State<signinpage> {
                         ),
                       ),
                       Container(
-                        height: 50,
+                        height: totalHeight*0.05,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
@@ -312,13 +309,13 @@ class _signinpageState extends State<signinpage> {
                         ),
                       ),
 
-                      const SizedBox(height: 10),
+                      SizedBox(height: totalHeight*0.02),
                       // Forgot Password
                       InkWell(
                         onTap: () {
                           // Forgot Password logic here
                         },
-                        child: const Text(
+                        child: Text(
                           "Forgot Password?",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -329,7 +326,7 @@ class _signinpageState extends State<signinpage> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: totalHeight*0.02),
                       // Login button
                       Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
@@ -340,11 +337,11 @@ class _signinpageState extends State<signinpage> {
                           color: Color.fromRGBO(89, 158, 133, 1),
                           child: InkWell(
                             onTap: () async {
-                              // await sendDataToApi(
-                              //   email,
-                              //   password,
-                              //   "123456 0987654",
-                              // );
+                              await sendDataToApi(
+                                email,
+                                password,
+                                "123456 0987654",
+                              );
                               Navigator.pushNamed(
                                 context,
                                 MyRoutes.homeRoutes,
@@ -353,7 +350,7 @@ class _signinpageState extends State<signinpage> {
                             },
                             child: AnimatedContainer(
                               width: onChange ? 150 : 220,
-                              height: 50,
+                              height: totalHeight*0.07,
                               duration: const Duration(seconds: 1),
                               // color: Colors.lightGreen,
                               decoration: BoxDecoration(
@@ -379,7 +376,7 @@ class _signinpageState extends State<signinpage> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: totalHeight*0.015),
                       // Don't have an account? Create one.
                       InkWell(
                         onTap: () {

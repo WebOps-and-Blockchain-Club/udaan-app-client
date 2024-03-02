@@ -34,17 +34,18 @@ class askperson extends StatelessWidget {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(15),
                         border: Border.all(
-                          color: Colors.lightGreen, // Change the color to your desired border color
+                          color: Color.fromRGBO(89, 158, 133, 1),// Change the color to your desired border color
                           width: 2, // Adjust the width of the border
                         ),
                       ),
                       child: const Text(
                         'Sign Up',
                         style: TextStyle(
-                          color: Colors.lightGreen,
+                          color: Color.fromRGBO(89, 158, 133, 1),
                           fontWeight: FontWeight.bold,
+                          fontSize: 17,
                         ),
                       ),
                     ),
@@ -61,14 +62,15 @@ class askperson extends StatelessWidget {
                       height: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: Colors.lightGreen,
-                        borderRadius: BorderRadius.circular(25),
+                        color: Color.fromRGBO(89, 158, 133, 1),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       child: const Text(
                         'Sign In',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
+                          fontSize: 17,
                         ),
                       ),
                     ),

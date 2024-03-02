@@ -135,7 +135,7 @@ class _homepageState extends State<homepage> {
                           const Icon(
                             Icons.notifications,
                             size: 36,
-                            color: Colors.lightGreen,
+                            color: Color.fromRGBO(89, 158, 133, 1),
                           ),
                           if (notificationCount > 0)
                             Positioned(

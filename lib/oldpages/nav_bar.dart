@@ -72,7 +72,7 @@ class NavBar extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: selected ? Colors.green : Colors.grey.shade600,
+              color: selected ? Color.fromRGBO(89, 158, 133, 1): Colors.grey.shade600,
               size: 36,
             ),
             Text(
