@@ -41,7 +41,7 @@ void main() async {
   final notificationSettings =
       await FirebaseMessaging.instance.requestPermission(provisional: true);
   final fcmToken = await FirebaseMessaging.instance.getToken();
-  print("fcmToken is ${fcmToken} ");
+  print("fcmToken is $fcmToken");
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await FirebaseMessaging.instance.setAutoInitEnabled(true);
 
