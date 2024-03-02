@@ -1,8 +1,7 @@
-
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:mapbox_turn_by_turn/firebase_options.dart';
 import 'package:mapbox_turn_by_turn/googleMaps/navigation.dart';
 import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/SOSpage.dart';
@@ -19,10 +18,9 @@ import 'oldpages/signinpage.dart';
 import 'oldpages/signuppage.dart';
 import 'ui/splash.dart';
 import 'package:mapbox_turn_by_turn/widgets/dotenv.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 // firebase imports
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 late SharedPreferences sharedPreferences;
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -30,23 +28,33 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   print("Handling a background Message : ${message.messageId}");
 }
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
 
   ///////////////////////////////////
-  // FIREBASE MESSAGING
+  // FIREBASE
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final notificationSettings =
-      await FirebaseMessaging.instance.requestPermission(provisional: true);
+      await FirebaseMessaging.instance.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
   final fcmToken = await FirebaseMessaging.instance.getToken();
   print("fcmToken is ${fcmToken} ");
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await FirebaseMessaging.instance.setAutoInitEnabled(true);
 
   ////////////////////////////////////////
+  ///
   sharedPreferences = await SharedPreferences.getInstance();
   await dotenv.load(fileName: "assets/config/.env");
   loadDotenv();

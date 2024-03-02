@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/oldpages/event_box.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
@@ -13,6 +14,52 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+  ///////////////////////////////////////////
+  // FIREBASE MESSAGING
+
+  // In this example, suppose that all messages contain a data field with the key 'type'.
+  Future<void> setupInteractedMessage() async {
+    // Get any messages which caused the application to open from
+    // a terminated state.
+    void _handleMessage(RemoteMessage message) {
+      if (message.notification != null) {
+        Navigator.pushNamed(
+          context,
+          "/accdec",
+          arguments: message,
+        );
+      }
+    }
+
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+
+    // If the message also contains a data property with a "type" of "chat",
+    // navigate to a chat screen
+    if (initialMessage != null) {
+      _handleMessage(initialMessage);
+    }
+
+    // Also handle any interaction when the app is in the background via a
+    // Stream listener
+    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   setupInteractedMessage();
+
+  //   // Run code required to handle interacted messages in an async function
+  //   // as initState() must not be async
+  // }
+
+  /////////////////////////////////////////////////
+
+
+
+
+
   bool isEnglish = true;
   void toggleLanguage() {
     setState(() {
@@ -30,6 +77,7 @@ class _homepageState extends State<homepage> {
 
   @override
   void initState() {
+    setupInteractedMessage();
     super.initState();
     items = [
       NavModel(

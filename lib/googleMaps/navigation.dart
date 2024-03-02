@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -23,6 +24,9 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
   final Completer<GoogleMapController> _controller = Completer();
 
   static const LatLng sourceLocation = LatLng(12.9916, 80.2337);
+
+  ///// TODO TO BE TAKEN FROM THE NOTIFICATION DATA 
+  
   static const LatLng destination = LatLng(12.9891, 80.2235);
 
   List<LatLng> polylineCoordinates = [];
@@ -65,9 +69,10 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
   // }
 
   //////////////////////////////////////////////////////////
+  Location location = Location();
   late IO.Socket socket;
   var _isConnected = false;
-  late LatLng _locationData;
+  late LocationData _locationData;
 
   void _connect() async {
     socket = IO.io(
@@ -109,10 +114,6 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
         "long": "${_locationData.longitude}"
       }
     };
-    setState(() {
-      long = _locationData.longitude.toString();
-      lati = _locationData.latitude.toString();
-    });
     socket.emit('sos', jsonEncode(msg.toString()));
   }
 ////////////////////////////////////////////////////////
