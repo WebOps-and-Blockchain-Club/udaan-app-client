@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapbox_turn_by_turn/oldpages/event_box.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
@@ -56,110 +57,172 @@ class _homepageState extends State<homepage> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      drawer: const MyDrawer(),
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-          // color: Color.fromARGB(96, 50, 10, 134),
-          weight: 14,
-          opacity: 10,
-        ),
-        backgroundColor: Colors.blue,
-        elevation: 0, // Remove elevation for a flat design
-        title: const Row(
-          children: [
-            Text(
-              'UDAAN',
-              style: TextStyle(
-                color: Colors.white, // Set the title color
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, MyRoutes.profileRoute);
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Container(
-                alignment: Alignment.centerRight,
-                child: const CircleAvatar(
-                  radius: 18,
-                  backgroundColor: Colors.white,
-                  child: CircleAvatar(
-                    radius: 16,
-                    backgroundImage: AssetImage(
-                        'assets/image/person.jpg'), // Add your profile image path
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    toggleLanguage();
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 10.0),
-                    // width: 240,
-                    width: screenWidth * 0.4,
-                    // height: screenHeight * 0.3,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 10, top: 20),
-                      child: Text(
-                        isEnglish
-                            ? 'UDAAN AIMS TO HELP PEOPLE IN NEED. YOU CAN CALL FOR HELP USING SOS BUTTON'
-                            : 'उदान किसी की मदद करने का उद्देश्य रखता है। आप सोस बटन का उपयोग करके मदद के लिए कॉल कर सकते हैं',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          letterSpacing: 1.1,
-                          height: 1.1,
-                          fontStyle: FontStyle.italic,
-                          decorationColor: Colors.red,
-                          decorationThickness: 1.0,
-                          shadows: [
-                            Shadow(
-                              offset: Offset(2.0, 2.0),
-                              color: Colors.white
-                                  .withOpacity(0.5), // Adjust opacity as needed
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, MyRoutes.drawerRoute);
+                      },
+                      child: Icon(
+                        Icons.menu_sharp,
+                        size: 36,
                       ),
                     ),
+                    Icon(
+                      Icons.notifications,
+                      size: 36,
+                      // yet to do: apply the toggle active notification icon
+                      color: Colors.blue,
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 11, vertical: 4.0),
+                child: Text(
+                  "Search For Something",
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
+                ),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 11, vertical: 8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Enter Search Text",
+                    hintStyle: TextStyle(
+                        color: Colors.grey, letterSpacing: 1.0, fontSize: 16),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    suffixIcon: Icon(
+                      Icons.search_rounded,
+                      size: 34,
+                      color: Colors.blue,
+                    ),
+                    contentPadding: EdgeInsets.only(
+                        left: 20, right: 12, top: 10, bottom: 10),
                   ),
                 ),
-                SizedBox(
-                  height: screenHeight * 0.2,
-                  width: screenWidth * 0.5,
-                  child: Image.asset(
-                    "assets/image/logo_ncc.png",
-                    scale: 1.2,
+              ),
+              SizedBox(height: 18),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              color: Color(0xFFF8CD9E)),
+                          width: screenWidth * 0.42,
+                          height: 180,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.local_hospital,
+                                size: 90,
+                                color: Color(0xFFE96362),
+                              ),
+                              const Text('Medical',
+                                  style: TextStyle(fontSize: 20))
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              color: Color(0xFFAEDEFF)),
+                          width: screenWidth * 0.42,
+                          height: 180,
+                          child: Icon(
+                            Icons.ice_skating,
+                            size: 90,
+                            color: Colors.blue.shade900,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              color: Color(0xFFBAF2BB)),
+                          width: screenWidth * 0.42,
+                          height: 180,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.rate_review,
+                                size: 90,
+                                color: Colors.green.shade900,
+                              ),
+                              const Text(
+                                'Review',
+                                style: TextStyle(fontSize: 20),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12)),
+                              color: Color(0xFFD4BFF4)),
+                          width: screenWidth * 0.42,
+                          height: 180,
+                          // color: Colors.red,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.account_balance,
+                                size: 90,
+                                color: Colors.purple.shade800,
+                              ),
+                              const Text(
+                                'Donate Us',
+                                style: TextStyle(fontSize: 20),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ],
           ),
-          const SizedBox(height: 50.0),
-          // Carousel with Event Cards
-          EventCarousel(),
-          const SizedBox(height: 30.0),
-        ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
@@ -300,8 +363,3 @@ class EventCarousel extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

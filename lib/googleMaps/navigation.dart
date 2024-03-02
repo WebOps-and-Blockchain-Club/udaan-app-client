@@ -17,9 +17,11 @@ class OrderTrackingPage extends StatefulWidget {
 
   @override
   State<OrderTrackingPage> createState() => OrderTrackingPageState();
+
 }
 
 class OrderTrackingPageState extends State<OrderTrackingPage> {
+  
   final Completer<GoogleMapController> _controller = Completer();
 
   static const LatLng sourceLocation = LatLng(12.9916, 80.2337);
@@ -67,7 +69,6 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
   //////////////////////////////////////////////////////////
   late IO.Socket socket;
   var _isConnected = false;
-  late LatLng _locationData;
 
   void _connect() async {
     socket = IO.io(
@@ -99,22 +100,7 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
     }
   }
 
-  void _showLocation() async {
-    _locationData = await location.getLocation();
-    var msg = {
-      "fromId": "1",
-      "toId": "2",
-      "cordinates": {
-        "lat": "${_locationData.latitude}",
-        "long": "${_locationData.longitude}"
-      }
-    };
-    setState(() {
-      long = _locationData.longitude.toString();
-      lati = _locationData.latitude.toString();
-    });
-    socket.emit('sos', jsonEncode(msg.toString()));
-  }
+  
 ////////////////////////////////////////////////////////
 
   void getCurrentLocation() async {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
@@ -7,6 +6,8 @@ import 'package:location/location.dart';
 import 'package:mapbox_gl/mapbox_gl.dart';
 import '../helpers/mapbox_handler.dart';
 import '../main.dart';
+import 'package:google_fonts/google_fonts.dart';
+// import 'google_language_fonts.dart';
 
 class signinpage extends StatefulWidget {
   const signinpage({Key? key}) : super(key: key);
@@ -18,12 +19,12 @@ class signinpage extends StatefulWidget {
 class _signinpageState extends State<signinpage> {
   String email = "";
   String password = "";
-  String type = "Cadet";
+  String type = "Select";
   String abc = "";
   Object coordinates = {"latitude": 12.993006, "longitude": 80.232651};
   bool onChange = false;
-  List<String> typeUser = ['Cadet', 'User'];
-  String selectedType = 'Cadet';
+  List<String> typeUser = ['Select Role', 'Cadet', 'User'];
+  String selectedType = 'Select Role';
 
   bool isobsecrue = true;
 
@@ -50,11 +51,11 @@ class _signinpageState extends State<signinpage> {
     // Get the current user location
     LocationData _locationData = await _location.getLocation();
     LatLng currentLocation =
-    LatLng(_locationData.latitude!, _locationData.longitude!);
+        LatLng(_locationData.latitude!, _locationData.longitude!);
 
     // Get the current user address
     String currentAddress =
-    (await getParsedReverseGeocoding(currentLocation))['place'];
+        (await getParsedReverseGeocoding(currentLocation))['place'];
     postDataToApiAddress(currentLocation,
         currentAddress); //    --------------->>>>>>>>>>>>>>>    //uncomment thiss for passing lat lng
     //currentAddress = jsonEncode(currentAddress);
@@ -89,17 +90,17 @@ class _signinpageState extends State<signinpage> {
           children: [
             // Image with curved edges
             Container(
-              height: totalHeight * 0.35,
+              height: totalHeight * 0.33,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(50),
                   bottomRight: Radius.circular(50),
                 ),
                 image: DecorationImage(
-                  image: AssetImage("assets/image/login_new_1.jpg"),
+                  image: AssetImage("assets/image/imgUdaan3.png"),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
-                    const Color.fromARGB(1, 36, 107, 8).withOpacity(0.5),
+                    const Color.fromARGB(1, 36, 107, 8).withOpacity(0.0),
                     BlendMode.luminosity,
                   ),
                 ),
@@ -107,8 +108,8 @@ class _signinpageState extends State<signinpage> {
             ),
             // White background below the image
             Container(
-              margin: EdgeInsets.only(top: totalHeight * 0.35),
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              margin: EdgeInsets.only(top: totalHeight * 0.33),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               color: Colors.white,
               child: SingleChildScrollView(
                 child: Form(
@@ -134,13 +135,15 @@ class _signinpageState extends State<signinpage> {
                       Text(
                         "Email Address",
                         textAlign: TextAlign.left,
-                        style: TextStyle(
-                          // color: Color.fromARGB(67, 0, 0, 0),
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
+                        style: GoogleFonts.gothicA1(
+                          textStyle: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
+
                       // const SizedBox(height: 10),
                       // Email text field
                       TextFormField(
@@ -153,11 +156,11 @@ class _signinpageState extends State<signinpage> {
                           hintStyle: const TextStyle(
                             color: Colors.grey,
                           ),
-                          prefixIconColor: Colors.lightGreen,
-                          prefixIcon: Transform.scale(
-                            scale: 1.2,
-                            child: const Icon(CupertinoIcons.person_fill),
-                          ),
+                          // prefixIconColor: Colors.lightGreen,
+                          // prefixIcon: Transform.scale(
+                          //   scale: 1.2,
+                          //   child: const Icon(CupertinoIcons.person_fill),
+                          // ),
                           // labelText: "Email",
                           labelStyle: const TextStyle(
                             color: Colors.grey,
@@ -183,11 +186,13 @@ class _signinpageState extends State<signinpage> {
                       // Password text field
                       Text(
                         "Password",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          // color: Colors.lightGreen,
-                          fontWeight: FontWeight.w600,
+                        textAlign: TextAlign.left,
+                        style: GoogleFonts.gothicA1(
+                          textStyle: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                       TextFormField(
@@ -200,16 +205,16 @@ class _signinpageState extends State<signinpage> {
                           hintStyle: const TextStyle(
                             color: Colors.grey,
                           ),
-                          prefixIconColor: Colors.lightGreen,
-                          prefixIcon: Transform.scale(
-                            scale: 1.3,
-                            child: const Icon(CupertinoIcons.lock_shield_fill),
-                          ),
+                          // prefixIconColor: Colors.lightGreen,
+                          // prefixIcon: Transform.scale(
+                          //   scale: 1.3,
+                          //   child: const Icon(CupertinoIcons.lock_shield_fill),
+                          // ),
                           suffixIcon: IconButton(
                             icon: Icon(
                               isobsecrue
                                   ? CupertinoIcons.eye_slash
-                              // ignore: dead_code
+                                  // ignore: dead_code
                                   : CupertinoIcons.eye,
                               color: Colors.grey,
                             ),
@@ -237,6 +242,17 @@ class _signinpageState extends State<signinpage> {
                         },
                       ),
                       const SizedBox(height: 20),
+                      Text(
+                        "Role",
+                        textAlign: TextAlign.left,
+                        style: GoogleFonts.gothicA1(
+                          textStyle: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                       Container(
                         height: 50,
                         width: double.infinity,
@@ -250,7 +266,7 @@ class _signinpageState extends State<signinpage> {
                           children: [
                             const Padding(
                               padding: EdgeInsets.only(
-                                left: 10,
+                                left: 0,
                               ),
                             ),
                             Expanded(
@@ -273,23 +289,24 @@ class _signinpageState extends State<signinpage> {
                                   });
                                 },
                                 items: typeUser.map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(
-                                          value,
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      );
-                                    }).toList(),
+                                    (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(
+                                      value,
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  );
+                                }).toList(),
                               ),
                             ),
                             const Padding(
-                              padding: EdgeInsets.only(right: 100, left: 30),
+                              padding: EdgeInsets.only(right: 0, left: 0),
                             ),
                           ],
                         ),
@@ -305,8 +322,9 @@ class _signinpageState extends State<signinpage> {
                           "Forgot Password?",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 19,
+                            // color: Colors.black,
+                            color: Color.fromRGBO(121, 121, 121, 1),
+                            fontSize: 16,
                             // decoration: TextDecoration.underline,
                           ),
                         ),
@@ -314,11 +332,12 @@ class _signinpageState extends State<signinpage> {
                       const SizedBox(height: 20),
                       // Login button
                       Padding(
-                        padding: const EdgeInsets.only(left: 50, right: 50),
+                        padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Material(
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(10),
                           // color: const Color.fromARGB(255, 3, 51, 103),
-                          color: Colors.lightGreen,
+                          // color: Colors.lightGreen,
+                          color: Color.fromRGBO(89, 158, 133, 1),
                           child: InkWell(
                             onTap: () async {
                               // await sendDataToApi(
@@ -339,23 +358,23 @@ class _signinpageState extends State<signinpage> {
                               // color: Colors.lightGreen,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: Colors.lightGreen,
+                                color: Color.fromRGBO(89, 158, 133, 1),
                               ),
                               alignment: Alignment.center,
                               child: onChange
                                   ? const Icon(
-                                Icons.done,
-                                color: Color.fromARGB(255, 21, 151, 202),
-                              )
+                                      Icons.done,
+                                      color: Color.fromARGB(255, 21, 151, 202),
+                                    )
                                   : const Text(
-                                "Sign in",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
+                                      "Sign in",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
+                                    ),
                             ),
                           ),
                         ),
@@ -370,19 +389,29 @@ class _signinpageState extends State<signinpage> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            // Text(
+                            //   "Don't have an account?",
+                            //   style: TextStyle(color: Colors.black),
+                            //   textScaleFactor: 1.2,
+                            // ),
                             Text(
                               "Don't have an account?",
-                              style: TextStyle(color: Colors.black),
-                              textScaleFactor: 1.2,
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.gothicA1(
+                                textStyle: TextStyle(
+                                  color: Colors.black,
+                                  // fontWeight: FontWeight.w300,
+                                  fontSize: 18,
+                                ),
+                              ),
                             ),
                             const SizedBox(width: 5),
                             Text(
                               "Create one",
                               textScaleFactor: 1.2,
                               style: TextStyle(
-                                color: Colors.lightGreen,
+                                color: Color.fromRGBO(89, 158, 133, 1),
                                 // decoration: TextDecoration.underline,
-                                fontWeight: FontWeight.bold
                               ),
                             ),
                           ],

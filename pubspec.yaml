@@ -61,6 +61,7 @@ dependencies:
   flutter_polyline_points: ^2.0.0
   google_maps_flutter: ^2.5.3
   flutter_carousel_slider: ^1.1.0
+  # google_language_fonts: ^2.0.0
 
 # dependency_overrides:
 #   com.mapbox.common:common: '23.3.2'
