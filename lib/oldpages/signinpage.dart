@@ -51,11 +51,11 @@ class _signinpageState extends State<signinpage> {
     // Get the current user location
     LocationData _locationData = await _location.getLocation();
     LatLng currentLocation =
-        LatLng(_locationData.latitude!, _locationData.longitude!);
+    LatLng(_locationData.latitude!, _locationData.longitude!);
 
     // Get the current user address
     String currentAddress =
-        (await getParsedReverseGeocoding(currentLocation))['place'];
+    (await getParsedReverseGeocoding(currentLocation))['place'];
     postDataToApiAddress(currentLocation,
         currentAddress); //    --------------->>>>>>>>>>>>>>>    //uncomment thiss for passing lat lng
     //currentAddress = jsonEncode(currentAddress);
@@ -97,7 +97,7 @@ class _signinpageState extends State<signinpage> {
                   bottomRight: Radius.circular(50),
                 ),
                 image: DecorationImage(
-                  image: AssetImage("assets/image/imgUdaan3.png"),
+                  image: AssetImage("assets/image/imgUdaan3.jpg"),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
                     const Color.fromARGB(1, 36, 107, 8).withOpacity(0.0),
@@ -214,7 +214,7 @@ class _signinpageState extends State<signinpage> {
                             icon: Icon(
                               isobsecrue
                                   ? CupertinoIcons.eye_slash
-                                  // ignore: dead_code
+                              // ignore: dead_code
                                   : CupertinoIcons.eye,
                               color: Colors.grey,
                             ),
@@ -289,20 +289,20 @@ class _signinpageState extends State<signinpage> {
                                   });
                                 },
                                 items: typeUser.map<DropdownMenuItem<String>>(
-                                    (String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  );
-                                }).toList(),
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(
+                                          value,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w300,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      );
+                                    }).toList(),
                               ),
                             ),
                             const Padding(
@@ -318,7 +318,7 @@ class _signinpageState extends State<signinpage> {
                         onTap: () {
                           // Forgot Password logic here
                         },
-                        child: Text(
+                        child: const Text(
                           "Forgot Password?",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -340,11 +340,11 @@ class _signinpageState extends State<signinpage> {
                           color: Color.fromRGBO(89, 158, 133, 1),
                           child: InkWell(
                             onTap: () async {
-                              // await sendDataToApi(
-                              //   email,
-                              //   password,
-                              //   "123456 0987654",
-                              // );
+                              await sendDataToApi(
+                                email,
+                                password,
+                                "123456 0987654",
+                              );
                               Navigator.pushNamed(
                                 context,
                                 MyRoutes.homeRoutes,
@@ -363,18 +363,18 @@ class _signinpageState extends State<signinpage> {
                               alignment: Alignment.center,
                               child: onChange
                                   ? const Icon(
-                                      Icons.done,
-                                      color: Color.fromARGB(255, 21, 151, 202),
-                                    )
+                                Icons.done,
+                                color: Color.fromARGB(255, 21, 151, 202),
+                              )
                                   : const Text(
-                                      "Sign in",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      ),
-                                    ),
+                                "Sign in",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
                             ),
                           ),
                         ),

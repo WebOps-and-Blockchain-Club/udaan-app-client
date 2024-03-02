@@ -1,6 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mapbox_turn_by_turn/oldpages/event_box.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
@@ -47,10 +48,6 @@ class _homepageState extends State<homepage> {
   }
 
   /////////////////////////////////////////////////
-
-
-
-
 
   bool isEnglish = true;
   void toggleLanguage() {
@@ -185,17 +182,31 @@ class _homepageState extends State<homepage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                              color: Color(0xFFAEDEFF)),
-                          width: screenWidth * 0.42,
-                          height: 180,
-                          child: Icon(
-                            Icons.ice_skating,
-                            size: 90,
-                            color: Colors.blue.shade900,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, MyRoutes.eventsRoutes);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                                color: Color(0xFFAEDEFF)),
+                            width: screenWidth * 0.42,
+                            height: 180,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.event,
+                                  size: 90,
+                                  color: Colors.blue.shade900,
+                                ),
+                                const Text(
+                                  'Events',
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -206,26 +217,31 @@ class _homepageState extends State<homepage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                              color: Color(0xFFBAF2BB)),
-                          width: screenWidth * 0.42,
-                          height: 180,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.rate_review,
-                                size: 90,
-                                color: Colors.green.shade900,
-                              ),
-                              const Text(
-                                'Review',
-                                style: TextStyle(fontSize: 20),
-                              )
-                            ],
+                        child: GestureDetector(
+                          onTap: ()  {
+                            Navigator.pushNamed(context,MyRoutes.chatRoutes);
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(12)),
+                                color: Color(0xFFBAF2BB)),
+                            width: screenWidth * 0.42,
+                            height: 180,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.rate_review,
+                                  size: 90,
+                                  color: Colors.green.shade900,
+                                ),
+                                const Text(
+                                  'Chat',
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -265,12 +281,11 @@ class _homepageState extends State<homepage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(top: 0),
-        height: 64,
-        width: 64,
+        margin: const EdgeInsets.only(bottom: 25),
+        height: 84,
+        width: 84,
         child: FloatingActionButton(
           backgroundColor: Colors.red,
-          elevation: 40,
           onPressed: () {
             Navigator.pushNamed(context, MyRoutes.sosRoute);
           },
@@ -378,7 +393,7 @@ class EventCarousel extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [Colors.transparent, Colors.black87],
@@ -390,7 +405,7 @@ class EventCarousel extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Text(
               eventName,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

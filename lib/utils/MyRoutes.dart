@@ -15,5 +15,6 @@ class MyRoutes {
   static String profileRoute = "/profile";
   static String eventDetails = "/eventdetails";
   static String previewride = "/preview";
+  static String chatRoutes = "/chat";
   // static String MessageRoute = "/";
 }

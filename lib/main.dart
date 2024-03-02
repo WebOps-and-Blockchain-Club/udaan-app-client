@@ -7,6 +7,7 @@ import 'package:mapbox_turn_by_turn/oldpages/EventsPage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/SOSpage.dart';
 import 'package:mapbox_turn_by_turn/oldpages/askperson.dart';
 import 'package:mapbox_turn_by_turn/oldpages/cancel_request.dart';
+import 'package:mapbox_turn_by_turn/oldpages/chat.dart';
 import 'package:mapbox_turn_by_turn/oldpages/homepage.dart';
 import 'package:mapbox_turn_by_turn/screens/prepare_ride.dart';
 import 'package:mapbox_turn_by_turn/screens/profile_per.dart';
@@ -95,6 +96,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.signinRoutes: (context) => const signinpage(),
         MyRoutes.signupRoutes: (context) => const signuppage(),
         MyRoutes.eventsRoutes: (context) => EventsPage(),
+        MyRoutes.chatRoutes: (context) => Chat(),
         MyRoutes.homeRoutes: (context) => const homepage(),
         MyRoutes.drawerRoute: (context) => MyDrawer(),
         MyRoutes.sosRoute: (context) => const SOSpage(),
