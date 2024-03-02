@@ -1,5 +1,3 @@
-// nav_bar
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -13,6 +11,7 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Colors.white;
     final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
@@ -78,7 +77,7 @@ class NavBar extends StatelessWidget {
             ),
             Text(
               title,
-              style: const TextStyle(fontSize: 11),
+              style: TextStyle(fontSize: 11),
             )
           ],
         ),

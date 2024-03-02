@@ -1,65 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 
-class askperson extends StatefulWidget {
-  const askperson({super.key});
+class askperson extends StatelessWidget {
+  const askperson({Key? key}) : super(key: key);
 
-  @override
-  State<askperson> createState() => _askpersonState();
-}
-
-class _askpersonState extends State<askperson> {
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 0,
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    return SafeArea(
       child: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage(
-              "assets/image/WhatsApp Image 2023-11-03 at 9.53.36 PM.jpeg",
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image(
+                image: AssetImage(
+                  "assets/image/WhatsApp Image 2023-11-03 at 9.53.36 PM.jpeg",
+                ),
+              ),
             ),
-            fit: BoxFit.contain,
-          )),
-          child: Center(
-            child: Positioned(
-              top: 100,
-              left: 0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+            Column(
                 children: [
-                  const SizedBox(
-                    height: 380,
-                  ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, MyRoutes.signupRoutes);
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 500),
-                      width: 200,
+                      width: screenWidth*0.6,
                       height: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(25),
                         border: Border.all(
-                          color: Colors
-                              .blue, // Change the color to your desired border color
+                          color: Colors.lightGreen, // Change the color to your desired border color
                           width: 2, // Adjust the width of the border
                         ),
                       ),
                       child: const Text(
                         'Sign Up',
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.lightGreen,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 10),
                   GestureDetector(
                     onTap: () {
                       //navigate
@@ -67,11 +57,11 @@ class _askpersonState extends State<askperson> {
                     },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 500),
-                      width: 200,
+                      width: screenWidth*0.6,
                       height: 50,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 8, 93, 220),
+                        color: Colors.lightGreen,
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: const Text(
@@ -83,10 +73,9 @@ class _askpersonState extends State<askperson> {
                       ),
                     ),
                   ),
-                ],
-              ),
+                ]
             ),
-          ),
+          ],
         ),
       ),
     );

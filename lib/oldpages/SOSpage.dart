@@ -99,77 +99,72 @@ class _SOSpageState extends State<SOSpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            color: const Color.fromARGB(231, 9, 3, 37),
-            width: double.infinity,
-            height: double.infinity,
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[],
-                ),
-                const SizedBox(height: 80),
-                const Padding(
-                  padding: EdgeInsets.only(left: 30, right: 30),
-                ),
-                const CircularProgressIndicator(),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Center(
-                  child: Text(
-                    "    Loading...",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 120,
-                ),
-                AnimatedContainer(
-                  duration: const Duration(
-                    seconds: 30,
-                  ),
-                  height: 80,
-                  width: 180,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Cancel the request and navigate to the homepage.
-                      Navigator.pushReplacementNamed(
-                          context, MyRoutes.homeRoutes);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
-                        )
-
-                        //foregroundColor: Colors.black,
-                        ),
-                    child: const Text(
-                      'Cancel Request',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+      appBar: AppBar(
+        title: Text('SOS Page'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.account_circle),
+            onPressed: () {
+              // Add your profile icon action here
+            },
           ),
         ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'Need emergency service?',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(height: 20.0),
+
+            ElevatedButton(
+              onPressed: () {
+                // Add your SOS button action here
+
+              },
+              style: ElevatedButton.styleFrom(
+                // primary: Color.fromRGBO(233, 99, 98, 1),
+                backgroundColor: Color.fromRGBO(233, 99, 98, 1),
+                padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 80.0),
+              ),
+              child:const Text(
+                'SOS',
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+
+                ),
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'or',
+              style: TextStyle(
+                fontSize: 22.0,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'Emergency call',
+              style: TextStyle(
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

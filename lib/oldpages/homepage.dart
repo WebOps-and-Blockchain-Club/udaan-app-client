@@ -1,13 +1,14 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mapbox_turn_by_turn/oldpages/event_box.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_bar.dart';
 import 'package:mapbox_turn_by_turn/oldpages/nav_model.dart';
 import 'package:mapbox_turn_by_turn/widgets/MyDrawer.dart';
 import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class homepage extends StatefulWidget {
   const homepage({super.key});
@@ -34,7 +35,7 @@ class _homepageState extends State<homepage> {
     }
 
     RemoteMessage? initialMessage =
-        await FirebaseMessaging.instance.getInitialMessage();
+    await FirebaseMessaging.instance.getInitialMessage();
 
     // If the message also contains a data property with a "type" of "chat",
     // navigate to a chat screen
@@ -48,8 +49,9 @@ class _homepageState extends State<homepage> {
   }
 
   /////////////////////////////////////////////////
-
   bool isEnglish = true;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   void toggleLanguage() {
     setState(() {
       isEnglish = !isEnglish;
@@ -66,7 +68,6 @@ class _homepageState extends State<homepage> {
 
   @override
   void initState() {
-    setupInteractedMessage();
     super.initState();
     items = [
       NavModel(
@@ -92,104 +93,148 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    bool searching = false;
+    int notificationCount = 3;
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, MyRoutes.drawerRoute);
-                      },
-                      child: Icon(
-                        Icons.menu_sharp,
-                        size: 36,
-                      ),
-                    ),
-                    Icon(
-                      Icons.notifications,
-                      size: 36,
-                      // yet to do: apply the toggle active notification icon
-                      color: Colors.blue,
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 11, vertical: 4.0),
-                child: Text(
-                  "Search For Something",
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 11, vertical: 8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Enter Search Text",
-                    hintStyle: TextStyle(
-                        color: Colors.grey, letterSpacing: 1.0, fontSize: 16),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    suffixIcon: Icon(
-                      Icons.search_rounded,
-                      size: 34,
-                      color: Colors.blue,
-                    ),
-                    contentPadding: EdgeInsets.only(
-                        left: 20, right: 12, top: 10, bottom: 10),
-                  ),
-                ),
-              ),
-              SizedBox(height: 18),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      key: _scaffoldKey,
+      drawer: const MyDrawer(),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                              color: Color(0xFFF8CD9E)),
-                          width: screenWidth * 0.42,
-                          height: 180,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.local_hospital,
-                                size: 90,
-                                color: Color(0xFFE96362),
-                              ),
-                              const Text('Medical',
-                                  style: TextStyle(fontSize: 20))
-                            ],
-                          ),
+                      GestureDetector(
+                        onTap: () {
+                          _scaffoldKey.currentState?.openDrawer();
+                        },
+                        child: Builder(
+                          builder: (BuildContext context) {
+                            return const Icon(
+                              Icons.menu_sharp,
+                              size: 36,
+                            );
+                          },
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, MyRoutes.eventsRoutes);
-                          },
+                      // const Icon(
+                      //   Icons.notifications,
+                      //   size: 36,
+                      //   // yet to do: apply the toggle active notification icon
+                      //   color: Colors.blue,
+                      // )
+                      Stack(
+                        children: [
+                          const Icon(
+                            Icons.notifications,
+                            size: 36,
+                            color: Colors.lightGreen,
+                          ),
+                          if (notificationCount > 0)
+                            Positioned(
+                              right: 0,
+                              top: 0,
+                              child: Container(
+                                padding: const EdgeInsets.all(7),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.red,
+                                ),
+                                child: Text(
+                                  '$notificationCount',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+
+
+                  ),
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 11, vertical: 4.0),
+                  child: Text(
+                    "Search For Something",
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 11, vertical: 8.0),
+                  child: TextField(
+                    onTap: () {
+                      setState(() {
+                        searching = !(searching);
+                      });
+                    },
+                    // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag, // Set keyboardDismissBehavior
+                    // keyboardAppearance: ,
+                    decoration: InputDecoration(
+                      hintText: "Enter Search Text",
+                      hintStyle: TextStyle(
+                          color: Colors.grey, letterSpacing: 1.0, fontSize: 16),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      suffixIcon: Icon(
+                        Icons.search_rounded,
+                        size: 34,
+                        color: Colors.blue,
+                      ),
+                      contentPadding: EdgeInsets.only(
+                          left: 20, right: 12, top: 10, bottom: 10),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 18),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
+                                BorderRadius.all(Radius.circular(12)),
+                                color: Color(0xFFF8CD9E)),
+                            width: screenWidth * 0.42,
+                            height: 180,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.local_hospital,
+                                  size: 90,
+                                  color: Color(0xFFE96362),
+                                ),
+                                const Text('Medical',
+                                    style: TextStyle(fontSize: 20))
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(12)),
                                 color: Color(0xFFAEDEFF)),
                             width: screenWidth * 0.42,
                             height: 180,
@@ -209,22 +254,17 @@ class _homepageState extends State<homepage> {
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: GestureDetector(
-                          onTap: ()  {
-                            Navigator.pushNamed(context,MyRoutes.chatRoutes);
-                          },
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
                           child: Container(
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(12)),
+                                BorderRadius.all(Radius.circular(12)),
                                 color: Color(0xFFBAF2BB)),
                             width: screenWidth * 0.42,
                             height: 180,
@@ -237,53 +277,57 @@ class _homepageState extends State<homepage> {
                                   color: Colors.green.shade900,
                                 ),
                                 const Text(
-                                  'Chat',
+                                  'Review',
                                   style: TextStyle(fontSize: 20),
                                 )
                               ],
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
-                              color: Color(0xFFD4BFF4)),
-                          width: screenWidth * 0.42,
-                          height: 180,
-                          // color: Colors.red,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.account_balance,
-                                size: 90,
-                                color: Colors.purple.shade800,
-                              ),
-                              const Text(
-                                'Donate Us',
-                                style: TextStyle(fontSize: 20),
-                              )
-                            ],
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.all(Radius.circular(12)),
+                                color: Color(0xFFD4BFF4)),
+                            width: screenWidth * 0.42,
+                            height: 180,
+                            // color: Colors.red,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.account_balance,
+                                  size: 90,
+                                  color: Colors.purple.shade800,
+                                ),
+                                const Text(
+                                  'Donate Us',
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ],
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
+      floatingActionButtonLocation: searching
+          ? null
+          : FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: searching
+          ? null
+          : Container(
         margin: const EdgeInsets.only(bottom: 25),
-        height: 84,
-        width: 84,
+        height: 90,
+        width: 90,
         child: FloatingActionButton(
           backgroundColor: Colors.red,
           onPressed: () {
@@ -393,7 +437,7 @@ class EventCarousel extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [Colors.transparent, Colors.black87],
@@ -405,7 +449,7 @@ class EventCarousel extends StatelessWidget {
             alignment: Alignment.bottomLeft,
             child: Text(
               eventName,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
