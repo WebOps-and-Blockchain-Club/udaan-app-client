@@ -46,15 +46,6 @@ class _homepageState extends State<homepage> {
     FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   setupInteractedMessage();
-
-  //   // Run code required to handle interacted messages in an async function
-  //   // as initState() must not be async
-  // }
-
   /////////////////////////////////////////////////
 
 

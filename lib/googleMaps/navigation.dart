@@ -10,6 +10,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 // import 'package:sr]]';
 import 'package:mapbox_turn_by_turn/googleMaps/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class OrderTrackingPage extends StatefulWidget {
@@ -106,11 +107,16 @@ class OrderTrackingPageState extends State<OrderTrackingPage> {
     }
   }
 
+
   void _showLocation() async {
+
+    /// TODO GET IF FROM SHARED PREFERENCE 
+    // late String currentUserID= SharedPreferences.getInstance("");
+    // late String receiverUserID;
     _locationData = await location.getLocation();
     var msg = {
-      "fromId": "1",
-      "toId": "2",
+      // "fromId": currentUserID,
+      // "toId": receiverUserID,
       "cordinates": {
         "lat": "${_locationData.latitude}",
         "long": "${_locationData.longitude}"
