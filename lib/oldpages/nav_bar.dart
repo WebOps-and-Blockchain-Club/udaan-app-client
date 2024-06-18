@@ -1,3 +1,78 @@
+// import 'dart:io';
+
+// import 'package:flutter/material.dart';
+// import 'package:mapbox_turn_by_turn/utils/MyRoutes.dart';
+
+// class NavBar extends StatelessWidget {
+//   final int pageIndex;
+//   final Function(int) onTap;
+
+//   const NavBar({
+//     super.key,
+//     required this.pageIndex,
+//     required this.onTap
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final screenWidth = MediaQuery.of(context).size.width;
+//     return Container(
+//       decoration: BoxDecoration(
+//         boxShadow: [
+//           BoxShadow(
+//             color: Colors.black.withOpacity(0.4),
+//             blurRadius: 3,
+//           ),
+//         ],
+//       ),
+//       child: BottomAppBar(
+//         color: Colors.white,
+//         height: 65,
+//         padding: EdgeInsets.only(
+//           top: 7
+//         ),
+//         // elevation: 0.0,
+//         child: Container(
+//           // color: Colors.red,
+//           child: Row(
+//             children: [
+//               navItem(
+//                 Icons.home,
+//                 pageIndex == 0,
+//                 "Home",
+//                 onTap: () {
+//                   Navigator.pushNamed(context, MyRoutes.homeRoutes);
+//                 },
+//               ),
+//               navItem(
+//                   Icons.event,
+//                   pageIndex == 1,
+//                   "Events",
+//                   onTap: () => onTap(1)
+//               ),
+//               const SizedBox(width: 50),
+//               navItem(
+//                 Icons.settings,
+//                 pageIndex == 2,
+//                 "Settings",
+//                 onTap: () {
+//                   // Navigator.pushNamed(context, MyRoutes.homeRoutes);
+//                 },
+//               ),
+//               navItem(
+//                 Icons.person,
+//                 pageIndex == 3,
+//                 "Profile",
+//                 onTap: () => onTap(3),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -31,9 +106,9 @@ class NavBar extends StatelessWidget {
         padding: EdgeInsets.only(
           top: 7
         ),
-        // elevation: 0.0,
+        elevation: 0.0,
         child: Container(
-          // color: Colors.red,
+          color: Colors.red,
           child: Row(
             children: [
               navItem(
@@ -48,7 +123,9 @@ class NavBar extends StatelessWidget {
                   Icons.event,
                   pageIndex == 1,
                   "Events",
-                  onTap: () => onTap(1)
+                  onTap: () {
+                    Navigator.pushNamed(context, MyRoutes.eventsRoutes);
+                  }
               ),
               const SizedBox(width: 50),
               navItem(
@@ -56,14 +133,16 @@ class NavBar extends StatelessWidget {
                 pageIndex == 2,
                 "Settings",
                 onTap: () {
-                  // Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                  Navigator.pushNamed(context, MyRoutes.profileRoutes);
                 },
               ),
               navItem(
                 Icons.person,
                 pageIndex == 3,
                 "Profile",
-                onTap: () => onTap(3),
+                onTap: () {
+                  Navigator.pushNamed(context, MyRoutes.profileRoute);
+                }
               ),
             ],
           ),
@@ -93,3 +172,5 @@ class NavBar extends StatelessWidget {
     );
   }
 }
+
+// put this in place of nav_bar.dart in oldpages
