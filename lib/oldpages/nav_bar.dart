@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -7,11 +8,14 @@ class NavBar extends StatelessWidget {
   final int pageIndex;
   final Function(int) onTap;
 
-  const NavBar({super.key, required this.pageIndex, required this.onTap});
+  const NavBar({
+    super.key,
+    required this.pageIndex,
+    required this.onTap
+  });
 
   @override
   Widget build(BuildContext context) {
-    Colors.white;
     final screenWidth = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
@@ -25,10 +29,12 @@ class NavBar extends StatelessWidget {
       child: BottomAppBar(
         color: Colors.white,
         height: 65,
-        padding: EdgeInsets.only(top: 7),
-        // elevation: 0.0,
+        padding: EdgeInsets.only(
+          top: 7
+        ),
+        elevation: 0.0,
         child: Container(
-          // color: Colors.red,
+          color: Colors.red,
           child: Row(
             children: [
               navItem(
@@ -39,22 +45,30 @@ class NavBar extends StatelessWidget {
                   Navigator.pushNamed(context, MyRoutes.homeRoutes);
                 },
               ),
-              navItem(Icons.event, pageIndex == 1, "Events",
-                  onTap: () => onTap(1)),
+              navItem(
+                  Icons.event,
+                  pageIndex == 1,
+                  "Events",
+                  onTap: () {
+                    Navigator.pushNamed(context, MyRoutes.eventsRoutes);
+                  }
+              ),
               const SizedBox(width: 50),
               navItem(
                 Icons.settings,
                 pageIndex == 2,
                 "Settings",
                 onTap: () {
-                  // Navigator.pushNamed(context, MyRoutes.homeRoutes);
+                  Navigator.pushNamed(context, MyRoutes.profileRoutes);
                 },
               ),
               navItem(
                 Icons.person,
                 pageIndex == 3,
                 "Profile",
-                onTap: () => onTap(3),
+                onTap: () {
+                  Navigator.pushNamed(context, MyRoutes.profileRoute);
+                }
               ),
             ],
           ),
@@ -63,8 +77,7 @@ class NavBar extends StatelessWidget {
     );
   }
 
-  Widget navItem(IconData icon, bool selected, String title,
-      {Function()? onTap}) {
+  Widget navItem(IconData icon, bool selected, String title, {Function()? onTap}) {
     return Expanded(
       child: InkWell(
         onTap: onTap,
@@ -72,13 +85,13 @@ class NavBar extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: selected ? Color.fromRGBO(89, 158, 133, 1): Colors.grey.shade600,
+              color: selected ? Colors.green : Colors.grey.shade600,
               size: 36,
             ),
-            Text(
-              title,
-              style: TextStyle(fontSize: 11),
-            )
+            Text(title,
+            style: TextStyle(
+              fontSize: 11
+            ),)
           ],
         ),
       ),
