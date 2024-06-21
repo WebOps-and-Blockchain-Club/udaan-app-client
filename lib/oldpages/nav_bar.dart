@@ -133,7 +133,7 @@ class NavBar extends StatelessWidget {
                 pageIndex == 2,
                 "Settings",
                 onTap: () {
-                  Navigator.pushNamed(context, MyRoutes.profileRoutes);
+                  Navigator.pushNamed(context, MyRoutes.profileRoute);
                 },
               ),
               navItem(

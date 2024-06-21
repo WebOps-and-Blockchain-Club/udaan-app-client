@@ -74,6 +74,6 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://ncc-udaan-default-rtdb.asia-southeast1.firebasedatabase.app',
 
     storageBucket: 'ncc-udaan.appspot.com',
-    iosBundleId: 'com.example.mapboxTurnByTurn',
+    iosBundleId: 'com.cfiwebops.ncc_udaan',
   );
 }

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:441073967185:android:1355677176719827df1870",
         "android_client_info": {
-          "package_name": "com.example.mapbox_turn_by_turn"
+          "package_name": "com.cfiwebops.ncc_udaan"
         }
       },
       "oauth_client": [],
@@ -29,7 +29,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:441073967185:android:d884a70b8d2805d2df1870",
         "android_client_info": {
-          "package_name": "com.example.ncc_udaan"
+          "package_name": "com.cfiwebops.ncc_udaan"
         }
       },
       "oauth_client": [],
